@@ -1,15 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <link rel='stylesheet' href='style.css'>
+
+    
+    <script src="elements.js"></script>
+    
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <chrome>
+      <ch-min></ch-min>
+      <ch-max></ch-max>
+      <ch-exit></ch-exit>
+    </chrome>
+
+    <page-tabs>
+      <pg-tab>
+        <tb-icon src='images.png'></tb-icon>
+        <tb-title>Default</tb-title>
+      </pg-tab>
+    </page-tabs>
+
+    <toolbar>
+      <pg-nav>
+        <pg-back></pg-back>
+        <pg-forward></pg-forward>
+        <pg-refresh></pg-refresh>
+      </pg-nav>
+
+      <search-bar>
+        <sch-icon href='Default.png'></sch-icon>
+        <sch-ipt></sch-ipt>
+      </search-bar>
+
+      <settingsBtn>
+        <img src='otherSettings.svg' />
+
+        <other-settings>
+            <st-btn>New Tab</st-btn>
+            <st-win>New Window</st-win>
+            <st-br></st-br>
+    
+            <st-history>
+              <hist-item href='about:blank'>
+                Default page
+              </hist-item>
+            </st-history>
+    
+            <st-bookmarks>
+              <book-mark>
+                <bm-name>
+                  Default Page
+                </bm-name>
+                <bm-ico href='Default.png'></bm-ico>
+              </book-mark>
+            </st-bookmarks>
+    
+            <page-zoom>
+              <z-in></z-in>
+              <z-out></z-out>
+              <z-full></z-full>
+            </page-zoom>
+    
+            <adv-settings>Settings</adv-settings>
+          </other-settings>
+      </settingsBtn>
+      
+
+      <!-- <book-marks>
+        <b-mark link="about:blank">
+          <b-ico href='Default.png'></b-ico>
+          <b-title>Default</b-title>
+        </b-mark>
+      </book-marks> -->
+    </toolbar>
+    <webview src='https://google.com'></webview>
 
     <script>
       // You can also require other files to run in this process

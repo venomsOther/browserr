@@ -1,0 +1,157 @@
+html,body{margin:0;overflow: hidden;}
+*{box-sizing: border-box; transition-duration: 0.3s;}
+
+page-tabs,chrome{
+    display:block;
+    background-color:lightgray;
+    height: 22px;
+    margin: 0;
+    -webkit-app-region:drag;
+}
+
+toolbar{
+    display:flex;
+    padding-top: 5px;
+    border-bottom: 2px black solid;
+    height: auto;
+}
+
+pg-nav{
+    display:inline-block;
+}
+
+page-tabs{
+    height:40px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+pg-tab{
+    display:inline-block;
+    margin:0;
+    padding: 0px 10px 0px 5px;
+    height:40px;
+    background-color:darkgray;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;  
+    -webkit-app-region:no-drag;
+}
+
+pg-tab:hover{
+    background: lightgray;
+    border-style:solid;
+    border-width:1px;
+}
+
+ch-min,ch-max,ch-exit{
+    -webkit-app-region:no-drag;
+    position: absolute;
+    top:0;
+    height: inherit;
+    width: 25px;
+    background-color: inherit;
+    padding:2px;
+    border:none;
+}
+
+pg-back,pg-forward,pg-refresh{
+    height:25px;
+    width:25px;
+    display:inline-block;
+    margin:0px;
+}
+
+pg-back:hover,pg-forward:hover,pg-refresh:hover{
+    background: darkgrey;
+}
+
+ch-min:hover,ch-max:hover,ch-exit:hover{
+    background-color:darkgray;
+}
+
+ch-exit{right:0;}
+ch-max{right:25px;}
+ch-min{right:50px;}
+
+svg{display:inline-block;margin:0;}
+
+tb-icon{margin-right: 2.5px;height:inherit;}
+
+search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-grow:9;margin-right:5px;margin-left:5px; border-radius: 15px;}
+
+other-settings{
+    padding:10px;
+    position: absolute;
+    width: 150px;
+    height: auto;
+    display: none;
+    top: 95px;
+    right:0.25vw;
+    background: lightgrey;
+}
+
+settingsbtn{
+    float:right;
+    margin-right:0.25vw;
+    display:inline-block;
+}
+
+settingsbtn:hover{
+    display:inline-block;
+    background: lightgrey;
+}
+
+st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings{
+    display:block;
+    width:auto;
+    padding:5px;
+    border: 1px solid darkgray;
+    border-radius:5px;  
+}
+
+settingsbtn:hover other-settings, other-settings:hover{
+    display:inline-block;
+}
+
+
+webview{
+    height: calc(100vh - (100px) + 2px);
+    
+}
+
+/*
+    new elements:
+        page-tabs
+            pg-tab
+                tb-icon
+                tb-title
+        toolbar
+            pg-nav
+                pg-back
+                pg-forward
+                pg-refresh
+            search-bar
+                sch-icon
+                sch-ipt
+            other-settings
+                st-btn
+                st-win
+                st-br
+
+                st-history
+                    hist-item
+                st-bookmarks
+                    book-mark
+                        bm-name
+                        bm-ico
+                page-zoom
+                    z-in
+                    z-out
+                    z-full
+                adv-settings(button)
+
+            book-marks
+                b-mark
+                    b-ico
+                    b-title
+*/
