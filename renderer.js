@@ -106,10 +106,6 @@ class wv extends HTMLElement{
         this.setAttribute("num",n);
     }
 
-    get tab(){
-        return this.getAttribute("num");
-    }
-
     updateTabTitle(title,explicitSet){
         window.document.querySelector('page-tabs').children[this.tab].querySelector('tb-title').innerHTML = title.title;
     }
