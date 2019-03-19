@@ -89,8 +89,8 @@ class wv extends HTMLElement{
 
             let web = this.view;
 
-            web.addEventListener('page-favicon-updated', otherFavicon);
-            web.addEventListener('page-title-updated', updateTabTitle);
+            web.addEventListener('page-favicon-updated', this.otherFavicon);
+            web.addEventListener('page-title-updated', this.updateTabTitle);
         }
     }
 
@@ -107,7 +107,7 @@ class wv extends HTMLElement{
     }
 
     updateTabTitle(title,explicitSet){
-        window.document.querySelector('page-tabs').children[this.tab].querySelector('tb-title').innerHTML = title.title;
+        this.tab.querySelector('tb-title').innerHTML = title.title;
     }
     
     otherFavicon(favs){
