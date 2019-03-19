@@ -30,7 +30,7 @@
 
       <search-bar>
         <sch-icon href='Default.png'></sch-icon>
-        <sch-ipt></sch-ipt>
+        <sch-ipt contenteditable="true"></sch-ipt>
       </search-bar>
 
       <settingsBtn>
@@ -74,7 +74,7 @@
         </b-mark>
       </book-marks> -->
     </toolbar>
-    <webview src='https://www.google.com'></webview>
+    <webview disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.google.com'></webview>
 
     <script>
       // You can also require other files to run in this process

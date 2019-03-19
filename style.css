@@ -1,4 +1,19 @@
-html,body{margin:0;overflow: hidden;}
+@font-face{
+    font-family: medium;
+    src: url("Roboto-Medium.ttf");
+}
+
+@font-face{
+    font-family: light;
+    src: url("Roboto-Light.ttf");
+}
+
+@font-face{
+    font-family: regular;
+    src: url("Roboto-Regular.ttf")
+}
+
+html,body{margin:0;overflow: hidden;font-family: regular;}
 *{box-sizing: border-box; transition-duration: 0.3s;}
 
 page-tabs,chrome{
@@ -35,6 +50,7 @@ pg-tab{
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;  
     -webkit-app-region:no-drag;
+    max-width:20%;
 }
 
 pg-tab:hover{
@@ -75,9 +91,9 @@ ch-min{right:50px;}
 
 svg{display:inline-block;margin:0;}
 
-tb-icon{margin-right: 2.5px;height:inherit;}
+tb-icon{margin-right: 2.5px;height:inherit;display: inline-block; float: left;}
 
-search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-grow:9;margin-right:5px;margin-left:5px; border-radius: 15px;}
+search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-grow:9;margin-right:5px;margin-left:5px; border-radius: 15px;padding-top:3px;padding-left:15px;}
 
 other-settings{
     padding:10px;
@@ -119,6 +135,20 @@ webview{
     
 }
 
+sch-ipt{
+    display:inline-block;
+    outline: none;
+}
+
+tb-title{
+    padding-left:8px;
+    padding-top: 10px;
+    display: inline-block;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(20vw - 50px);
+}
 /*
     new elements:
         page-tabs

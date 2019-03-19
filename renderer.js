@@ -3,10 +3,15 @@
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
 
+
+
 var thisWindow = require('electron').remote.getCurrentWindow();
 var $ = window.document.body.querySelector;
 var web = window.document.body.querySelector('webview');
 window.currentTab = window.document.body.querySelector('pg-tab');
+window.searchProvider = "www.google.com";
+let currentTabNum = 0;
+window.tabs = window.document.querySelector('page-tabs');
 
 function minimize(){
     require('electron').remote.getCurrentWindow().minimize();
@@ -24,6 +29,7 @@ function maximize(){
     }
 }
 
+
 function pgBack(){
     web.goBack();
 }
@@ -37,14 +43,69 @@ function pgRefresh(){
 }
 
 function focusSearchInput(){
-
+    window.document.body.querySelector('search-bar').querySelector('sch-ipt').focus();
 }
 
+//######################## NEW WEBVIEW ##########################
+window.makeWebv = function makeWebv(url){
+    var vv = window.document.createElement("web--view");
+    var src = window.document.createAttribute('src');
+    src.value = url;
+    var num = window.document.createAttribute('num');
+    num.value = tabs.length;
+    var ws = window.document.createAttribute('disablewebsecurity');
+    var wp = window.document.createAttribute('webpreferences');
+    wp.value = "allowRunningInsecureContent, javascript=yes";
+
+    vv.appendChild(src);
+    vv.appendChild(num);
+    vv.appendChild(ws);
+    vv.appendChild(wp);
+}
+
+class wv extends HTMLElement{
+    constructor(){
+        super();
+    }
+
+    connectedCallback(){
+        if(!this.hasAttribute("num")){
+            throw new Error("A usable webview was declared but without a \"num\" attribute.");
+        }else{
+            var v = window.document.createElement("webview");
+            var a = window.document.createAttribute("src");
+            var ws = window.document.createAttribute("disablewebsecurity");
+            var webp = window.document.createAttribute("webpreferences");
+            a.value = this.getAttribute('src');
+            webp.value = this.getAttribute('webpreferences');
+
+            v.appendChild(a);
+            v.appendChild(ws);
+            v.appendChild(webp);
+        }
+    }
+
+    get view(){
+        return this.children[0];
+    }
+
+    get tab(){
+        return window.document.querySelector('page-tabs').children[this.getAttribute("num")];
+    }
+
+    set tab(n){
+        this.setAttribute("num",n);
+    }
+}
+
+customElements.define('web--view', wv);
+
+//######################## OTHER ELEMENTS ############################
 customElements.define('ch-min', class extends HTMLElement {  
     constructor(){
         super();
             let shadowRoot = this.attachShadow({mode: 'open'});
-            shadowRoot.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;"><line x1="0" y1="10" x2="25" y2="10" stroke-width=2 /></svg>';
+            shadowRoot.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;"><line x1="0" y1="16" x2="25" y2="16" stroke-width=2 /></svg>';
 
             this.addEventListener('click',minimize);
     }
@@ -187,6 +248,21 @@ customElements.define('sch-ipt', class extends HTMLElement {
     constructor(){
         super();
 
+        this.addEventListener('keypress', (k)=>{
+//            console.log(k.key);
+
+            if(k.key=='Enter'){
+                k.preventDefault();
+                urlify(this.innerHTML,(url)=>{
+                    console.log(url);
+                    web.src=url;
+                    web.focus();
+                });
+
+                
+                //updateTabIcon(this.innerHTML);
+            }
+        });
     }
 });
 
@@ -330,16 +406,40 @@ customElements.define('b-link', class extends HTMLElement {
     }
 });
 
-function updateTabIcon(){
-    require('get-website-favicon')(web.src).then((object)=>{
+function updateTabIcon(url){
+    require('get-website-favicon')(url).then((object)=>{
         window.currentTab.querySelector('tb-icon').querySelector('img').src = object.icons[0].src;
+        //console.log(object);
     });
 }
 
 function updateTabTitle(title,explicitSet){
-    console.log(title);
-    window.currentTab.querySelector('tb-title').innerHTML = title.title;
+    window.document.querySelector('page-tabs').children[currentTabNum].querySelector('tb-title').innerHTML = title.title;
 }
 
-web.addEventListener('did-finish-load', updateTabIcon);
+function otherFavicon(favs){
+    window.currentTab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
+}
+
+//web.addEventListener('did-finish-load', ()=>{updateTabIcon(web.src)});
+//web.addEventListener('did-navigate', ()=>{updateTabIcon(web.src)});
+web.addEventListener('page-favicon-updated', otherFavicon);
 web.addEventListener('page-title-updated', updateTabTitle);
+
+window.urlify = function urlify(text,callback){
+    var es = require('url-exists');
+
+    es("https://" + text, (err,bool)=>{
+        if(bool){
+            callback("https://"+text);
+        }else{
+            es("http://" + text, (err,bool)=>{
+                if(bool){
+                    callback("http://" + text);
+                }else{
+                    callback("https://" + window.searchProvider + "/search?q=" + text.replace(/ /g, '+'));
+                }
+            });
+        }
+    });
+}
