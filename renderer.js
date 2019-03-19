@@ -52,15 +52,17 @@ window.makeWebv = function makeWebv(url){
     var src = window.document.createAttribute('src');
     src.value = url;
     var num = window.document.createAttribute('num');
-    num.value = tabs.length;
+    num.value = tabs.children.length;
     var ws = window.document.createAttribute('disablewebsecurity');
     var wp = window.document.createAttribute('webpreferences');
     wp.value = "allowRunningInsecureContent, javascript=yes";
 
-    vv.appendChild(src);
-    vv.appendChild(num);
-    vv.appendChild(ws);
-    vv.appendChild(wp);
+    vv.setAttributeNode(src);
+    vv.setAttributeNode(num);
+    vv.setAttributeNode(ws);
+    vv.setAttributeNode(wp);
+
+    return vv;
 }
 
 class wv extends HTMLElement{
@@ -79,9 +81,16 @@ class wv extends HTMLElement{
             a.value = this.getAttribute('src');
             webp.value = this.getAttribute('webpreferences');
 
-            v.appendChild(a);
-            v.appendChild(ws);
-            v.appendChild(webp);
+            v.setAttributeNode(a);
+            v.setAttributeNode(ws);
+            v.setAttributeNode(webp);
+
+            this.appendChild(v);
+
+            let web = this.view;
+
+            web.addEventListener('page-favicon-updated', otherFavicon);
+            web.addEventListener('page-title-updated', updateTabTitle);
         }
     }
 
@@ -95,6 +104,18 @@ class wv extends HTMLElement{
 
     set tab(n){
         this.setAttribute("num",n);
+    }
+
+    get tab(){
+        return this.getAttribute("num");
+    }
+
+    updateTabTitle(title,explicitSet){
+        window.document.querySelector('page-tabs').children[this.tab].querySelector('tb-title').innerHTML = title.title;
+    }
+    
+    otherFavicon(favs){
+        window.currentTab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }
 }
 
@@ -405,21 +426,6 @@ customElements.define('b-link', class extends HTMLElement {
 
     }
 });
-
-function updateTabIcon(url){
-    require('get-website-favicon')(url).then((object)=>{
-        window.currentTab.querySelector('tb-icon').querySelector('img').src = object.icons[0].src;
-        //console.log(object);
-    });
-}
-
-function updateTabTitle(title,explicitSet){
-    window.document.querySelector('page-tabs').children[currentTabNum].querySelector('tb-title').innerHTML = title.title;
-}
-
-function otherFavicon(favs){
-    window.currentTab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
-}
 
 //web.addEventListener('did-finish-load', ()=>{updateTabIcon(web.src)});
 //web.addEventListener('did-navigate', ()=>{updateTabIcon(web.src)});
