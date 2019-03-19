@@ -91,7 +91,17 @@ class wv extends HTMLElement{
 
             web.addEventListener('page-favicon-updated', this.otherFavicon);
             web.addEventListener('page-title-updated', this.updateTabTitle);
+
+            
         }
+    }
+
+    show(){
+        this.style.display = 'none';
+    }
+
+    hide(){
+        this.style.display = 'inline-block';
     }
 
     get view(){
@@ -111,7 +121,7 @@ class wv extends HTMLElement{
     }
     
     otherFavicon(favs){
-        window.currentTab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
+        this.tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }
 }
 
