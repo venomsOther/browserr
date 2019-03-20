@@ -7,7 +7,7 @@ require('./webviewele.js');
 
 var thisWindow = require('electron').remote.getCurrentWindow();
 var $ = window.document.body.querySelector;
-var web = window.document.body.querySelector('webview');
+var web = window.document.body.querySelector('web--view');
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 let currentTabNum = 0;
@@ -86,26 +86,33 @@ class wv extends HTMLElement{
             v.setAttributeNode(webp);
 
             this.appendChild(v);
-
             let web = this.view;
 
             web.addEventListener('page-favicon-updated', this.otherFavicon);
             web.addEventListener('page-title-updated', this.updateTabTitle);
 
-            
+            var toptab = window.document.createElement("pg-tab");
+            toptab.num = tabs.children.length;
+
+            tabs.appendChild(toptab);
         }
     }
 
-    show(){
+    hide(){
         this.style.display = 'none';
     }
 
-    hide(){
-        this.style.display = 'inline-block';
+    show(){
+        this.style.display = 'inline';
     }
 
     get view(){
         return this.children[0];
+    }
+
+    set src(s){
+        this.view.src = s;
+        this.setAttribute('src',s); 
     }
 
     get tab(){
@@ -117,11 +124,15 @@ class wv extends HTMLElement{
     }
 
     updateTabTitle(title,explicitSet){
-        this.tab.querySelector('tb-title').innerHTML = title.title;
+        var tab = this.parentElement.tab;
+
+        tab.querySelector('tb-title').innerHTML = title.title;
     }
     
     otherFavicon(favs){
-        this.tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
+        var tab = this.parentElement.tab;
+
+        tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }
 }
 
@@ -171,7 +182,39 @@ customElements.define('page-tabs', class extends HTMLElement {
 customElements.define('pg-tab', class extends HTMLElement {    
     constructor(){
         super();
+        
+        this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>Default</tb-title>";
+    }
 
+    connectedCallback(){
+        this.addEventListener("click",this.show);
+    }
+
+    show(){
+        let i;
+        for(i = 0; i < tabs.children.length; i++){
+            tabs.children[i].hide();
+        }
+
+        this.view.show();
+
+        web = this.view;
+    }
+
+    hide(){
+        this.view.hide();
+    }
+
+    get num(){
+        return this.getAttribute("num");
+    }
+
+    set num(n){
+        this.setAttribute("num",n)
+    }
+
+    get view(){
+        return document.querySelector('web--view[num="'+this.num+'"]');
     }
 });
 
@@ -433,10 +476,6 @@ customElements.define('b-link', class extends HTMLElement {
     }
 });
 
-//web.addEventListener('did-finish-load', ()=>{updateTabIcon(web.src)});
-//web.addEventListener('did-navigate', ()=>{updateTabIcon(web.src)});
-web.addEventListener('page-favicon-updated', otherFavicon);
-web.addEventListener('page-title-updated', updateTabTitle);
 
 window.urlify = function urlify(text,callback){
     var es = require('url-exists');
