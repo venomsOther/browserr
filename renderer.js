@@ -12,11 +12,6 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
-window.document.body.addEventListener('keydown',globalKeypressf);
-
-function globalKeypress(e){
-    console.log(e)
-}
 
 function getCurrentView(){
     return window.document.querySelector('web--view:not([style="display: none;"])').view;
@@ -565,6 +560,12 @@ customElements.define('b-link', class extends HTMLElement {
     }
 });
 
+customElements.define('dev-tools', class extends HTMLElement {    
+    constructor(){
+        super();
+        this.innerHTML = 'Dev tools';
+    }
+});
 
 window.urlify = function urlify(text,callback){
     var es = require('url-exists');
