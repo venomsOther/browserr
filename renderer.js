@@ -15,7 +15,12 @@ window.tabs = window.document.querySelector('page-tabs');
 function handleWindowRequest(url /* string */,frameName /* string */, disposition /* string */, options /* object */){
     url;
     frameName;
-    disposition; /* can be one of: */
+    disposition; /* can be one of: default, foreground-tab, background-tab, new-window, save-to-disk, other. */
+    options; /* like if you were to make a new browserWindow, its the exact same options as that */
+
+    // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
+    // downloads will be webview.downloadUrl()
+    makeWebv(url);
 }
 
 window.getCurrentView = function getCurrentView(){
