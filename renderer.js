@@ -12,6 +12,11 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
+function handleWindowRequest(url /* string */,frameName /* string */, disposition /* string */, options /* object */){
+    url;
+    frameName;
+    disposition; /* can be one of: */
+}
 
 window.getCurrentView = function getCurrentView(){
     return window.document.querySelector('web--view:not([style="display: none;"])').view;
@@ -112,6 +117,7 @@ class wv extends HTMLElement{
 
             web.addEventListener('page-favicon-updated', this.otherFavicon);
             web.addEventListener('page-title-updated', this.updateTabTitle);
+            web.addEventListener('')
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;
@@ -153,14 +159,14 @@ class wv extends HTMLElement{
 
     updateTabTitle(title,explicitSet){
         var tab = this.parentElement.tab;
-        console.log(tab);
+        //console.log(tab);
 
         tab.querySelector('tb-title').innerHTML = title.title;
     }
     
     otherFavicon(favs){
         var tab = this.parentElement.tab;
-        console.log(tab);
+        //console.log(tab);
 
         tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }
@@ -239,6 +245,8 @@ customElements.define('pg-tab', class extends HTMLElement {
         this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>New Tab</tb-title><tb-remove><tb-remove>";
         this.addEventListener("click",this.show);
         this.addEventListener("click",this.searchBarUpdate)
+
+        this.view = document.querySelector('web--view[num="'+this.num+'"]');
     }
 
     searchBarUpdate(){
@@ -254,6 +262,7 @@ customElements.define('pg-tab', class extends HTMLElement {
             tabs.children[i].hide();
         }
 
+        console.dir(this)
         this.view.show();
 
         web = this.view;
@@ -273,17 +282,14 @@ customElements.define('pg-tab', class extends HTMLElement {
         this.setAttribute("num",n)
     }
 
-    get view(){
-        return document.querySelector('web--view[num="'+this.num+'"]');
-    }
-
     remove(){
-        //console.log(this.view);
+        console.log(this.parentElement.view);
         this.parentElement.view.remove();
-        if(tabs.length == 0){
+        tabs.removeChild(this.parentElement);
+        
+        if(tabs.children.length == 0){
             require('electron').remote.getCurrentWindow().close();
         }
-        tabs.removeChild(this.parentElement);
     }
 });
 
