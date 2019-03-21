@@ -28,6 +28,10 @@ window.getCurrentView = function getCurrentView(){
     return window.document.querySelector('web--view:not([style="display: none;"])').view;
 }
 
+window.openTools = function openTools(){
+    getCurrentView().openDevTools();
+}
+
 function minimize(){
     require('electron').remote.getCurrentWindow().minimize();
 }
@@ -576,7 +580,7 @@ customElements.define('dev-tools', class extends HTMLElement {
     constructor(){
         super();
         this.innerHTML = 'Dev tools';
-        this.addEventListener('click',getCurrentView().openDevTools)
+        this.addEventListener('click', openTools);
     }
 });
 

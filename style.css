@@ -135,6 +135,17 @@ st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools{
     padding:5px;
     border: 1px solid darkgray;
     border-radius:5px;  
+    -webkit-user-select: none;
+}
+
+st-btn:hover,st-win:hover,st-history:hover,st-bookmarks:hover,adv-settings:hover,dev-tools:hover{
+    border: 1px solid black;
+    background: rgb(230,230,230);
+    padding: 7.5px;
+}
+
+st-br{
+    border:none;
 }
 
 settingsbtn:hover other-settings, other-settings:hover{
