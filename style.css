@@ -16,7 +16,7 @@
 html,body{margin:0;overflow: hidden;font-family: regular;}
 *{box-sizing: border-box; transition-duration: 0.3s;}
 
-page-tabs,chrome{
+tabBar,page-tabs,chrome{
     display:block;
     background-color:lightgray;
     height: 22px;
@@ -35,10 +35,16 @@ pg-nav{
     display:inline-block;
 }
 
-page-tabs{
+tabBar,page-tabs{
+    display:inline-block;
     height:40px;
-    padding-right: 10px;
+    width:auto;
     padding-left: 10px;
+}
+
+page-tabs{
+    position: relative;
+    top:-8px;
 }
 
 pg-tab{
@@ -51,16 +57,19 @@ pg-tab{
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;  
     -webkit-app-region:no-drag;
-    max-width:20%;
+    max-width:20vw;
     border-style: solid;
     border-color: darkgray;
     border-right-color: rgb(50,50,50);
     border-width: 2px;
 }
 
-pg-tab:hover{
-    background: lightgray;
+tabBar{
+    height:40px;
+    display:block;
 }
+
+
 
 ch-min,ch-max,ch-exit{
     -webkit-app-region:no-drag;
@@ -151,7 +160,28 @@ tb-title{
     overflow:hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: calc(20vw - 50px);
+    max-width: calc(20vw - 70px);
+}
+
+add-tab{
+    -webkit-app-region:no-drag;
+    border-width: 2px;
+    border-style:solid;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background: darkgray;
+    border-color:darkgrey;
+    display:inline-block;
+    height:40px;
+    width:40px;
+    margin:0px;
+}
+
+tb-remove{display:inline-block;height:20px;border-radius:20px;}
+tb-remove:hover{background-color:darkgrey;}
+
+add-tab:hover,pg-tab:hover{
+    background: lightgray;
 }
 /*
     new elements:

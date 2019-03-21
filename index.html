@@ -14,7 +14,9 @@
       <ch-exit></ch-exit>
     </chrome>
 
-    <page-tabs></page-tabs>
+    <tabBar>
+        <page-tabs></page-tabs><add-tab></add-tab>
+    </tabBar>
 
     <toolbar>
       <pg-nav>
@@ -70,8 +72,7 @@
       </book-marks> -->
     </toolbar>
     <web--view num="0" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.google.com'></web--view>
-    <web--view num="1" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.github.com'></web--view>
-
+    
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')

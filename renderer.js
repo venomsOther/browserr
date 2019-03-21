@@ -7,11 +7,20 @@ require('./webviewele.js');
 
 var thisWindow = require('electron').remote.getCurrentWindow();
 var $ = window.document.body.querySelector;
-var web = window.document.body.querySelector('web--view');
+var web = window.document.body.querySelector('web--view')
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
-let currentTabNum = 0;
 window.tabs = window.document.querySelector('page-tabs');
+
+window.document.body.addEventListener('keydown',globalKeypressf);
+
+function globalKeypress(e){
+    console.log(e)
+}
+
+function getCurrentView(){
+    return window.document.querySelector('web--view:not([style="display: none;"])').view;
+}
 
 function minimize(){
     require('electron').remote.getCurrentWindow().minimize();
@@ -31,15 +40,15 @@ function maximize(){
 
 
 function pgBack(){
-    web.goBack();
+    window.document.querySelector('web--view:not([style="display: none;"])').view.goBack();
 }
 
 function pgForward(){
-    web.goForward();
+    window.document.querySelector('web--view:not([style="display: none;"])').view.goForward();
 }
 
 function pgRefresh(){
-    web.reloadIgnoringCache();
+    window.document.querySelector('web--view:not([style="display: none;"])').view.reloadIgnoringCache();
 }
 
 function focusSearchInput(){
@@ -48,6 +57,8 @@ function focusSearchInput(){
 
 //######################## NEW WEBVIEW ##########################
 window.makeWebv = function makeWebv(url){
+
+    /*
     var vv = window.document.createElement("web--view");
     var src = window.document.createAttribute('src');
     src.value = url;
@@ -62,7 +73,23 @@ window.makeWebv = function makeWebv(url){
     vv.setAttributeNode(ws);
     vv.setAttributeNode(wp);
 
-    return vv;
+    var ele = window.document.body.appendChild(vv);
+
+    */
+    //ele.tab.show();
+
+    /*
+    document.body.innerHTML = document.body.innerHTML + '<web--view num="'+ tabs.children.length +'" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src="https://google.com"></web--view>';
+    */
+
+    let vv = window.document.createElement("web--view");
+    vv.setAttribute('num',tabs.children.length);
+    vv.setAttribute('disablewebsecurity','');
+    vv.setAttribute('webpreferences','allowRunningInsecureContent, javascript=yes');
+    vv.setAttribute('src','https://google.com/');
+    vv.setAttribute('allowpopups','')
+
+    window.document.body.appendChild(vv);
 }
 
 class wv extends HTMLElement{
@@ -95,6 +122,8 @@ class wv extends HTMLElement{
             toptab.num = tabs.children.length;
 
             tabs.appendChild(toptab);
+
+            //this.tab.show();
         }
     }
 
@@ -123,14 +152,20 @@ class wv extends HTMLElement{
         this.setAttribute("num",n);
     }
 
+    remove(){
+        this.parentElement.removeChild(this);
+    }
+
     updateTabTitle(title,explicitSet){
         var tab = this.parentElement.tab;
+        console.log(tab);
 
         tab.querySelector('tb-title').innerHTML = title.title;
     }
     
     otherFavicon(favs){
         var tab = this.parentElement.tab;
+        console.log(tab);
 
         tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }
@@ -139,6 +174,25 @@ class wv extends HTMLElement{
 customElements.define('web--view', wv);
 
 //######################## OTHER ELEMENTS ############################
+customElements.define('add-tab', class extends HTMLElement{
+    constructor(){
+        super();
+        //let shadowRoot = this.attachShadow({mode:'open'});
+        let attrs = 'width="40" height="40"';
+        attrs = 'class="addtb" style="width:100%;height:100%;display:inline-block;"';
+
+        this.innerHTML = '<svg ' + attrs + ' ><line x1="9" y1="20" x2="29" y2="20" stroke="black" stroke-width="2" /><line x1="19" y1="10" x2="19" y2="30" stroke-width=2 stroke=black /></svg>'
+    }
+
+    connectedCallback(){
+        this.addEventListener('click',this.click)
+    }
+
+    click(){
+        makeWebv("https://google.com/");
+    }
+});
+
 customElements.define('ch-min', class extends HTMLElement {  
     constructor(){
         super();
@@ -183,11 +237,20 @@ customElements.define('pg-tab', class extends HTMLElement {
     constructor(){
         super();
         
-        this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>Default</tb-title>";
+        
     }
 
     connectedCallback(){
+        this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>New Tab</tb-title><tb-remove><tb-remove>";
         this.addEventListener("click",this.show);
+        this.addEventListener("click",this.searchBarUpdate)
+    }
+
+    searchBarUpdate(){
+        var url = this.view.view.src;
+
+        url = url.substring(0,url.indexOf('/',8));
+        window.document.querySelector('search-bar').querySelector('sch-ipt').innerHTML = url;
     }
 
     show(){
@@ -199,10 +262,12 @@ customElements.define('pg-tab', class extends HTMLElement {
         this.view.show();
 
         web = this.view;
+        this.style.background = 'lightgrey';
     }
 
     hide(){
         this.view.hide();
+        this.style.background = 'darkgrey';
     }
 
     get num(){
@@ -216,6 +281,32 @@ customElements.define('pg-tab', class extends HTMLElement {
     get view(){
         return document.querySelector('web--view[num="'+this.num+'"]');
     }
+
+    remove(){
+        //console.log(this.view);
+        this.parentElement.view.remove();
+        if(tabs.length == 0){
+            require('electron').remote.getCurrentWindow().close();
+        }
+        tabs.removeChild(this.parentElement);
+    }
+});
+
+customElements.define('tb-remove', class extends HTMLElement {    
+    constructor(){
+        super();
+        
+        // nothing
+    }
+
+    connectedCallback(){            
+    let X = `  <line x1="6" y1="6" x2="14" y2="14" style="stroke:rgb(70,70,70);stroke-width:1" />
+    <line x1="14" y1="6" x2="6" y2="14" style="stroke:rgb(70,70,70);stroke-width:1" />`
+
+    this.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;">'+X+'</svg>';
+
+    this.addEventListener('click',this.parentElement.remove);
+    }
 });
 
 customElements.define('tb-icon', class extends HTMLElement {    
@@ -226,11 +317,9 @@ customElements.define('tb-icon', class extends HTMLElement {
     }
 
     connectedCallback(){
-        //let shadowRoot = this.attachShadow({mode:'open'})
         let boxSize = 23;
-        //console.log(this.getAttribute('src'))
 
-        this.innerHTML = `<img src="${this.getAttribute('src')}" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
+        this.innerHTML = `<img src="blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
     }
 });
 
