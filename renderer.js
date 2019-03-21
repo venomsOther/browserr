@@ -13,7 +13,7 @@ window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
 
-function getCurrentView(){
+window.getCurrentView = function getCurrentView(){
     return window.document.querySelector('web--view:not([style="display: none;"])').view;
 }
 
@@ -564,6 +564,7 @@ customElements.define('dev-tools', class extends HTMLElement {
     constructor(){
         super();
         this.innerHTML = 'Dev tools';
+        this.addEventListener('click',getCurrentView().openDevTools)
     }
 });
 
