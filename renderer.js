@@ -122,7 +122,7 @@ class wv extends HTMLElement{
 
             web.addEventListener('page-favicon-updated', this.otherFavicon);
             web.addEventListener('page-title-updated', this.updateTabTitle);
-            web.addEventListener('')
+            web.addEventListener('new-window', handleWindowRequest);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;
