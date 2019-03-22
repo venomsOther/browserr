@@ -12,10 +12,12 @@ var web = window.document.body.querySelector('web--view')
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
-
+window.makeNewWin = function makeNewWin(){
+    require('child_process').fork('main.js',[],{detached : true});
+}
 function handleWindowRequest(url /* string */,frameName /* string */, disposition /* string */, options /* object */){
     url;
-    frameName;
+    frameName;ada
     disposition; /* can be one of: default, foreground-tab, background-tab, new-window, save-to-disk, other. */
     options; /* like if you were to make a new browserWindow, its the exact same options as that */
 
@@ -66,7 +68,7 @@ function focusSearchInput(){
 }
 
 //######################## NEW WEBVIEW ##########################
-window.makeWebv = function makeWebv(url){
+window.makeWebv = function makeWebv(url = "https://google.com"){
 
     /*
     var vv = window.document.createElement("web--view");
@@ -446,7 +448,7 @@ customElements.define('other-settings', class extends HTMLElement {
 customElements.define('st-btn', class extends HTMLElement {    
     constructor(){
         super();
-
+        this.addEventListener('click',makeWebv);
     }
 });
 
