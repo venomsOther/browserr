@@ -1,16 +1,16 @@
 @font-face{
     font-family: medium;
-    src: url("Roboto-Medium.ttf");
+    src: url("fonts/Roboto-Medium.ttf");
 }
 
 @font-face{
     font-family: light;
-    src: url("Roboto-Light.ttf");
+    src: url("fonts/Roboto-Light.ttf");
 }
 
 @font-face{
     font-family: regular;
-    src: url("Roboto-Regular.ttf")
+    src: url("fonts/Roboto-Regular.ttf")
 }
 
 html,body{margin:0;overflow: hidden;font-family: regular;}

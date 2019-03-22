@@ -36,7 +36,7 @@ function handleWindowRequest(event){
 
     // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
     // downloads will be webview.downloadUrl()
-    console.log(url);
+    //console.log(url);
     makeWebv(url);
 }
 
@@ -288,7 +288,7 @@ customElements.define('pg-tab', class extends HTMLElement {
             tabs.children[i].hide();
         }
 
-        console.dir(this)
+        //console.dir(this)
         this.view.show();
 
         web = this.view;
@@ -309,7 +309,7 @@ customElements.define('pg-tab', class extends HTMLElement {
     }
 
     remove(){
-        console.log(this.parentElement.view);
+        //console.log(this.parentElement.view);
         this.parentElement.view.remove();
         tabs.removeChild(this.parentElement);
         
@@ -440,7 +440,7 @@ customElements.define('sch-ipt', class extends HTMLElement {
             if(k.key=='Enter'){
                 k.preventDefault();
                 urlify(this.innerHTML,(url)=>{
-                    console.log(url);
+                    //console.log(url);
                     web.src=url;
                     web.focus();
                 });
