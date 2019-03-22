@@ -13,16 +13,17 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 window.makeNewWin = function makeNewWin(){
-    require('child_process').fork(__dirname+'main.js',[],{detached : true});
+    window.openTools('index.html');
 }
-function handleWindowRequest(url /* string */,frameName /* string */, disposition /* string */, options /* object */){
-    url;
-    frameName;ada
-    disposition; /* can be one of: default, foreground-tab, background-tab, new-window, save-to-disk, other. */
-    options; /* like if you were to make a new browserWindow, its the exact same options as that */
+function handleWindowRequest(event){
+    url = event.url;
+    frameName = event.frameName;
+    disposition = event.disposition; /* can be one of: default, foreground-tab, background-tab, new-window, save-to-disk, other. */
+    options = event.options; /* like if you were to make a new browserWindow, its the exact same options as that */
 
     // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
     // downloads will be webview.downloadUrl()
+    console.log(url);
     makeWebv(url);
 }
 
@@ -98,7 +99,7 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
     vv.setAttribute('num',tabs.children.length);
     vv.setAttribute('disablewebsecurity','');
     vv.setAttribute('webpreferences','allowRunningInsecureContent, javascript=yes');
-    vv.setAttribute('src','https://google.com/');
+    vv.setAttribute('src',url);
     vv.setAttribute('allowpopups','')
 
     window.document.body.appendChild(vv);
@@ -455,7 +456,7 @@ customElements.define('st-btn', class extends HTMLElement {
 customElements.define('st-win', class extends HTMLElement {    
     constructor(){
         super();
-
+        this.addEventListener('click',makeNewWin);
     }
 });
 
