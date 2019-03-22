@@ -13,7 +13,7 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 window.makeNewWin = function makeNewWin(){
-    require('child_process').fork('main.js',[],{detached : true});
+    require('child_process').fork(__dirname+'main.js',[],{detached : true});
 }
 function handleWindowRequest(url /* string */,frameName /* string */, disposition /* string */, options /* object */){
     url;
