@@ -6,8 +6,8 @@ require('./webviewele.js');
 
 
 var thisWindow = require('electron').remote.getCurrentWindow();
+
 window.indicator = window.document.querySelector('ind');
-var $ = window.document.body.querySelector;
 var web = window.document.body.querySelector('web--view')
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
@@ -15,6 +15,11 @@ window.tabs = window.document.querySelector('page-tabs');
 window.makeNewWin = function makeNewWin(){
     window.openTools('index.html');
 }
+
+function changeChrome(r,g,b){
+    document.querySelector('chrome').style.background = `rgb(${r},${g},${b})`;
+}
+
 function handleWindowRequest(event){
     url = event.url;
     frameName = event.frameName;
