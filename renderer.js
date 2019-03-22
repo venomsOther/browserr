@@ -13,7 +13,15 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 window.makeNewWin = function makeNewWin(){
-    window.openTools('index.html');
+    window.open('index.html');
+}
+
+window.settingsWindow = function settingsWindow(){
+
+}
+
+window.historyWindow = function historyWindow(){
+
 }
 
 function changeChrome(r,g,b){
