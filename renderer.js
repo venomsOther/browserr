@@ -2,8 +2,10 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
-const Menu = remote.require('menu')
-const MenuItem = remote.require('menu-item')
+const remote = require('electron').remote;
+const Menu = remote.require('electron').Menu
+const MenuItem = remote.require('electron').MenuItem;
+const History = require('./history.js').History;
 
 var contextMenu = Menu.buildFromTemplate([
     {role : 'copy'},
@@ -24,6 +26,11 @@ var web = window.document.body.querySelector('web--view')
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
+
+function addToHistory(url,title){
+    History.fromFileAuto().unshift({url:url,title:title,date:Date.now()});
+}
+
 window.makeNewWin = function makeNewWin(){
     window.open('index.html');
 }
@@ -66,6 +73,10 @@ function handleTargetUrl(event){
         a.style.display = 'inline-block';
         a.innerHTML = event.url;
     }
+}
+
+function handleURLUpdate(event){
+    addToHistory(event.url,event.srcElement.getTitle());
 }
 
 window.getCurrentView = function getCurrentView(){
@@ -173,6 +184,7 @@ class wv extends HTMLElement{
             web.addEventListener('page-title-updated', this.updateTabTitle);
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
+            web.addEventListener('did-navigate', handleURLUpdate);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;

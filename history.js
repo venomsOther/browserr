@@ -36,7 +36,7 @@ class PageStorage{
     }
 
     toFile(fileName){
-        require('fs').writeFileSync(fileName,toCSV);
+        require('fs').writeFileSync(fileName,toCSV());
     }
 
     push(item){
@@ -74,20 +74,17 @@ class History extends PageStorage{
     }
 
     save(){
-        super.toFile('history.json');
+        super.toFile('history.csv');
     }
 
     static fromFileAuto(){
-        return History.fromCSV('bookmarks.json');
+        return new History(PageStorage.fromFile('history.csv'));
     }
 
     add(url,title){
         super.push({url:url,title:title,date:Date.now()})
     }
 
-    static fromFileAuto(){
-        return History.fromCSV('bookmarks.json');
-    }
 }
 
 class Bookmarks extends PageStorage{
