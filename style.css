@@ -44,8 +44,8 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
-    top:-0px;
-    display:flex;
+    top:-8px;
+    display:inline-flex;
     max-width:85%;
     overflow: hidden;
 }
@@ -107,7 +107,7 @@ ch-min{right:50px;}
 
 svg{display:inline-block;margin:0;}
 
-tb-icon{margin-right: 2.5px;height:inherit;display: inline-block;}
+tb-icon{margin-right: 2.5px;height:100%;display: inline-block;position: relative;top: -6.5px;}
 
 search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-grow:9;margin-right:5px;margin-left:5px; border-radius: 15px;padding-top:3px;padding-left:15px;}
 
@@ -196,6 +196,15 @@ tb-remove:hover{background-color:darkgrey;}
 
 add-tab:hover,pg-tab:hover{
     background: lightgray;
+}
+
+ind{
+    display: none;
+    position: absolute;
+    left:0;
+    bottom:0;
+    height: 20px;
+    border: 2px solid black;
 }
 /*
     new elements:
