@@ -49,10 +49,6 @@ class History extends PageStorage{
         }
     }
 
-    constructor(PageStorage){
-        super(PageStorage)
-    }
-
     static fromCSV(text){
         return new History(PageStorage.fromCSV(text));
     }
@@ -63,5 +59,27 @@ class History extends PageStorage{
 
     save(){
         super.toFile('history.json');
+    }
+}
+
+class Bookmarks extends PageStorage{
+    constructor(item){
+        if(item instanceof PageStorage){
+            super(item.arr);
+        } else {
+            super(item);
+        }
+    }
+
+    static fromCSV(text){
+        return new Bookmarks(PageStorage.fromCSV(text));
+    }
+
+    getTime(i){
+        return this.arr[i].time;
+    }
+
+    save(){
+        super.toFile('bookmarks.json');
     }
 }
