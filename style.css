@@ -44,7 +44,10 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
-    top:-8px;
+    top:-0px;
+    display:flex;
+    max-width:85%;
+    overflow: hidden;
 }
 
 pg-tab{
@@ -57,7 +60,6 @@ pg-tab{
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;  
     -webkit-app-region:no-drag;
-    max-width:20vw;
     border-style: solid;
     border-color: darkgray;
     border-right-color: rgb(50,50,50);
@@ -67,6 +69,8 @@ pg-tab{
 tabBar{
     height:40px;
     display:block;
+    width:100%;
+    overflow: hidden;
 }
 
 
