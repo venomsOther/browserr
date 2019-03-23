@@ -1,11 +1,18 @@
 class PageStorage{
     constructor(array){
-        var i;
-        for(i = 0; i<array.length;i++){
-            array[i] = JSON.parse(array[i]);
+        window.array = array;
+        if(array == ""){
+            this.arr = {};
         }
-
-        this.arr = array;
+        else{
+            var i;
+            for(i = 0; i<array.length;i++){
+                array[i] = JSON.parse(array[i]);
+            }
+    
+            this.arr = array;
+        }
+        
     }
 
     get length(){
@@ -20,35 +27,24 @@ class PageStorage{
         return this.arr[i].title;
     }
 
-    static fromCSV(text){
-        return new PageStorage(text.split(','));
+    static fromJSON(text){
+        return new PageStorage(JSON.parse(text))
     }
 
-    toCSV(){
-        for(i = 0; i<array.length;i++){
-            array[i] = JSON.stringify(array[i]);
-        }
-        return this.arr.join(',');
+    toJSON(){
+        return JSON.stringify(this.arr);
     }
 
     static fromFile(fileName){
-        return fromCSV(require('fs').readFileSync(fileName).toString());
+        return PageStorage.fromJSON(require('fs').readFileSync(fileName).toString());
     }
 
     toFile(fileName){
-        require('fs').writeFileSync(fileName,toCSV());
+        require('fs').writeFileSync(fileName,this.toJSON());
     }
 
     push(item){
-        this.arr.push(item);
-    }
-
-    unshift(item){
-        this.arr.unshift(item);
-    }
-
-    addTop(url,title){
-        unshift({url:url,title:title});
+        this.arr[this.arr.length] = item
     }
 
     add(url,title){
@@ -66,7 +62,7 @@ class History extends PageStorage{
     }
 
     static fromCSV(text){
-        return new History(PageStorage.fromCSV(text));
+        return new History(PageStorage.fromJSON(text));
     }
 
     getTime(i){
@@ -74,11 +70,11 @@ class History extends PageStorage{
     }
 
     save(){
-        super.toFile('history.csv');
+        super.toFile('history.json');
     }
 
     static fromFileAuto(){
-        return new History(PageStorage.fromFile('history.csv'));
+        return new History(PageStorage.fromFile('history.json'));
     }
 
     add(url,title){

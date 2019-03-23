@@ -28,7 +28,8 @@ window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
 function addToHistory(url,title){
-    var hist = History.fromFileAuto().unshift({url:url,title:title,date:Date.now()});
+    var hist = History.fromFileAuto();
+    hist.push({url:url,title:title,date:Date.now()});
     hist.save()
 }
 
