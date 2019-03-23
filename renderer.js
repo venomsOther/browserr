@@ -44,6 +44,18 @@ function handleWindowRequest(event){
     makeWebv(url);
 }
 
+function handleTargetUrl(event){
+    //console.log(event);
+
+    if(event.url == ""){
+        window.document.querySelector('ind').style.display = 'none';
+    } else{
+        var a = window.document.querySelector('ind');
+        a.style.display = 'inline-block';
+        a.innerHTML = event.url;
+    }
+}
+
 window.getCurrentView = function getCurrentView(){
     return window.document.querySelector('web--view:not([style="display: none;"])').view;
 }
@@ -148,6 +160,7 @@ class wv extends HTMLElement{
             web.addEventListener('page-favicon-updated', this.otherFavicon);
             web.addEventListener('page-title-updated', this.updateTabTitle);
             web.addEventListener('new-window', handleWindowRequest);
+            web.addEventListener('update-target-url', handleTargetUrl);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;

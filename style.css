@@ -204,7 +204,13 @@ ind{
     left:0;
     bottom:0;
     height: 20px;
-    border: 2px solid black;
+    border: 0.5px solid black;
+    font-size: 12px;
+    background: white;
+    max-width: 35vw;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 1px;
 }
 /*
     new elements:
