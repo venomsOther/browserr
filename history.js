@@ -38,6 +38,18 @@ class PageStorage{
     push(item){
         this.arr.push(item);
     }
+
+    unshift(item){
+        this.arr.unshift(item);
+    }
+
+    addTop(url,title){
+        unshift({url:url,title:title});
+    }
+
+    add(url,title){
+        push({url:url,title:title});
+    }
 }
 
 class History extends PageStorage{
@@ -60,6 +72,14 @@ class History extends PageStorage{
     save(){
         super.toFile('history.json');
     }
+
+    static fromFileAuto(){
+        return History.fromCSV('bookmarks.json');
+    }
+
+    add(url,title){
+        super.push({url:url,title:title,date:Date.now()})
+    }
 }
 
 class Bookmarks extends PageStorage{
@@ -75,11 +95,16 @@ class Bookmarks extends PageStorage{
         return new Bookmarks(PageStorage.fromCSV(text));
     }
 
-    getTime(i){
-        return this.arr[i].time;
-    }
-
     save(){
         super.toFile('bookmarks.json');
     }
+
+    static fromFileAuto(){
+        return Bookmarks.fromCSV('bookmarks.json');
+    }
+}
+
+module.exports = {
+    History : History,
+    Bookmarks : Bookmarks
 }
