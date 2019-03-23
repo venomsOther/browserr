@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <ol>
+
+        </ol>
+        <script>
+            var PGObjs = require('./history.js');
+            var History = PGObjs.History;
+            const mainHistory = History.fromFileAuto();
+
+            for(var i = 0; i < mainHistory.length(); i++){
+                var li = document.createElement('li');
+                li.innerHTML = `${mainHistory.getTitle(i)}<br>${mainHistory.getUrl(i)}`
+
+                document.querySelector('ol').appendChild(li);
+            }
+        </script>
+    </body>
+</html>

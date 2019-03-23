@@ -8,6 +8,10 @@ class PageStorage{
         this.arr = array;
     }
 
+    get length(){
+        return this.arr.length;
+    }
+
     getUrl(i){
         return this.arr[i].url;
     }
@@ -79,6 +83,10 @@ class History extends PageStorage{
 
     add(url,title){
         super.push({url:url,title:title,date:Date.now()})
+    }
+
+    static fromFileAuto(){
+        return History.fromCSV('bookmarks.json');
     }
 }
 

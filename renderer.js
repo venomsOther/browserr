@@ -17,11 +17,15 @@ window.makeNewWin = function makeNewWin(){
 }
 
 window.settingsWindow = function settingsWindow(){
+    window.open('settingspage.html')
+}
 
+window.bookmarksWindow = function settingsWindow(){
+    window.open('bookmarkspage.html')
 }
 
 window.historyWindow = function historyWindow(){
-
+    window.open('historypage.html')
 }
 
 function changeChrome(r,g,b){
@@ -483,44 +487,17 @@ customElements.define('st-br', class extends HTMLElement {
 customElements.define('st-history', class extends HTMLElement {    
     constructor(){
         super();
-
-    }
-});
-
-customElements.define('hist-item', class extends HTMLElement {    
-    constructor(){
-        super();
-
+        this.addEventListener('click',historyWindow);
     }
 });
 
 customElements.define('st-bookmarks', class extends HTMLElement {    
     constructor(){
         super();
-
+        this.addEventListener('click',bookmarksWindow);
     }
 });
 
-customElements.define('book-mark', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
-
-customElements.define('bm-name', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
-
-customElements.define('bm-ico', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
 
 customElements.define('page-zoom', class extends HTMLElement {    
     constructor(){
