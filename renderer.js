@@ -5,6 +5,17 @@ require('./webviewele.js');
 const Menu = remote.require('menu')
 const MenuItem = remote.require('menu-item')
 
+var contextMenu = Menu.buildFromTemplate([
+    {role : 'copy'},
+    {role : 'paste'},
+    {role : 'delete'},
+    {role : 'selectAll'},
+    {role : 'reload'},
+    {role : 'toggleDevTools'},
+    {role : 'zoomIn'},
+    {role : 'zoomOut'},
+    {role : 'resetZoom'}
+]);
 
 var thisWindow = require('electron').remote.getCurrentWindow();
 
