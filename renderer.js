@@ -19,6 +19,10 @@ var contextMenu = Menu.buildFromTemplate([
     {role : 'resetZoom'}
 ]);
 
+function handleContextMenu(e){
+    console.log(e);
+}
+
 var thisWindow = require('electron').remote.getCurrentWindow();
 
 window.indicator = window.document.querySelector('ind');
@@ -154,7 +158,7 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
     vv.setAttribute('disablewebsecurity','');
     vv.setAttribute('webpreferences','allowRunningInsecureContent, javascript=yes');
     vv.setAttribute('src',url);
-    vv.setAttribute('allowpopups','')
+    vv.setAttribute('allowpopups','');
 
     window.document.body.appendChild(vv);
 }
@@ -187,6 +191,8 @@ class wv extends HTMLElement{
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
             web.addEventListener('did-navigate', handleURLUpdate);
+            web.setAttribute('preload',`file://${__dirname}/webviewPreload.js`)
+            //web.addEventListener('contextmenu', handleContextMenu);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;
