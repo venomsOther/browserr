@@ -2,6 +2,7 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
+var svgs = require('./icons.js');
 
 const History = require('./history.js').History;
 
@@ -15,9 +16,7 @@ window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
 function addToHistory(url,title){
-    var hist = History.fromFileAuto();
-    hist.push({url:url,title:title,date:Date.now()});
-    hist.save()
+    History.addItem({url:url,title:title,date:Date.now()});
 }
 
 window.makeNewWin = function makeNewWin(){
@@ -548,21 +547,49 @@ customElements.define('page-zoom', class extends HTMLElement {
 customElements.define('z-in', class extends HTMLElement {    
     constructor(){
         super();
+        this.addEventListener('click',this.action);
 
+        let shadowRoot = this.attachShadow({mode:'open'});
+
+        shadowRoot.innerHTML = svgs.smallPlus;
+    }
+
+    action(){
+        getCurrentView().getZoomFactor(factor=>{
+            getCurrentView().setZoomFactor(factor + 0.25);
+        });
     }
 });
 
 customElements.define('z-out', class extends HTMLElement {    
     constructor(){
         super();
+        this.addEventListener('click',this.action);
 
+        let shadowRoot = this.attachShadow({mode:'open'});
+
+        shadowRoot.innerHTML = svgs.smallMinus;
+    }
+
+    action(){
+        getCurrentView().getZoomFactor(factor=>{
+            getCurrentView().setZoomFactor(factor - 0.25);
+        });
     }
 });
 
 customElements.define('z-full', class extends HTMLElement {    
     constructor(){
         super();
+        
+        this.addEventListener('click',this.action);
+        
+        let shadowRoot = this.attachShadow({mode:'open'});
+        shadowRoot.innerHTML = 'Reset';
+    }
 
+    action(){
+        getCurrentView().setZoomFactor(1);
     }
 });
 

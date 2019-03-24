@@ -28,3 +28,5 @@ class History{
 
     }
 }
+
+exports.History = History;
