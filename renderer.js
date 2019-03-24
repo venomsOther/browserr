@@ -2,26 +2,9 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
-const remote = require('electron').remote;
-const Menu = remote.require('electron').Menu
-const MenuItem = remote.require('electron').MenuItem;
+
 const History = require('./history.js').History;
 
-var contextMenu = Menu.buildFromTemplate([
-    {role : 'copy'},
-    {role : 'paste'},
-    {role : 'delete'},
-    {role : 'selectAll'},
-    {role : 'reload'},
-    {role : 'toggleDevTools'},
-    {role : 'zoomIn'},
-    {role : 'zoomOut'},
-    {role : 'resetZoom'}
-]);
-
-function handleContextMenu(e){
-    console.log(e);
-}
 
 var thisWindow = require('electron').remote.getCurrentWindow();
 
@@ -79,6 +62,15 @@ function handleTargetUrl(event){
         a.style.display = 'inline-block';
         a.innerHTML = event.url;
     }
+}
+
+function handleStartLoad(e){
+    window.document.querySelector('ind').display = 'inline-block';
+    window.document.querySelector('ind').innerHTML = 'loading...';
+}
+
+function handleStopLoad(e){
+    window.document.querySelector('ind').display = 'none';
 }
 
 function handleURLUpdate(event){
@@ -191,6 +183,8 @@ class wv extends HTMLElement{
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
             web.addEventListener('did-navigate', handleURLUpdate);
+            web.addEventListener('did-start-loading', handleStartLoad);
+            web.addEventListener('did-stop-loading',handleStopLoad);
             web.setAttribute('preload',`file://${__dirname}/webviewPreload.js`)
             //web.addEventListener('contextmenu', handleContextMenu);
 
