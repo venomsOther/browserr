@@ -3,14 +3,12 @@
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
 var svgs = require('./icons.js');
-
+const zoomFactorChange = 0.10
 const History = require('./history.js').History;
-
-
-var thisWindow = require('electron').remote.getCurrentWindow();
-
+const thisWindow = require('electron').remote.getCurrentWindow();
 window.indicator = window.document.querySelector('ind');
-var web = window.document.body.querySelector('web--view')
+var web = window.document.body.querySelector('web--view');
+// get rid of web global variable
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
@@ -556,7 +554,7 @@ customElements.define('z-in', class extends HTMLElement {
 
     action(){
         getCurrentView().getZoomFactor(factor=>{
-            getCurrentView().setZoomFactor(factor + 0.25);
+            getCurrentView().setZoomFactor(factor + zoomFactorChange);
         });
     }
 });
@@ -573,7 +571,7 @@ customElements.define('z-out', class extends HTMLElement {
 
     action(){
         getCurrentView().getZoomFactor(factor=>{
-            getCurrentView().setZoomFactor(factor - 0.25);
+            getCurrentView().setZoomFactor(factor - zoomFactorChange);
         });
     }
 });

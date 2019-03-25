@@ -141,6 +141,12 @@ st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools{
     -webkit-user-select: none;
 }
 
+page-zoom{
+    display: flex;
+    width:100%;
+    justify-content: space-evenly;
+}
+
 st-btn:hover,st-win:hover,st-history:hover,st-bookmarks:hover,adv-settings:hover,dev-tools:hover{
     border: 1px solid black;
     background: rgb(230,230,230);
