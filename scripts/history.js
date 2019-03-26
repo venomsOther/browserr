@@ -1,6 +1,6 @@
 class History{
     static addItem(item){
-        var file = require('fs').readFileSync('history.json').toString();
+        var file = require('fs').readFileSync('scripts/history.json').toString();
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -17,7 +17,7 @@ class History{
             obj[i] = arr[i];
         }
 
-        require('fs').writeFileSync('history.json',JSON.stringify(obj));
+        require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
 
     static getItem(item){
