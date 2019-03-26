@@ -423,7 +423,7 @@ customElements.define('pg-back', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="backBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="svgs/backBtn.svg" height="25" width="25" />'
     }
 
     connectedCallback(){
@@ -436,7 +436,7 @@ customElements.define('pg-forward', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="forwardBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="svgs/forwardBtn.svg" height="25" width="25" />'
     }
 
     connectedCallback(){
@@ -449,7 +449,7 @@ customElements.define('pg-refresh', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="refreshBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="svgs/refreshBtn.svg" height="25" width="25" />'
         
     }
 
