@@ -2,22 +2,31 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
-
+var svgs = require('./icons.js');
+const zoomFactorChange = 0.10
 const History = require('./history.js').History;
+const thisWindow = require('electron').remote.getCurrentWindow();
+const ipcM = require('electron').ipcRenderer;
 
-
-var thisWindow = require('electron').remote.getCurrentWindow();
 
 window.indicator = window.document.querySelector('ind');
-var web = window.document.body.querySelector('web--view')
+var web = window.document.body.querySelector('web--view');
+
+
+// get rid of web global variable
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
+let mouseLinkHover;
+
+ipcM.on('a',(e,a)=>{
+    console.log(a);
+    e.returnValue = 'heck';
+});
+
 function addToHistory(url,title){
-    var hist = History.fromFileAuto();
-    hist.push({url:url,title:title,date:Date.now()});
-    hist.save()
+    History.addItem({url:url,title:title,date:Date.now()});
 }
 
 window.makeNewWin = function makeNewWin(){
@@ -57,10 +66,12 @@ function handleTargetUrl(event){
 
     if(event.url == ""){
         window.document.querySelector('ind').style.display = 'none';
+        mouseLinkHover = null;
     } else{
         var a = window.document.querySelector('ind');
         a.style.display = 'inline-block';
         a.innerHTML = event.url;
+        mouseLinkHover = event.url;
     }
 }
 
@@ -389,7 +400,7 @@ customElements.define('tb-icon', class extends HTMLElement {
     connectedCallback(){
         let boxSize = 23;
 
-        this.innerHTML = `<img src="blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
+        this.innerHTML = `<img src="svgs/blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
     }
 });
 
@@ -548,21 +559,49 @@ customElements.define('page-zoom', class extends HTMLElement {
 customElements.define('z-in', class extends HTMLElement {    
     constructor(){
         super();
+        this.addEventListener('click',this.action);
 
+        let shadowRoot = this.attachShadow({mode:'open'});
+
+        shadowRoot.innerHTML = svgs.smallPlus;
+    }
+
+    action(){
+        getCurrentView().getZoomFactor(factor=>{
+            getCurrentView().setZoomFactor(factor + zoomFactorChange);
+        });
     }
 });
 
 customElements.define('z-out', class extends HTMLElement {    
     constructor(){
         super();
+        this.addEventListener('click',this.action);
 
+        let shadowRoot = this.attachShadow({mode:'open'});
+
+        shadowRoot.innerHTML = svgs.smallMinus;
+    }
+
+    action(){
+        getCurrentView().getZoomFactor(factor=>{
+            getCurrentView().setZoomFactor(factor - zoomFactorChange);
+        });
     }
 });
 
 customElements.define('z-full', class extends HTMLElement {    
     constructor(){
         super();
+        
+        this.addEventListener('click',this.action);
+        
+        let shadowRoot = this.attachShadow({mode:'open'});
+        shadowRoot.innerHTML = 'Reset';
+    }
 
+    action(){
+        getCurrentView().setZoomFactor(1);
     }
 });
 
