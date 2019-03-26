@@ -2,8 +2,22 @@ const remote = require('electron').remote;
 const Menu = remote.require('electron').Menu
 const webC = remote.getCurrentWebContents();
 
+function openWindow(openurl){
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+          nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'});
+
+    win.loadURL(openurl);
+}
 // for debugging
-//window.remote = remote;
+window.remote = remote;
 
 // global vars because of event emitters which is vucking stupid
 let rightclickpoint = {x:0,y:0};
@@ -24,26 +38,26 @@ function handleInspectElementClick(menuItem, browserWindow, event){
 }
 
 function handleOpenNewTab(menuItem, browserWindow, event){
-
+    window.open(contextUrl);
 }
  
-function handleOpenNewWin(){
+function handleOpenNewWin(menuItem, browserWindow, event){
+    openWindow(contextUrl);
+}
+
+function handleCopyLink(menuItem, browserWindow, event){
+    remote.clipboard.writeText(contextUrl)
+}
+
+function handleNavReload(menuItem, browserWindow, event){
 
 }
 
-function handleCopyLink(){
+function handleNavBack(menuItem, browserWindow, event){
 
 }
 
-function handleNavReload(){
-
-}
-
-function handleNavBack(){
-
-}
-
-function handleNavForward(){
+function handleNavForward(menuItem, browserWindow, event){
 
 }
 
