@@ -50,15 +50,15 @@ function handleCopyLink(menuItem, browserWindow, event){
 }
 
 function handleNavReload(menuItem, browserWindow, event){
-
+    webC.reload();
 }
 
 function handleNavBack(menuItem, browserWindow, event){
-
+    webC.goBack();
 }
 
 function handleNavForward(menuItem, browserWindow, event){
-
+    webC.goForward();
 }
 
 // Menus
@@ -90,6 +90,37 @@ var linkMenu = Menu.buildFromTemplate([
     {type:'separator'},
     {label:'Inspect Element', click: handleInspectElementClick}
 ]); 
+
+function makeDefaultMenu(){
+
+    let back;
+    let forward;
+
+    if(webC.canGoBack()){
+        back = {label:'Back',enabled:false}
+    }else{
+        back = {label:'Back', click:handleNavBack} 
+    }
+
+
+    if(webC.canGoForward()){
+        forward = {label:'Forward',enabled:'false'}
+    }else{
+        forward = {label:'Forward', click:handleNavForward} 
+    }
+
+
+    return Menu.buildFromTemplate([
+        back,
+        forward,
+        {label:'Reload', click: handleNavReload},
+        {type:'separator'},
+        {role:'zoomIn'},
+        {role:'zoomOut'},
+        {type:'separator'},
+        {label:'Inspect Element', click: handleInspectElementClick}
+    ]);
+}
 
 var defaultMenu = Menu.buildFromTemplate([
     {label:'Back', click:handleNavBack},

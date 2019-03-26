@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "browser",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -17,15 +17,15 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "eatmyvenom",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^4.0.7"
   },
   "bugs": {
-    "url": "https://github.com/electron/electron-quick-start/issues"
+    "url": "https://github.com/eatmyvenom/browserr/issues"
   },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "homepage": "https://github.com/electron/browserr#readme",
   "dependencies": {
     "get-website-favicon": "0.0.7",
     "url-exists": "^1.0.3"
