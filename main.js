@@ -15,7 +15,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     },
-    icon: './images.png',
+    icon: './svgs/images.png',
     frame: false,
     minWidth: '145',
     minHeight: '100'
