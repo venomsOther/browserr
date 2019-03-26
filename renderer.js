@@ -400,7 +400,7 @@ customElements.define('tb-icon', class extends HTMLElement {
     connectedCallback(){
         let boxSize = 23;
 
-        this.innerHTML = `<img src="blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
+        this.innerHTML = `<img src="svgs/blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
     }
 });
 
