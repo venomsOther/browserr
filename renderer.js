@@ -6,12 +6,24 @@ var svgs = require('./icons.js');
 const zoomFactorChange = 0.10
 const History = require('./history.js').History;
 const thisWindow = require('electron').remote.getCurrentWindow();
+const ipcM = require('electron').ipcRenderer;
+
+
 window.indicator = window.document.querySelector('ind');
 var web = window.document.body.querySelector('web--view');
+
+
 // get rid of web global variable
 window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
+
+let mouseLinkHover;
+
+ipcM.on('a',(e,a)=>{
+    console.log(a);
+    e.returnValue = 'heck';
+});
 
 function addToHistory(url,title){
     History.addItem({url:url,title:title,date:Date.now()});
@@ -54,10 +66,12 @@ function handleTargetUrl(event){
 
     if(event.url == ""){
         window.document.querySelector('ind').style.display = 'none';
+        mouseLinkHover = null;
     } else{
         var a = window.document.querySelector('ind');
         a.style.display = 'inline-block';
         a.innerHTML = event.url;
+        mouseLinkHover = event.url;
     }
 }
 
