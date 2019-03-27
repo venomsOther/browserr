@@ -1,4 +1,5 @@
 {
     "ZoomLevel":"1.0",
-    "ZoomIncrement":"0.1"
+    "ZoomIncrement":"0.1",
+    "font-weight":"regular"
 }

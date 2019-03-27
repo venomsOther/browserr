@@ -29,6 +29,14 @@ function addToHistory(url,title){
     History.addItem({url:url,title:title,date:Date.now()});
 }
 
+function findFontAwesome(name){
+
+}
+
+function readFontAwesome(name){
+    
+}
+
 window.makeNewWin = function makeNewWin(){
     window.open('index.html');
 }
