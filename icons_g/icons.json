@@ -2,5 +2,9 @@
     "rightArrow":"sharp-chevron_right-24px.svg",
     "leftArrow":"sharp-chevron_left-24px.svg",
     "subMenu":"more-down.svg",
-    "refresh":"sharp-refresh-24px.svg"
+    "refresh":"sharp-refresh-24px.svg",
+    "close":"sharp-close-24px.svg",
+    "maximize":"sharp-fullscreen-24px.svg",
+    "minimize":"sharp-minimize-24px.svg",
+    "newTab":"sharp-library_add-24px.svg"
 }

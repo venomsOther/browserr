@@ -1,5 +1,6 @@
 {
     "ZoomLevel":"1.0",
     "ZoomIncrement":"0.1",
-    "font-weight":"regular"
+    "font-weight":"regular",
+    "iconPack":"google"
 }

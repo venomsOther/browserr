@@ -10,4 +10,8 @@ module.exports = class IconSet {
     read(name){
         return require('fs').readFileSync(this.dir+'/'+this.icons[name]);
     }
+
+    getDir(name){
+        return this.dir+'/'+this.icons[name];
+    }
 }

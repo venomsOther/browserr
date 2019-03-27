@@ -2,11 +2,14 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 require('./webviewele.js');
+const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
 var svgs = require('./icons.js');
-const zoomFactorChange = 0.10
+const zoomFactorChange = settings.ZoomIncrement;
 const History = require('./history.js').History;
 const thisWindow = require('electron').remote.getCurrentWindow();
 const ipcM = require('electron').ipcRenderer;
+const readIcons = require('./readIcons.js');
+const IconSet = new readIcons(settings.iconPack);
 
 
 window.indicator = window.document.querySelector('ind');
@@ -270,7 +273,8 @@ customElements.define('add-tab', class extends HTMLElement{
         let attrs = 'width="40" height="40"';
         attrs = 'class="addtb" style="width:100%;height:100%;display:inline-block;"';
 
-        this.innerHTML = '<svg ' + attrs + ' ><line x1="9" y1="20" x2="29" y2="20" stroke="black" stroke-width="2" /><line x1="19" y1="10" x2="19" y2="30" stroke-width=2 stroke=black /></svg>'
+        let shadowRoot = this.attachShadow({mode:'open'});
+        shadowRoot.innerHTML = IconSet.read('newTab');
     }
 
     connectedCallback(){
@@ -286,7 +290,7 @@ customElements.define('ch-min', class extends HTMLElement {
     constructor(){
         super();
             let shadowRoot = this.attachShadow({mode: 'open'});
-            shadowRoot.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;"><line x1="0" y1="16" x2="25" y2="16" stroke-width=2 /></svg>';
+            shadowRoot.innerHTML = IconSet.read('minimize');
 
             this.addEventListener('click',minimize);
     }
@@ -296,7 +300,7 @@ customElements.define('ch-max', class extends HTMLElement {
     constructor(){
         super();
             let shadowRoot = this.attachShadow({mode:'open'});
-            shadowRoot.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;"><rect x="2" y="1" width="16" height="16" stroke="black" fill="transparent" stroke-width="2"/></svg>';
+            shadowRoot.innerHTML = IconSet.read('maximize');
 
             this.addEventListener('click',maximize);
     }
@@ -305,11 +309,9 @@ customElements.define('ch-max', class extends HTMLElement {
 customElements.define('ch-exit', class extends HTMLElement {    
     constructor(){
         super();
-            let X = `  <line x1="2" y1="1" x2="16" y2="16" style="stroke:rgb(0,0,0);stroke-width:2" />
-            <line x1="16" y1="1" x2="2" y2="16" style="stroke:rgb(0,0,0);stroke-width:2" />`
 
             let shadowRoot = this.attachShadow({mode:'open'});
-            shadowRoot.innerHTML = '<svg width="20" height="20" style="stroke:rgb(0,0,0);strike-width:10;">'+X+'</svg>';
+            shadowRoot.innerHTML = IconSet.read('close');
 
             this.addEventListener('click',close);
     }
@@ -431,7 +433,7 @@ customElements.define('pg-back', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="svgs/backBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="'+IconSet.getDir("leftArrow")+'" height="25" width="25" />'
     }
 
     connectedCallback(){
@@ -444,7 +446,7 @@ customElements.define('pg-forward', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="svgs/forwardBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="'+IconSet.getDir("rightArrow")+'" height="25" width="25" />'
     }
 
     connectedCallback(){
@@ -457,7 +459,21 @@ customElements.define('pg-refresh', class extends HTMLElement {
         super();
         let sha = this.attachShadow({mode: 'open'});
 
-        sha.innerHTML = '<img src="svgs/refreshBtn.svg" height="25" width="25" />'
+        sha.innerHTML = '<img src="'+IconSet.getDir("refresh")+'" height="25" width="25" />'
+        
+    }
+
+    connectedCallback(){
+        this.addEventListener('click',pgRefresh);
+    }
+});
+
+customElements.define('settings-ico', class extends HTMLElement {    
+    constructor(){
+        super();
+        let sha = this.attachShadow({mode: 'open'});
+
+        sha.innerHTML = '<img src="'+IconSet.getDir("subMenu")+'" height="25" width="25" />'
         
     }
 

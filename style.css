@@ -44,7 +44,6 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
-    top:-8px;
     display:inline-flex;
     max-width:85%;
     overflow: hidden;
@@ -191,10 +190,14 @@ add-tab{
     border-top-left-radius: 15px;
     background: darkgray;
     border-color:darkgrey;
-    display:inline-block;
+    display:inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
     height:40px;
     width:40px;
     margin:0px;
+    overflow: hidden;
 }
 
 tb-remove{display:inline-block;height:20px;border-radius:20px;}
