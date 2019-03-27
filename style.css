@@ -24,6 +24,10 @@ tabBar,page-tabs,chrome{
     -webkit-app-region:drag;
 }
 
+chrome{
+    padding-right:2px;
+}
+
 toolbar{
     display:flex;
     padding-top: 5px;
@@ -83,6 +87,7 @@ ch-min,ch-max,ch-exit{
     height: inherit;
     width: 25px;
     height:25px;
+    justify-content: center;
     background-color: inherit;
     padding:2px;
     border:none;

@@ -274,7 +274,7 @@ customElements.define('add-tab', class extends HTMLElement{
         attrs = 'class="addtb" style="width:100%;height:100%;display:inline-block;"';
 
         let shadowRoot = this.attachShadow({mode:'open'});
-        shadowRoot.innerHTML = IconSet.read('newTab');
+        shadowRoot.innerHTML = `<img src="${IconSet.getDir('newTab')}" height="24" width="25" />`;
     }
 
     connectedCallback(){
@@ -290,7 +290,7 @@ customElements.define('ch-min', class extends HTMLElement {
     constructor(){
         super();
             let shadowRoot = this.attachShadow({mode: 'open'});
-            shadowRoot.innerHTML = IconSet.read('minimize');
+            shadowRoot.innerHTML = `<img src="${IconSet.getDir('minimize')}" height="24" width="23" />`
 
             this.addEventListener('click',minimize);
     }
@@ -300,7 +300,7 @@ customElements.define('ch-max', class extends HTMLElement {
     constructor(){
         super();
             let shadowRoot = this.attachShadow({mode:'open'});
-            shadowRoot.innerHTML = IconSet.read('maximize');
+            shadowRoot.innerHTML = `<img src="${IconSet.getDir('maximize')}" height="24" width="23" />`
 
             this.addEventListener('click',maximize);
     }
@@ -311,7 +311,7 @@ customElements.define('ch-exit', class extends HTMLElement {
         super();
 
             let shadowRoot = this.attachShadow({mode:'open'});
-            shadowRoot.innerHTML = IconSet.read('close');
+            shadowRoot.innerHTML = `<img src="${IconSet.getDir('close')}" height="24" width="23" />`
 
             this.addEventListener('click',close);
     }

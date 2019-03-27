@@ -2,5 +2,11 @@
     "rightArrow":"solid/chevron-right.svg",
     "leftArrow":"solid/chevron-left.svg",
     "subMenu":"solid/ellipsis-v.svg",
-    "refresh":"solid/redo.svg"
+    "refresh":"solid/redo.svg",
+    "close":"solid/window-close.svg",
+    "maximize":"solid/window-maximize.svg",
+    "minimize":"solid/window-minimize.svg",
+    "newTab":"solid/plus-square.svg",
+    "zoomIn":"solid/search-plus.svg",
+    "zoomOut":"solid/search-minus.svg"
 }
