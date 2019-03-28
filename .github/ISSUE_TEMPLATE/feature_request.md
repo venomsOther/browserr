@@ -10,6 +10,11 @@ assignees: eatmyvenom
 ## Current Behavior
 Currently the applications behavior is
 
+### Effects
+Makes the app 
+Makes the app 
+Makes the app 
+
 ## Wanted Behavior
 What I would like to see is
 
