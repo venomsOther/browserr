@@ -10,6 +10,11 @@ assignees: eatmyvenom
 ## Current Behavior
 Currently the incorrect behavior is 
 
+### Effects
+Makes the app 
+Makes the app 
+Makes the app 
+
 ## Wanted Behavior
 The correct behavior should be 
 
