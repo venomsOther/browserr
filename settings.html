@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link href='style.css' rel='stylesheet' />
+        <style>
+            textWrapper{
+                display:block;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <chrome style="height:25px;">
+            <ch-min></ch-min>
+            <ch-max></ch-max>
+            <ch-exit></ch-exit>
+        </chrome>
+
+        <!-- so all settings here are going to be custom inputed and based on settings.json but yeah no loops for this -->
+        <textWrapper>
+        
+            <h1>Settings</h1>
+
+            Zoom Increment<br>
+            <num-slider id='zii' percision="0.01" low="0.01" high="1.00"></num-slider>
+
+            Starting Zoom<br>
+            <num-slider id='szz' percision='0.01' low='0.01' high='5.00'></num-slider>
+
+            <button class='save'>Save settings</button>
+            <button class='close'>Close</button>
+
+        </textWrapper>
+
+        <script>
+            require('./scripts/renderer.js');
+        </script>
+    </body>
+</html>

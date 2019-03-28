@@ -30,7 +30,7 @@ window.makeNewWin = function makeNewWin(){
 }
 
 window.settingsWindow = function settingsWindow(){
-    window.open('settingspage.html')
+    window.open('settings.html')
 }
 
 window.bookmarksWindow = function settingsWindow(){
@@ -618,7 +618,7 @@ customElements.define('z-full', class extends HTMLElement {
 customElements.define('adv-settings', class extends HTMLElement {    
     constructor(){
         super();
-
+        this.addEventListener('click',settingsWindow);
     }
 });
 
