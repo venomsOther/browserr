@@ -1,6 +1,7 @@
 const remote = require('electron').remote;
 const Menu = remote.require('electron').Menu
 const webC = remote.getCurrentWebContents();
+const BrowserWindow = remote.BrowserWindow;
 
 function openWindow(openurl){
     var win = new BrowserWindow({
@@ -14,7 +15,9 @@ function openWindow(openurl){
         minWidth: '145',
         minHeight: '100'});
 
-    win.loadURL(openurl);
+    win.loadFile('index.html');
+    win.webContents.executeJavaScript('getCurrentView().src = "'+openurl+'";');    
+//    window.win = win;
 }
 // for debugging
 window.remote = remote;

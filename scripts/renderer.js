@@ -7,13 +7,11 @@ var svgs = require('./icons.js');
 const zoomFactorChange = settings.ZoomIncrement;
 const History = require('./history.js').History;
 const thisWindow = require('electron').remote.getCurrentWindow();
-const ipcM = require('electron').ipcRenderer;
 const readIcons = require('./readIcons.js');
 const IconSet = new readIcons(settings.iconPack);
 
 
 window.indicator = window.document.querySelector('ind');
-var web = window.document.body.querySelector('web--view');
 
 
 // get rid of web global variable
@@ -21,23 +19,10 @@ window.currentTab = window.document.body.querySelector('pg-tab');
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
 
-let mouseLinkHover;
 
-ipcM.on('a',(e,a)=>{
-    console.log(a);
-    e.returnValue = 'heck';
-});
 
 function addToHistory(url,title){
     History.addItem({url:url,title:title,date:Date.now()});
-}
-
-function findFontAwesome(name){
-
-}
-
-function readFontAwesome(name){
-    
 }
 
 window.makeNewWin = function makeNewWin(){
@@ -176,6 +161,8 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
 
     window.document.body.appendChild(vv);
 }
+
+
 
 class wv extends HTMLElement{
     constructor(){
@@ -355,7 +342,6 @@ customElements.define('pg-tab', class extends HTMLElement {
         //console.dir(this)
         this.view.show();
 
-        web = this.view;
         this.style.background = 'lightgrey';
     }
 
@@ -519,8 +505,8 @@ customElements.define('sch-ipt', class extends HTMLElement {
                 k.preventDefault();
                 urlify(this.innerHTML,(url)=>{
                     //console.log(url);
-                    web.src=url;
-                    web.focus();
+                    getCurrentView().src=url;
+                    getCurrentView().focus();
                 });
 
                 
