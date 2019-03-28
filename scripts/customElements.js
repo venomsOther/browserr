@@ -11,3 +11,4 @@ def('ch-exit');
 def('page-tabs');
 def('pg-tab');
 def('tb-remove');
+def('tb-title');
