@@ -165,248 +165,50 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
 //######################## OTHER ELEMENTS ############################
 
 
-customElements.define('tb-icon', class extends HTMLElement {    
-    constructor(){
-        super();
-        
-        // nothing
-    }
+customElements.define('tb-icon', );
 
-    connectedCallback(){
-        let boxSize = 23;
+customElements.define('tb-title', );
 
-        this.innerHTML = `<img src="svgs/blank.svg" style="position:relative;top:7.5px;" width=${boxSize} height=${boxSize} />`
-    }
-});
+customElements.define('pg-nav', );
 
-customElements.define('tb-title', class extends HTMLElement {    
-    constructor(){
-        super();
+customElements.define('pg-back', );
 
-    }
-});
+customElements.define('pg-forward', );
 
-customElements.define('pg-nav', class extends HTMLElement {    
-    constructor(){
-        super();
+customElements.define('pg-refresh', );
 
-    }
-});
+customElements.define('settings-ico', );
 
-customElements.define('pg-back', class extends HTMLElement {    
-    constructor(){
-        super();
-        let sha = this.attachShadow({mode: 'open'});
+customElements.define('search-bar', );
 
-        sha.innerHTML = '<img src="'+IconSet.getDir("leftArrow")+'" height="25" width="25" />'
-    }
+customElements.define('sch-icon', );
 
-    connectedCallback(){
-        this.addEventListener('click', pgBack);
-    }
-});
+customElements.define('sch-ipt', );
 
-customElements.define('pg-forward', class extends HTMLElement {    
-    constructor(){
-        super();
-        let sha = this.attachShadow({mode: 'open'});
+customElements.define('other-settings', );
 
-        sha.innerHTML = '<img src="'+IconSet.getDir("rightArrow")+'" height="25" width="25" />'
-    }
+customElements.define('st-btn', );
 
-    connectedCallback(){
-        this.addEventListener('click',pgForward);
-    }
-});
+customElements.define('st-win', );
 
-customElements.define('pg-refresh', class extends HTMLElement {    
-    constructor(){
-        super();
-        let sha = this.attachShadow({mode: 'open'});
+customElements.define('st-br', );
 
-        sha.innerHTML = '<img src="'+IconSet.getDir("refresh")+'" height="25" width="25" />'
-        
-    }
+customElements.define('st-history', );
 
-    connectedCallback(){
-        this.addEventListener('click',pgRefresh);
-    }
-});
-
-customElements.define('settings-ico', class extends HTMLElement {    
-    constructor(){
-        super();
-        let sha = this.attachShadow({mode: 'open'});
-
-        sha.innerHTML = '<img src="'+IconSet.getDir("subMenu")+'" height="25" width="25" />'
-        
-    }
-
-    connectedCallback(){
-        this.addEventListener('click',pgRefresh);
-    }
-});
-
-customElements.define('search-bar', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-
-    connectedCallback(){
-        this.addEventListener('click', focusSearchInput)
-    }
-});
-
-customElements.define('sch-icon', class extends HTMLElement {    
-    constructor(){
-        super();
-        
-    }
-
-    connectedCallback(){
-        this.href = this.getAttribute('href');
-    }
-
-    get img(){
-        return this.children[0];
-    }
-});
-
-customElements.define('sch-ipt', class extends HTMLElement {    
-    constructor(){
-        super();
-
-        this.addEventListener('keypress', (k)=>{
-//            console.log(k.key);
-
-            if(k.key=='Enter'){
-                k.preventDefault();
-                urlify(this.innerHTML,(url)=>{
-                    //console.log(url);
-                    getCurrentView().src=url;
-                    getCurrentView().focus();
-                });
-
-                
-                //updateTabIcon(this.innerHTML);
-            }
-        });
-    }
-});
-
-customElements.define('other-settings', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
-
-customElements.define('st-btn', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',makeWebv);
-    }
-});
-
-customElements.define('st-win', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',makeNewWin);
-    }
-});
-
-customElements.define('st-br', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
-
-customElements.define('st-history', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',historyWindow);
-    }
-});
-
-customElements.define('st-bookmarks', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',bookmarksWindow);
-    }
-});
+customElements.define('st-bookmarks', );
 
 
-customElements.define('page-zoom', class extends HTMLElement {    
-    constructor(){
-        super();
+customElements.define('page-zoom', );
 
-    }
-});
+customElements.define('z-in', );
 
-customElements.define('z-in', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',this.action);
+customElements.define('z-out', );
 
-        let shadowRoot = this.attachShadow({mode:'open'});
+customElements.define('z-full', );
 
-        shadowRoot.innerHTML = svgs.smallPlus;
-    }
+customElements.define('adv-settings', );
 
-    action(){
-        getCurrentView().getZoomFactor(factor=>{
-            getCurrentView().setZoomFactor(factor + zoomFactorChange);
-        });
-    }
-});
-
-customElements.define('z-out', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',this.action);
-
-        let shadowRoot = this.attachShadow({mode:'open'});
-
-        shadowRoot.innerHTML = svgs.smallMinus;
-    }
-
-    action(){
-        getCurrentView().getZoomFactor(factor=>{
-            getCurrentView().setZoomFactor(factor - zoomFactorChange);
-        });
-    }
-});
-
-customElements.define('z-full', class extends HTMLElement {    
-    constructor(){
-        super();
-        
-        this.addEventListener('click',this.action);
-        
-        let shadowRoot = this.attachShadow({mode:'open'});
-        shadowRoot.innerHTML = 'Reset';
-    }
-
-    action(){
-        getCurrentView().setZoomFactor(1);
-    }
-});
-
-customElements.define('adv-settings', class extends HTMLElement {    
-    constructor(){
-        super();
-        this.addEventListener('click',settingsWindow);
-    }
-});
-
-customElements.define('book-marks', class extends HTMLElement {    
-    constructor(){
-        super();
-
-    }
-});
+customElements.define('book-marks', );
 
 customElements.define('b-mark', class extends HTMLElement {    
     constructor(){
