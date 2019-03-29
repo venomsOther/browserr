@@ -4,7 +4,7 @@ const IconSet = new readIcons(settings.iconPack);
 //const thisWindow = require('electron').remote.getCurrentWindow();
 
 function minimize(){
-    console.log(thisWindow)
+    console.log(require('electron').remote.BrowserWindow.getFocusedWindow().minimize)
     require('electron').remote.BrowserWindow.getFocusedWindow().minimize();
 }
 
