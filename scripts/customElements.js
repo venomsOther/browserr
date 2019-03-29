@@ -32,4 +32,5 @@ def('z-full');
 def('book-marks');
 def('b-mark');
 def('b-ico');
-def('b-title')
+def('b-title');
+def('b-link');
