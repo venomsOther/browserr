@@ -182,6 +182,7 @@ def('ch-exit');
 def('page-tabs');
 def('pg-tab');
 def('tb-remove');
+def('tb-icon');
 def('tb-title');
 def('pg-back');
 def('pg-forward');

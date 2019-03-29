@@ -1,3 +1,6 @@
+const History = require('../history.js').History;
+
+
 function handleWindowRequest(event){
     url = event.url;
     frameName = event.frameName;
@@ -8,6 +11,37 @@ function handleWindowRequest(event){
     // downloads will be webview.downloadUrl()
     //console.log(url);
     makeWebv(url);
+}
+
+function addToHistory(url,title){
+    History.addItem({url:url,title:title,date:Date.now()});
+}
+
+function handleTargetUrl(event){
+    //console.log(event);
+
+    if(event.url == ""){
+        window.document.querySelector('ind').style.display = 'none';
+        mouseLinkHover = null;
+    } else{
+        var a = window.document.querySelector('ind');
+        a.style.display = 'inline-block';
+        a.innerHTML = event.url;
+        mouseLinkHover = event.url;
+    }
+}
+
+function handleStartLoad(e){
+    window.document.querySelector('ind').display = 'inline-block';
+    window.document.querySelector('ind').innerHTML = 'loading...';
+}
+
+function handleStopLoad(e){
+    window.document.querySelector('ind').display = 'none';
+}
+
+function handleURLUpdate(event){
+    addToHistory(event.url,event.srcElement.getTitle());
 }
 
 
@@ -41,7 +75,7 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('did-navigate', handleURLUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
-            web.setAttribute('preload',`file://${__dirname}/webviewPreload.js`)
+            web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`)
             //web.addEventListener('contextmenu', handleContextMenu);
 
             var toptab = window.document.createElement("pg-tab");

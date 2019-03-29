@@ -1,3 +1,5 @@
+var svgs = require('../icons.js');
+
 module.exports = class extends HTMLElement {    
     constructor(){
         super();

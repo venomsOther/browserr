@@ -2,6 +2,10 @@ const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').
 const readIcons = require('../readIcons.js');
 const IconSet = new readIcons(settings.iconPack);
 
+function pgForward(){
+    window.document.querySelector('web--view:not([style="display: none;"])').view.goForward();
+}
+
 
 module.exports = class extends HTMLElement {    
     constructor(){
