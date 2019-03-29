@@ -1,3 +1,16 @@
+function handleWindowRequest(event){
+    url = event.url;
+    frameName = event.frameName;
+    disposition = event.disposition; /* can be one of: default, foreground-tab, background-tab, new-window, save-to-disk, other. */
+    options = event.options; /* like if you were to make a new browserWindow, its the exact same options as that */
+
+    // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
+    // downloads will be webview.downloadUrl()
+    //console.log(url);
+    makeWebv(url);
+}
+
+
 module.exports = class wv extends HTMLElement{
     constructor(){
         super();
