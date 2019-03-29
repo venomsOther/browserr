@@ -30,3 +30,4 @@ def('z-in');
 def('z-out');
 def('z-full');
 def('book-marks');
+def('b-mark');
