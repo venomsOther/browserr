@@ -1,6 +1,10 @@
+function fix(){
+    makeWebv();
+}
+
 module.exports = class extends HTMLElement {    
     constructor(){
         super();
-        this.addEventListener('click',makeWebv);
+        this.addEventListener('click',fix);
     }
 }

@@ -1,3 +1,27 @@
+function handleTooBig(){
+    console.log('c');
+    console.dir(tabs.style.top);
+    tabs.setAttribute('style','top: -7px;');
+}
+
+function newWinBig(openurl){
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'});
+
+    win.loadFile('index.html');
+    win.webContents.executeJavaScript('getCurrentView().src = "'+openurl+'";');    
+
+}
+
+
 module.exports = class extends HTMLElement {    
     constructor(){
         super();
@@ -13,6 +37,15 @@ module.exports = class extends HTMLElement {
         this.view = document.querySelector('web--view[num="'+this.num+'"]');
 
         this.show();
+
+        //console.log(tabs.offsetTop);
+
+
+
+        if(tabs.offsetTop > 21){
+            handleTooBig();
+            //newWinBig(this.view.view.src);this.tRemove();
+        }
     }
 
     searchBarUpdate(){
@@ -30,12 +63,15 @@ module.exports = class extends HTMLElement {
 
         //console.dir(this)
         this.view.show();
+        this.setAttribute('show','');
+        currentTab = this;
 
         this.style.background = 'lightgrey';
     }
 
     hide(){
         this.view.hide();
+        this.removeAttribute('show');
         this.style.background = 'darkgrey';
     }
 
@@ -52,6 +88,15 @@ module.exports = class extends HTMLElement {
         this.parentElement.view.remove();
         tabs.removeChild(this.parentElement);
         
+        if(tabs.children.length == 0){
+            require('electron').remote.getCurrentWindow().close();
+        }
+    }
+
+    tRemove(){
+        this.view.remove();
+        tabs.removeChild(this);
+
         if(tabs.children.length == 0){
             require('electron').remote.getCurrentWindow().close();
         }

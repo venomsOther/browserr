@@ -5,7 +5,7 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-
+let debugging = true;
 
 function createWindow () {
   // Create the browser window.
@@ -26,11 +26,9 @@ function createWindow () {
   mainWindow.loadFile('index.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-  var icon = nativeImage.createFromPath('./images.png')
-  tray = new Tray(icon);
-
-  tray.setToolTip("hai");
+  if(debugging){
+    mainWindow.webContents.openDevTools();
+  }
 
 
   // Emitted when the window is closed.

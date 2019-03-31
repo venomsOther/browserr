@@ -13,4 +13,8 @@ module.exports = class extends HTMLElement {
 
     this.addEventListener('click',this.parentElement.remove);
     }
+
+    action(){
+        this.parentElement.remove();
+    }
 }
