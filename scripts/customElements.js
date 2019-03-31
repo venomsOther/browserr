@@ -176,7 +176,7 @@ window.indicator = window.document.querySelector('ind');
 
 customElements.define('web--view', require('./elements/webview.js'));
 def('add-tab');
-//def('ch-min');
+def('ch-min');
 def('ch-max');
 def('ch-exit');
 def('page-tabs');

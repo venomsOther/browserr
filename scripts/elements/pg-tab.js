@@ -1,16 +1,16 @@
 module.exports = class extends HTMLElement {    
     constructor(){
         super();
-        
-        
-    }
-
-    connectedCallback(){
         this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>New Tab</tb-title><tb-remove><tb-remove>";
         this.addEventListener("click",this.show);
         this.addEventListener("click",this.searchBarUpdate)
 
         this.view = document.querySelector('web--view[num="'+this.num+'"]');
+        
+    }
+
+    connectedCallback(){
+        
     }
 
     searchBarUpdate(){

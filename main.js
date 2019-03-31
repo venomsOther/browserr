@@ -17,6 +17,7 @@ function createWindow () {
     },
     icon: './svgs/images.png',
     frame: false,
+    backgroundColor: '#ffffff',
     minWidth: '145',
     minHeight: '100'
   });

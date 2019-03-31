@@ -75,13 +75,16 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('did-navigate', handleURLUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
-            web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`)
+            web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`);
             //web.addEventListener('contextmenu', handleContextMenu);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;
 
             tabs.appendChild(toptab);
+            console.dir(toptab.show);
+
+
 
             //this.tab.show();
         }
