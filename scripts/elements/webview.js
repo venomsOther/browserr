@@ -82,11 +82,7 @@ module.exports = class wv extends HTMLElement{
             toptab.num = tabs.children.length;
 
             tabs.appendChild(toptab);
-            console.dir(toptab.show);
-
-
-
-            //this.tab.show();
+            
         }
     }
 
