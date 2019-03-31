@@ -1,7 +1,11 @@
 function handleTooBig(){
-    console.log('c');
-    console.dir(tabs.style.top);
+//    console.log('c');
+//    console.dir(tabs.style.top);
     tabs.setAttribute('style','top: -7px;');
+}
+
+function handleTooSmall(){
+    tabs.setAttribute('style','top:-2px;')
 }
 
 function newWinBig(openurl){
@@ -90,6 +94,11 @@ module.exports = class extends HTMLElement {
         
         if(tabs.children.length == 0){
             require('electron').remote.getCurrentWindow().close();
+        } else{
+            tabs.children[tabs.children.length - 1].show();
+            if(tabs.offsetTop < 17){
+                handleTooSmall();
+            }
         }
     }
 
@@ -99,6 +108,11 @@ module.exports = class extends HTMLElement {
 
         if(tabs.children.length == 0){
             require('electron').remote.getCurrentWindow().close();
+        } else{
+            tabs.children[tabs.children.length - 1].show();
+            if(tabs.offsetTop < 17){
+                handleTooSmall();
+            }
         }
     }
 }
