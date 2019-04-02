@@ -1,4 +1,5 @@
 const History = require('../history.js').History;
+const WebSearch = require('../websearch.js')
 
 
 function handleWindowRequest(event){
@@ -73,6 +74,7 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
             web.addEventListener('did-navigate', handleURLUpdate);
+            web.addEventListener('did-navigate', this.searchBarUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
             web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`);
@@ -113,6 +115,14 @@ module.exports = class wv extends HTMLElement{
 
     remove(){
         this.parentElement.removeChild(this);
+    }
+
+    searchBarUpdate(){
+        var url = this.src;
+
+        var mySearch = new WebSearch(url);
+
+        window.document.querySelector('search-bar').querySelector('sch-ipt').innerHTML = mySearch.htmlify()
     }
 
     updateTabTitle(title,explicitSet){

@@ -11,7 +11,7 @@ class WebSearch{
     }
 
     htmlify(){
-        return url.substring(0,url.indexOf('/')) + `<span hint>${this.crumbs.join('/')}</span>`;
+        return this.url.substring(0,this.url.indexOf('/',8)) + `<span hint>/${this.crumbs.join('/')}</span>`;
     }
 }
 

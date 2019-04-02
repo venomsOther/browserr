@@ -65,7 +65,7 @@ module.exports = class extends HTMLElement {
     searchBarUpdate2(){
         var url = this.view.view.src;
 
-        mySearch = new WebSearch(url);
+        var mySearch = new WebSearch(url);
 
         window.document.querySelector('search-bar').querySelector('sch-ipt').innerHTML = mySearch.htmlify()
     }

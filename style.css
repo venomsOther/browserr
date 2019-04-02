@@ -235,39 +235,8 @@ ind{
     white-space: nowrap;
     padding-left: 1px;
 }
-/*
-    new elements:
-        page-tabs
-            pg-tab
-                tb-icon
-                tb-title
-        toolbar
-            pg-nav
-                pg-back
-                pg-forward
-                pg-refresh
-            search-bar
-                sch-icon
-                sch-ipt
-            other-settings
-                st-btn
-                st-win
-                st-br
 
-                st-history
-                    hist-item
-                st-bookmarks
-                    book-mark
-                        bm-name
-                        bm-ico
-                page-zoom
-                    z-in
-                    z-out
-                    z-full
-                adv-settings(button)
 
-            book-marks
-                b-mark
-                    b-ico
-                    b-title
-*/
+[hint]{
+    color:grey;
+}
