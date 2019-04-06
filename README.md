@@ -11,4 +11,5 @@ This repository has certain rules to make sure that everything is running smooth
 Refer [here](https://github.com/eatmyvenom/browserr/blob/master/Issues.md) on how to create issues or use the avalible templates to create an issue
 
 ### Pull requests
-Refer [here] on how to do pull requests
+
+Refer [here](https://github.com/eatmyvenom/browserr/blob/master/Pulls.md) on how to do pull requests
