@@ -1,3 +1,5 @@
+const WebSearch = require('../websearch.js');
+
 function handleTooBig(){
 //    console.log('c');
 //    console.dir(tabs.style.top);
@@ -36,7 +38,8 @@ module.exports = class extends HTMLElement {
     connectedCallback(){
         this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>New Tab</tb-title><tb-remove><tb-remove>";
         this.addEventListener("click",this.show);
-        this.addEventListener("click",this.searchBarUpdate)
+        //this.addEventListener("click",this.searchBarUpdate);
+        this.addEventListener("click",this.searchBarUpdate2);
 
         this.view = document.querySelector('web--view[num="'+this.num+'"]');
 
@@ -57,6 +60,14 @@ module.exports = class extends HTMLElement {
 
         url = url.substring(0,url.indexOf('/',8));
         window.document.querySelector('search-bar').querySelector('sch-ipt').innerHTML = url;
+    }
+
+    searchBarUpdate2(){
+        var url = this.view.view.src;
+
+        var mySearch = new WebSearch(url);
+
+        window.document.querySelector('search-bar').querySelector('sch-ipt').innerHTML = mySearch.htmlify()
     }
 
     show(){

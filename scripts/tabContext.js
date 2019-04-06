@@ -2,6 +2,7 @@ const rmt = require('electron').remote;
 const Menu = rmt.Menu;
 //console.log(Menu);
 Menu.setApplicationMenu(null);
+const BrowserWindow = rmt.BrowserWindow;
 
 window.makeWebv = function makeWebv(url = "https://google.com"){
 
@@ -14,6 +15,12 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
 
     window.document.body.appendChild(vv);
 }
+
+function changeWindow(){
+    Menu.setApplicationMenu(mnu);
+}
+
+rmt.getCurrentWindow().on('focus',changeWindow)
 
 function closeTab(){
     //console.log(window.currentTab.tRemove)
@@ -28,8 +35,26 @@ function newTab(){
     makeWebv();
 }
 
-Menu.setApplicationMenu(Menu.buildFromTemplate([
+function newWindow(){
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+          nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'});
+
+    win.loadFile('index.html');
+}
+
+let mnu = Menu.buildFromTemplate([
     {label:'Close Tab',accelerator : 'Ctrl+W',click:closeTab},
     {label:'Dev Tools',accelerator:'Ctrl+Shift+I',click:openDevTools},
-    {label:'New Tab',accelerator:'Ctrl+T',click:newTab}
-]));
+    {label:'New Tab',accelerator:'Ctrl+T',click:newTab},
+    {label:'New Window',accelerator:'Ctrl+N',click:newWindow}
+]);
+
+Menu.setApplicationMenu(mnu);
