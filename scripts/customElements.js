@@ -83,7 +83,7 @@ window.settingsWindow = function settingsWindow(){
         minHeight: '100'
     });
 
-    win.loadFile('historypage.html');
+    win.loadFile('settings.html');
     win.openDevTools();
 }
 
@@ -106,7 +106,7 @@ window.historyWindow = function historyWindow(){
     });
 
     win.loadFile('historypage.html');
-    win.openDevTools();
+    //win.openDevTools();
 }
 
 function changeChrome(r,g,b){
