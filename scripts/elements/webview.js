@@ -42,6 +42,9 @@ function handleStopLoad(e){
 }
 
 function handleURLUpdate(event){
+    
+    document.querySelector('body > toolbar > search-bar > sch-ipt').innerHTML = new WebSearch(event.url).htmlify();
+    console.log(this.src)
     addToHistory(event.url,event.srcElement.getTitle());
 }
 
@@ -74,7 +77,7 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
             web.addEventListener('did-navigate', handleURLUpdate);
-            web.addEventListener('did-navigate', this.searchBarUpdate);
+            //web.addEventListener('did-navigate', this.searchBarUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
             web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`);
