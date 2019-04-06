@@ -13,3 +13,4 @@ Refer [here](https://github.com/eatmyvenom/browserr/blob/master/Issues.md) on ho
 ### Pull requests
 
 Refer [here](https://github.com/eatmyvenom/browserr/blob/master/Pulls.md) on how to do pull requests
+
