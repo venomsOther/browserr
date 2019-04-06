@@ -70,10 +70,24 @@ window.makeNewWin = function makeNewWin(){
 }
 
 window.settingsWindow = function settingsWindow(){
-    window.open('settings.html')
+    var BrowserWindow = require('electron').remote.BrowserWindow;
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'
+    });
+
+    win.loadFile('historypage.html');
+    win.openDevTools();
 }
 
-window.bookmarksWindow = function settingsWindow(){
+window.bookmarksWindow = function bookmarksWindow(){
     window.open('bookmarkspage.html')
 }
 
