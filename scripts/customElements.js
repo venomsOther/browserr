@@ -78,7 +78,21 @@ window.bookmarksWindow = function settingsWindow(){
 }
 
 window.historyWindow = function historyWindow(){
-    window.open('historypage.html')
+    var BrowserWindow = require('electron').remote.BrowserWindow;
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'
+    });
+
+    win.loadFile('historypage.html');
+    win.openDevTools();
 }
 
 function changeChrome(r,g,b){

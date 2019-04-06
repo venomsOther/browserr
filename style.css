@@ -30,6 +30,7 @@ page-tabs{
 }
 
 chrome{
+    height: 25px;
     padding-right:2px;
 }
 
