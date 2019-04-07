@@ -1,5 +1,11 @@
 var $ = document.querySelector('textwrapper');
 
+var currentS = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+
+function doclose(){
+    require('electron').remote.getCurrentWindow().close();
+}
+
 function editSettings(setting,value){
     var obj = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
     obj[setting] = value;
@@ -30,5 +36,10 @@ $.querySelector('#increment').addEventListener('input',ZoomIncrement);
 $.querySelector('#zlvl').addEventListener('input',ZoomLevel);
 
 $.querySelectorAll('#icpp').forEach(e=>{
+    if(e.value == currentS.iconPack){
+        e.checked = true;
+    }
     e.addEventListener('click', iconPack);
 });
+
+document.querySelector('.close').addEventListener('click',doclose);

@@ -14,7 +14,7 @@
 }
 
 html,body{margin:0;overflow: hidden;font-family: regular;}
-*{box-sizing: border-box; transition-duration: 0.3s;}
+*{box-sizing: border-box; transition-duration: 0.3s; outline: none;}
 
 tabBar,page-tabs,chrome{
     display:block;

@@ -84,7 +84,7 @@ window.settingsWindow = function settingsWindow(){
     });
 
     win.loadFile('settings.html');
-    win.openDevTools();
+    //win.openDevTools();
 }
 
 window.bookmarksWindow = function bookmarksWindow(){
