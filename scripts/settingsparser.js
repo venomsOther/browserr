@@ -17,7 +17,7 @@ function ZoomIncrement(){
 
 function ZoomLevel(){
     $.querySelector('#zlvlV').innerHTML = $.querySelector('#zlvl').value + '%';
-    editSettings('ZoomIncrement', $.querySelector('#zlvl').value / 100);
+    editSettings('ZoomLevel', $.querySelector('#zlvl').value / 100);
 }
 
 function iconPack(){
