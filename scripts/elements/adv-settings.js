@@ -1,4 +1,4 @@
-console.log('r')
+//console.log('r')
 
 module.exports = class extends HTMLElement {    
     constructor(){
