@@ -36,17 +36,19 @@
             <h1>Settings</h1>
 
             Zoom Increment<br>
-            <num-slider id='zii' percision="0.01" low="0.01" high="1.00"></num-slider><br>
+            <input type='range' min='1' max='100' value='5' id='increment' />
+            <span id='incrementV'>5</span><br>
 
             Starting Zoom<br>
-            <num-slider id='szz' percision='0.01' low='0.01' high='5.00'></num-slider><br>
+            <input type='range' min='100' max='500' value='100' id='zlvl' />
+            <span id='zlvlV'>100%</span><br>
 
             Font Weight<br>
             <input id="weight" type="number" /><br><br>
 
             Icon Pack<br>
-            <input name='icpp' type="radio" value="fontAwesome" />Font Awesome<br>
-            <input name='icpp' type="radio" value="google" />Material
+            <input name='icpp' id='icpp' type="radio" value="fontAwesome" />Font Awesome<br>
+            <input name='icpp' id='icpp' type="radio" value="google" />Material
 
             <br><br><button class='save'>Save settings</button>
             <button class='close'>Close</button>
