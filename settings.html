@@ -6,6 +6,20 @@
                 display:block;
                 padding: 10px;
             }
+
+            button{
+                border-radius: 20px;
+                border-style: solid;
+                border-color: darkgrey;
+                border-width: 2px;
+                background: blue;
+                color:white;
+                padding: 10px;
+                font-size: 15px;
+            }
+
+            
+            
         </style>
     </head>
 
@@ -22,13 +36,13 @@
             <h1>Settings</h1>
 
             Zoom Increment<br>
-            <num-slider id='zii' percision="0.01" low="0.01" high="1.00"></num-slider>
+            <num-slider id='zii' percision="0.01" low="0.01" high="1.00"></num-slider><br>
 
             Starting Zoom<br>
-            <num-slider id='szz' percision='0.01' low='0.01' high='5.00'></num-slider>
+            <num-slider id='szz' percision='0.01' low='0.01' high='5.00'></num-slider><br>
 
             Font Weight<br>
-            <input type="number" /><br>
+            <input id="weight" type="number" /><br><br>
 
             Icon Pack<br>
             <input name='icpp' type="radio" value="fontAwesome" />Font Awesome<br>
@@ -42,6 +56,7 @@
 
         <script>
             require('./scripts/renderer.js');
+            require('./scripts/settingsparser.js');
         </script>
     </body>
 </html>

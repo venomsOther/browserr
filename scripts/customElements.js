@@ -70,6 +70,7 @@ window.makeNewWin = function makeNewWin(){
 }
 
 window.settingsWindow = function settingsWindow(){
+    console.log('r');
     var BrowserWindow = require('electron').remote.BrowserWindow;
     var win = new BrowserWindow({
         width: 800,
@@ -235,3 +236,4 @@ def('b-ico');
 def('b-title');
 def('b-link');
 def('dev-tools');
+def('adv-settings');
