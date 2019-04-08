@@ -1,24 +1,37 @@
 <html>
     <head>
+        <link href='style.css' rel='stylesheet' />
         <style>
 
         </style>
     </head>
     <body>
+            <chrome>
+                    <ch-min></ch-min>
+                    <ch-max></ch-max>
+                    <ch-exit></ch-exit>
+                  </chrome>
+
+                  
         <ol>
 
         </ol>
+
+        
         <script>
+            require('./scripts/customElements.js');
             var PGObjs = require('./scripts/history.js');
             var History = PGObjs.History;
-            const mainHistory = History.fromFileAuto();
+            const mainHistory = History.asArray();
 
-            for(var i = 0; i < mainHistory.length(); i++){
+            for(var i = 0; i < mainHistory.length; i++){
                 var li = document.createElement('li');
-                li.innerHTML = `${mainHistory.getTitle(i)}<br>${mainHistory.getUrl(i)}`
+                li.innerHTML = `${mainHistory[i].url}`
 
                 document.querySelector('ol').appendChild(li);
             }
+
+            //require('electron').remote.getCurrentWindow().openDevTools();
         </script>
     </body>
 </html>
