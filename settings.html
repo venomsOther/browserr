@@ -7,6 +7,10 @@
                 padding: 10px;
             }
 
+            body{
+                zoom: 1.2;
+            }
+
             button{
                 border-radius: 20px;
                 border-style: solid;
@@ -48,7 +52,64 @@
             }
 
             
-            
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button{
+                -webkit-appearance: none;
+                display: none;
+            }
+
+            input[type=number]{
+                outline:none;
+                border-style:solid;
+                border-width:2px;
+                border-color:blue;
+                padding:5px;
+            }
+
+            #dec,#inc{
+                all:initial;
+                border-style:solid;
+                border-width:1px;
+                border-left-width: 0px;
+                border-color:blue;
+                width:15px;
+                text-align: center;
+                transition-duration: 0.3s;
+            }
+            #inc{
+                border-bottom:0px;
+                
+            }
+
+            #dec:hover,#inc:hover{
+                background: blue;
+                color: white;
+            }
+
+            up-down{
+                position: relative;
+                top: -5px;
+                display:inline-flex;
+                flex-direction: column;
+                height:30px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input[type=radio]{
+                -webkit-appearance: none;
+                border-color:blue;
+                border-width:2px;
+                border-style:solid;
+                display: inline-block;
+                border-radius: 50%;
+                width:15px;
+                height:15px;
+            }
+
+            input[type=radio]:checked{
+                background: rgb(125,175,255);
+            }
         </style>
     </head>
 
@@ -73,7 +134,7 @@
             <span id='zlvlV'>100%</span><br><br>
 
             Font Weight<br>
-            <input id="weight" type="number" /><br><br>
+            <input id="weight" type="number" min="400" step="50" max="600" value="500" contenteditable="false" /><up-down><button id='inc'>+</button><button id='dec'>-</button></up-down><br><br>
 
             Icon Pack<br>
             <input name='icpp' id='icpp' type="radio" value="fontAwesome" />Font Awesome<br>

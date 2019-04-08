@@ -13,7 +13,13 @@ function editSettings(setting,value){
 }
 
 function fontWeight(){
-    editSettings('font-weight', $.querySelector('#weight').value);
+    var val = $.querySelector('#weight').value;
+    if(val % 50 != 0){
+        val = Math.round(val / 50) * 50;
+    }
+    $.querySelector('#weight').value = val; 
+
+    editSettings('font-weight', val);
 }
 
 function ZoomIncrement(){
@@ -42,4 +48,14 @@ $.querySelectorAll('#icpp').forEach(e=>{
     e.addEventListener('click', iconPack);
 });
 
+function upFont(){
+    $.querySelector('#weight').stepUp();
+}
+
+function downFont(){
+    $.querySelector('#weight').stepDown();
+}
+
 document.querySelector('.close').addEventListener('click',doclose);
+$.querySelector('#inc').addEventListener('click',upFont);
+$.querySelector('#dec').addEventListener('click',downFont);
