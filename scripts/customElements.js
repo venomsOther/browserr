@@ -70,15 +70,43 @@ window.makeNewWin = function makeNewWin(){
 }
 
 window.settingsWindow = function settingsWindow(){
-    window.open('settings.html')
+    var BrowserWindow = require('electron').remote.BrowserWindow;
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'
+    });
+
+    win.loadFile('settings.html');
+    win.openDevTools();
 }
 
-window.bookmarksWindow = function settingsWindow(){
+window.bookmarksWindow = function bookmarksWindow(){
     window.open('bookmarkspage.html')
 }
 
 window.historyWindow = function historyWindow(){
-    window.open('historypage.html')
+    var BrowserWindow = require('electron').remote.BrowserWindow;
+    var win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        icon: './images.png',
+        frame: false,
+        minWidth: '145',
+        minHeight: '100'
+    });
+
+    win.loadFile('historypage.html');
+    //win.openDevTools();
 }
 
 function changeChrome(r,g,b){
@@ -207,3 +235,4 @@ def('b-ico');
 def('b-title');
 def('b-link');
 def('dev-tools');
+def('adv-settings');
