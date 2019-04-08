@@ -6,6 +6,49 @@
                 display:block;
                 padding: 10px;
             }
+
+            button{
+                border-radius: 20px;
+                border-style: solid;
+                border-color: lightgrey;
+                border-width: 2px;
+                background: blue;
+                color:white;
+                padding: 10px;
+                font-size: 15px;
+            }
+
+            button:hover{
+                background: rgb(125,175,255);
+                color: black;
+                border-color: darkgrey;
+            }
+
+            input[type=range]{
+                width:85%;
+                display:block;
+                -webkit-appearance: none;
+                height: 20px;
+                background: #c4c4c4;
+                border-radius:5px;
+            }
+
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 12px;
+                height: 20px;
+                background: blue;
+                cursor: pointer;
+                border-radius:50px;
+                transition-duration: 0.3s;
+            }
+
+            input[type=range]::-webkit-slider-thumb:hover {
+                background:rgb(125,175,255);
+            }
+
+            
+            
         </style>
     </head>
 
@@ -22,17 +65,19 @@
             <h1>Settings</h1>
 
             Zoom Increment<br>
-            <num-slider id='zii' percision="0.01" low="0.01" high="1.00"></num-slider>
+            <input type='range' min='1' max='100' value='5' id='increment' />
+            <span id='incrementV'>5</span><br><br>
 
             Starting Zoom<br>
-            <num-slider id='szz' percision='0.01' low='0.01' high='5.00'></num-slider>
+            <input type='range' min='100' max='500' value='100' id='zlvl' />
+            <span id='zlvlV'>100%</span><br><br>
 
             Font Weight<br>
-            <input type="number" /><br>
+            <input id="weight" type="number" /><br><br>
 
             Icon Pack<br>
-            <input name='icpp' type="radio" value="fontAwesome" />Font Awesome<br>
-            <input name='icpp' type="radio" value="google" />Material
+            <input name='icpp' id='icpp' type="radio" value="fontAwesome" />Font Awesome<br>
+            <input name='icpp' id='icpp' type="radio" value="google" />Material
 
             <br><br><button class='save'>Save settings</button>
             <button class='close'>Close</button>
@@ -42,6 +87,7 @@
 
         <script>
             require('./scripts/renderer.js');
+            require('./scripts/settingsparser.js');
         </script>
     </body>
 </html>

@@ -7,7 +7,7 @@ function handleTooBig(){
 }
 
 function handleTooSmall(){
-    tabs.setAttribute('style','top:-2px;')
+    tabs.setAttribute('style','')
 }
 
 function newWinBig(openurl){
@@ -49,7 +49,7 @@ module.exports = class extends HTMLElement {
 
 
 
-        if(tabs.offsetTop > 21){
+        if(tabs.offsetTop > 27){
             handleTooBig();
             //newWinBig(this.view.view.src);this.tRemove();
         }
@@ -121,7 +121,7 @@ module.exports = class extends HTMLElement {
             require('electron').remote.getCurrentWindow().close();
         } else{
             tabs.children[tabs.children.length - 1].show();
-            if(tabs.offsetTop < 17){
+            if(tabs.offsetTop < 20){
                 handleTooSmall();
             }
         }

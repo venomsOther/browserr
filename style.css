@@ -14,7 +14,7 @@
 }
 
 html,body{margin:0;overflow: hidden;font-family: regular;}
-*{box-sizing: border-box; transition-duration: 0.3s;}
+*{box-sizing: border-box; transition-duration: 0.3s; outline: none;}
 
 tabBar,page-tabs,chrome{
     display:block;
@@ -30,6 +30,7 @@ page-tabs{
 }
 
 chrome{
+    height: 25px;
     padding-right:2px;
 }
 
@@ -56,7 +57,7 @@ page-tabs{
     display:inline-flex;
     align-items: center;
     max-width:85%;
-    top: -2px;
+    
 }
 
 pg-tab{
