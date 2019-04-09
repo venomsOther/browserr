@@ -236,3 +236,7 @@ def('b-title');
 def('b-link');
 def('dev-tools');
 def('adv-settings');
+def('hist-ico');
+def('hist-menu');
+def('hist-open');
+def('hist-remove');

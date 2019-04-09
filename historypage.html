@@ -6,11 +6,11 @@
         </style>
     </head>
     <body>
-            <chrome>
-                    <ch-min></ch-min>
-                    <ch-max></ch-max>
-                    <ch-exit></ch-exit>
-                  </chrome>
+        <chrome>
+            <ch-min></ch-min>
+            <ch-max></ch-max>
+            <ch-exit></ch-exit>
+        </chrome>
 
                   
         <ol>
@@ -26,7 +26,7 @@
 
             for(var i = 0; i < mainHistory.length; i++){
                 var li = document.createElement('li');
-                li.innerHTML = `${mainHistory[i].url}`
+                li.innerHTML = `${mainHistory[i].url}<hist-menu url='${mainHistory[i].url}' num='${i}' >`
 
                 document.querySelector('ol').appendChild(li);
             }
