@@ -12,6 +12,6 @@ module.exports = class extends HTMLElement {
             throw new Error("A HIST-MENU was declared without a url or num attribute");
         }
 
-        this.innerHTML = `<hist-ico></hist-ico><hist-open url='${url}'>Open</hist-open><hist-remove num="${dex}" >Remove</hist-remove>`;
+        this.innerHTML = `Menu<wrap><hist-open url='${url}'>Open</hist-open><hist-remove num="${dex}" >Remove</hist-remove></wrap>`;
     }
 }

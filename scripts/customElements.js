@@ -106,7 +106,7 @@ window.historyWindow = function historyWindow(){
     });
 
     win.loadFile('historypage.html');
-    //win.openDevTools();
+    win.openDevTools();
 }
 
 function changeChrome(r,g,b){
@@ -236,7 +236,6 @@ def('b-title');
 def('b-link');
 def('dev-tools');
 def('adv-settings');
-def('hist-ico');
 def('hist-menu');
 def('hist-open');
 def('hist-remove');

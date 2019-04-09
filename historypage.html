@@ -2,7 +2,73 @@
     <head>
         <link href='style.css' rel='stylesheet' />
         <style>
+            ol{
+                line-height: 20px;
+            }
 
+            li{
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+
+            hist-menu{
+                box-sizing: border-box;
+                display: block;
+                width:10vw;
+                height: 30px;
+                transition-duration: 0.3s;
+                background: linear-gradient(to right, rgb(125,175,255), blue);;
+                color: white;
+                float: right;
+                padding: 3px;
+                border-radius: 10px;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                border: 2px darkgray solid;
+                border-right:none;
+            }
+
+            hist-remove,hist-open{
+                transition-delay: 0.3s;
+                height:0px;
+                width:10vw;
+                transition-duration: 0.3s;
+                display: block;
+                overflow: hidden;
+                background: #7dafff;
+                position:relative;
+                top: 23px;
+            }
+
+            hist-menu:hover{
+                background:#7dafff;
+                width:calc(20% +  13px);
+                border-bottom-left-radius: 0px;
+            }
+
+            wrap{
+                width: 10vw;
+                position: absolute;
+                z-index: 1;
+                right:calc(10% + 5px);
+                /*background: inherit;*/
+            }
+
+            hist-menu:hover hist-open,hist-menu:hover hist-remove{
+                height: 30px;
+                padding:2px;
+            }
+
+            hist-open:hover, hist-remove:hover{
+                background:white;
+                color:black;
+            }
+
+            hbr{
+                border-bottom: 1px dotted blue;
+                height:10px;
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -26,9 +92,10 @@
 
             for(var i = 0; i < mainHistory.length; i++){
                 var li = document.createElement('li');
-                li.innerHTML = `${mainHistory[i].url}<hist-menu url='${mainHistory[i].url}' num='${i}' >`
+                li.innerHTML = `${mainHistory[i].url}<hist-menu url='${mainHistory[i].url}' num='${i}' ></hist-menu>`
 
                 document.querySelector('ol').appendChild(li);
+                document.querySelector('ol').innerHTML += '<hbr></hbr>'
             }
 
             //require('electron').remote.getCurrentWindow().openDevTools();
