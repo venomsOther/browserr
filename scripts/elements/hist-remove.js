@@ -12,16 +12,6 @@ module.exports = class extends HTMLElement {
         var num = this.getAttribute('num');
 
         require('../history.js').History.removeItem(num);
-        document.querySelectorAll(`hist-menu`).forEach(e=>{
-            if(e.getAttribute('num') == num){
-                e.parentElement.remove();
-            }
-        });
-
-        document.querySelectorAll(`hbr`).forEach(e=>{
-            if(e.getAttribute('num') == num){
-                e.remove();
-            }
-        });
+        require('electron').remote.getCurrentWindow().reload();
     }
 }
