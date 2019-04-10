@@ -45,18 +45,15 @@ class History{
 
         for(i = 0; i<arr.length; i++){
             if(arr[i] == null){
-                ii--;
+                // do nothing
             }
             else{
                 obj[ii] = arr[i];
+                ii++;
             }
-
-            ii++;
         }
 
-        for(i = 0; i<arr.length; i++){
-            obj[i] = arr[i];
-        }
+        console.log(obj)
 
         require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
@@ -74,6 +71,10 @@ class History{
         }
 
         return arr;
+    }
+
+    static clearAll(){
+        require('fs').writeFileSync('scripts/history.json','{}');
     }
 }
 

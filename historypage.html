@@ -2,8 +2,16 @@
     <head>
         <link href='style.css' rel='stylesheet' />
         <style>
+            html{ overflow-y:scroll;}
             ol{
                 line-height: 20px;
+            }
+
+            chrome{
+                position:fixed;
+            }
+            ch-min,ch-max,ch-exit{
+                position:fixed;
             }
 
             li{
@@ -29,8 +37,7 @@
             }
 
             hist-remove,hist-open{
-                transition-delay: 0.3s;
-                height:0px;
+                user-select: none;
                 width:10vw;
                 transition-duration: 0.3s;
                 display: block;
@@ -40,8 +47,22 @@
                 top: 23px;
             }
 
+            hist-menu{
+                user-select: none;
+                border-style: solid;
+                border-color: lightgrey;
+                border-width: 2px;
+                background: blue;
+                color:white;
+            }
+
             hist-menu:hover{
-                background:#7dafff;
+                background: rgb(125,175,255);
+                color: black;
+                border-color: darkgrey;
+            }
+
+            hist-menu:hover{
                 width:calc(20% +  13px);
                 border-bottom-left-radius: 0px;
             }
@@ -49,9 +70,13 @@
             wrap{
                 width: 10vw;
                 position: absolute;
-                z-index: 1;
-                right:calc(10% + 5px);
+                z-index: 2;
+                right:-10vw;
                 /*background: inherit;*/
+            }
+
+            hist-menu:hover wrap{
+                right:calc(10% + 3px);
             }
 
             hist-menu:hover hist-open,hist-menu:hover hist-remove{
@@ -69,6 +94,30 @@
                 height:10px;
                 display: block;
             }
+
+            button{
+                border-radius: 20px;
+                border-style: solid;
+                border-color: lightgrey;
+                border-width: 2px;
+                background: blue;
+                color:white;
+                padding: 10px;
+                font-size: 15px;
+            }
+
+            button:hover{
+                background: rgb(125,175,255);
+                color: black;
+                border-color: darkgrey;
+            }
+
+            cm{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 200px;
+            }
         </style>
     </head>
     <body>
@@ -83,8 +132,22 @@
 
         </ol>
 
-        
+        <cm>
+        <button class='close'>Close</button>
+        <button class='cal'>Clear All</button>
+        </cm>
         <script>
+            function doclose(){
+                require('electron').remote.getCurrentWindow().close();
+            }
+
+            function clearAll(){
+                var PGObjs = require('./scripts/history.js');
+                var History = PGObjs.History;
+
+                History.clearAll();
+            }
+
             require('./scripts/customElements.js');
             var PGObjs = require('./scripts/history.js');
             var History = PGObjs.History;
@@ -95,10 +158,14 @@
                 li.innerHTML = `${mainHistory[i].url}<hist-menu url='${mainHistory[i].url}' num='${i}' ></hist-menu>`
 
                 document.querySelector('ol').appendChild(li);
-                document.querySelector('ol').innerHTML += '<hbr></hbr>'
+                document.querySelector('ol').innerHTML += '<hbr num="'+i+'"></hbr>';
             }
 
+            document.querySelector('.close').addEventListener('click',doclose);
+            document.querySelector('.cal').addEventListener('click',clearAll);
+            document.querySelector('.cal').addEventListener('click',doclose);
             //require('electron').remote.getCurrentWindow().openDevTools();
         </script>
+        
     </body>
 </html>
