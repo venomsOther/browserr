@@ -43,5 +43,7 @@ module.exports = (branch = 'master') => {
             fs.writeFileSync('updates.json', JSON.stringify(d));
             for(i in d.files){ read(branch,i) }
         }
+    }).catch((e)=>{
+        console.error(e);
     });    
 }
