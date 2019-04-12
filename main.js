@@ -6,6 +6,7 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 let mainWindow;
 let tray = null;
 let debugging = true;
+let branch = 'nightly';
 
 function createWindow () {
   // Create the browser window.
