@@ -233,7 +233,6 @@ def('book-marks');
 def('b-mark');
 def('b-ico');
 def('b-title');
-def('b-link');
 def('dev-tools');
 def('adv-settings');
 def('hist-menu');
