@@ -97,7 +97,8 @@ ch-min,ch-max,ch-exit{
     justify-content: center;
     background-color: inherit;
     padding:2px;
-    border:none;
+    border-style:none;
+    border-radius: 50%;
 }
 
 pg-back,pg-forward,pg-refresh{
