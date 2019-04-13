@@ -5,16 +5,22 @@ function queryTitle(){
         var e = document.createElement('full-query');
         e.setAttribute('msg','Please enter a title for your bookmark');
         e.setAttribute('title','Title');
+        e.setAttribute('type','text');
         document.querySelector('body').appendChild(e);
 
         e.querySelector('input').addEventListener('keydown',(k)=>{
             if(k.key == 'enter'){
-                resolve(e.querySelector('input').value);
+                var val = e.querySelector('input').value
+                e.remove();
+                resolve(val);
             }
         });
 
         e.querySelector('#done').addEventListener('click',()=>{
-            resolve(e.querySelector('input').value);
+            var val = e.querySelector('input').value
+            e.remove();
+            resolve(val);
+            
         });
 
     });
