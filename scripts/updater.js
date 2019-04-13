@@ -14,12 +14,16 @@ function gread(branch, filePath){
     return new Promise((resolve,reject)=>{
         var url = 'https://raw.githubusercontent.com/eatmyvenom/browserr/' + branch + '/' + filePath;
         //console.log(url);
-        https.get(url, res => {
-            let data = "";
-            res.on('data',d=>{data+=d});
-            res.on('end',e=>{resolve(data)});
-            res.on('error',er=>{reject(er)});
-        });
+        try{
+            https.get(url, res => {
+                let data = "";
+                res.on('data',d=>{data+=d});
+                res.on('end',e=>{resolve(data)});
+                //res.on('error',er=>{reject(er)});
+            });
+        }catch(e){
+            reject(e);
+        }
     });
 }
 
@@ -46,6 +50,6 @@ module.exports = (branch = 'master') => {
             for(i in d.files){ read(branch,i) }
         }
     }).catch((e)=>{
-        console.error(e);
+        console.log(e);
     });    
 }

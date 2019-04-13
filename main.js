@@ -7,6 +7,7 @@ let mainWindow;
 let tray = null;
 let debugging = true;
 let branch = 'nightly';
+let offline = true;
 
 function createWindow () {
   // Create the browser window.
@@ -66,9 +67,14 @@ app.on('activate', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 function update(){
-  require('./scripts/updater.js')(branch);
+  try{
+    require('./scripts/updater.js')(branch);  
+  }catch(e){
+    console.log("\n\n"+e);
+  }
+  
 }
 var timer;
 timer = (debugging) ? 2000 : 1.2e+6;
 
-var ucycle = setInterval(update,timer);
+if(!offline){var ucycle = setInterval(update,timer)};
