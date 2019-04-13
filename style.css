@@ -330,3 +330,12 @@ full-query button{
 full-query div{
     margin-bottom: 5px;
 }
+
+add-mark{
+    display:block;
+    float:right;
+    width: 15px;
+    height:15px;
+    background: grey;
+    border-radius: 50%;
+}

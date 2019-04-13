@@ -8,7 +8,7 @@ module.exports = class extends HTMLElement {
 
     connectedCallback(){
         this.innerHTML = "";
-        var marks = io.readAsObj;
+        var marks = io.readAsObj();
 
         for(let i in marks){
             var m = document.createElement('b-mark');
