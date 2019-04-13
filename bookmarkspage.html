@@ -29,9 +29,12 @@
         </ol>
 
        <script>
+           require('electron').remote.getCurrentWindow().openDevTools();
            var BrowserWindow = require('electron').remote.BrowserWindow;
+           require('./scripts/renderer.js');
            var io = require('./scripts/bookmarks.js');
 
+        
            var marks = io.readAsObj();
 
            for(let i in marks){
@@ -59,8 +62,10 @@
 
                 e.querySelector('#remove').addEventListener('click',()=>{
                     io.remove(i);
-                    require('electron').remote.getCurrentWindow().refresh();
+                    require('electron').remote.getCurrentWindow().reload();
                 });
+
+                document.querySelector('ol').appendChild(e);
            }
        </script>
         
