@@ -20,6 +20,20 @@ module.exports = class reader{
         this.writeFromObj('scripts/bookmarks.json',obj);
     }
 
+    static remove(i){
+        var obj = this.readAsObj();
+        obj[i]=null;
+
+        let newobj={};
+        for(let a in obj){
+            if(obj[a]!=null){
+                newobj[a] = obj[a];
+            }
+        }
+
+        this.writeFromObj('scripts/bookmarks.json',newobj);
+    }
+
     static writeFromObj(fileName,obj){
         this.writeFile(fileName,JSON.stringify(obj));
     }
