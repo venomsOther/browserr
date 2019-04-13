@@ -241,3 +241,48 @@ ind{
 [hint]{
     color:grey;
 }
+
+book-marks{
+    display:flex;
+    background:lightgray;
+    height:40px;
+    align-items: center;
+}
+
+b-mark{
+    max-width:20vw;
+    height: 35px;
+    background: inherit;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: darkgray;
+    
+    border-width:2px;
+    border-radius: 10px;
+    padding:3px;
+    align-content: center;
+    margin-left:3px;
+}
+
+b-mark:hover{
+    background:darkgray;
+    border-color:lightgray;
+    color:white;
+}
+
+b-title{
+    vertical-align: middle;
+    margin-left: 5px;
+    display:inline-block;
+    cursor: default;
+}
+
+b-ico{
+    vertical-align:middle;
+    display:inline-block;
+}
+
+b-ico img{
+    top:3px;
+    display:inline-block; 
+}

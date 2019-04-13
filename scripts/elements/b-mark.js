@@ -10,7 +10,7 @@ module.exports = class extends HTMLElement {
         var item = reader.get(this.getAttribute('item'));
         this.href = item.href;
 
-        this.innerHTML = `<b-ico href='${item.href}'></b-ico><b-title>${item.title}</b-title>`;
+        this.innerHTML = `<b-ico href='${item.icon}'></b-ico><b-title>${item.title}</b-title>`;
         this.addEventListener('click',this.clickevent);
     }
 
