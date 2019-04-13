@@ -13,7 +13,7 @@ function queryTitle(){
             }
         });
 
-        e.querySelector('done').addEventListener('click',()=>{
+        e.querySelector('#done').addEventListener('click',()=>{
             resolve(e.querySelector('input').value);
         });
 

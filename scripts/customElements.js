@@ -238,3 +238,5 @@ def('adv-settings');
 def('hist-menu');
 def('hist-open');
 def('hist-remove');
+def('add-mark');
+def('full-query');
