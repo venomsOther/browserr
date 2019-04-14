@@ -6,5 +6,6 @@
     "close":"sharp-close-24px.svg",
     "maximize":"sharp-fullscreen-24px.svg",
     "minimize":"sharp-minimize-24px.svg",
-    "newTab":"sharp-library_add-24px.svg"
+    "newTab":"sharp-library_add-24px.svg",
+    "addFavorite":"sharp-star_border-24px.svg"
 }

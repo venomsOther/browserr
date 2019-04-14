@@ -1,4 +1,7 @@
 const io = require('../bookmarks.js');
+const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+const readIcons = require('../readIcons.js');
+const IconSet = new readIcons(settings.iconPack);
 
 function queryTitle(){
     return new Promise((resolve,reject)=>{
@@ -37,6 +40,7 @@ module.exports = class extends HTMLElement{
     }
 
     connectedCallback(){
+        this.innerHTML = `<img src="${IconSet.getDir('addFavorite')}" height="24" width="25" />`;
         this.addEventListener('click',this.clickEvent);
     }
 

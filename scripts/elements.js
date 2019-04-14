@@ -3,3 +3,20 @@ function urlBreadcrumbs(url){
     a.shift();
     return a;
 }
+
+function preprocess(filename,replacements){
+    var txt = require('fs').readFileSync(filename).toString();
+    for(var i in replacements){
+        var regex = new RegExp(i,'g');
+        txt.replace(regex,replacements[i]);
+    }
+
+    return txt;
+}
+
+var normalStyle = document.createElement('style');
+normalStyle.innerHTML = preprocess('style.css',{
+    
+});
+
+document.querySelector('head').appendChild(normalStyle);
