@@ -357,3 +357,7 @@ add-mark{
 add-mark:hover{
     background:darkgrey;
 }
+
+add-mark:hover img{
+    filter: invert(100);
+}
