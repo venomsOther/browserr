@@ -1,6 +1,11 @@
 class History{
-    static addItem(item){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    constructor(filename){
+        this.filename = filename;
+    }
+    addItem(item){this.addItem(item,this.filename)}
+
+    static addItem(item,filename='scripts/history.json'){
+        var file = require('fs').readFileSync(filename).toString();
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -20,16 +25,16 @@ class History{
         require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
 
-    static getItem(item){
+    static getItem(item, filename='scripts/history.json'){
         
     }
 
-    static readFile(){
+    static readFile(filename='scripts/history.json'){
 
     }
 
-    static removeItem(n){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    static removeItem(n,filename='scripts/history.json'){
+        var file = require('fs').readFileSync(filename).toString();
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -58,8 +63,8 @@ class History{
         require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
 
-    static asArray(){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    static asArray(filename='scripts/history.json'){
+        var file = require('fs').readFileSync(filename).toString();
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -73,8 +78,8 @@ class History{
         return arr;
     }
 
-    static clearAll(){
-        require('fs').writeFileSync('scripts/history.json','{}');
+    static clearAll(filename='scripts/history.json'){
+        require('fs').writeFileSync(filename,'{}');
     }
 }
 
