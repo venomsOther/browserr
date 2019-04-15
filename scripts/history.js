@@ -2,7 +2,7 @@ class History{
     constructor(filename){
         this.filename = filename;
     }
-    addItem(item){this.addItem(item,this.filename)}
+    HaddItem(item){this.addItem(item,this.filename)}
 
     static addItem(item,filename='scripts/history.json'){
         var file = require('fs').readFileSync(filename).toString();
