@@ -312,6 +312,7 @@ full-query{
     border-color:black;
     padding:10px;
     box-shadow: 0 0 50px 700px #00000070;
+    background:whitesmoke;
 }
 
 full-query h2{
@@ -358,6 +359,16 @@ add-mark:hover{
     background:darkgrey;
 }
 
-add-mark:hover img{
+add-mark:hover img, z-in:hover img, z-out:hover img{
     filter: invert(100);
+}
+
+z-in,z-out{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+}
+
+z-in:hover,z-out:hover{
+    background:darkgray;
 }

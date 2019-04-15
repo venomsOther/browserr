@@ -7,5 +7,7 @@
     "maximize":"sharp-fullscreen-24px.svg",
     "minimize":"sharp-minimize-24px.svg",
     "newTab":"sharp-library_add-24px.svg",
-    "addFavorite":"sharp-star_border-24px.svg"
+    "addFavorite":"sharp-star_border-24px.svg",
+    "zoomIn":"sharp-zoom_in-24px.svg",
+    "zoomOut":"sharp-zoom_out-24px.svg"
 }
