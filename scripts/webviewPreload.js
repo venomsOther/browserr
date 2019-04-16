@@ -171,5 +171,5 @@ webC.on('update-target-url', handleTargetUrlUpdate);
 webC.on('close', webC.removeAllListeners);
 webC.on('did-start-navigation', webC.removeAllListeners);
 webC.on('will-navigate', webC.removeAllListeners);
-console.log(webC.eventNames());
+//console.log(webC.eventNames());
 window.oncontextmenu = handleContextMenu;
