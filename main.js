@@ -25,7 +25,7 @@ function createWindow () {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('password.html');
 
   // Open the DevTools.
   if(debugging){

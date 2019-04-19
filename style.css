@@ -53,6 +53,7 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
+    top: -1px;
     /* odd flex but okay */
     display:inline-flex;
     align-items: center;
@@ -158,7 +159,7 @@ settingsbtn:hover{
     background: lightgrey;
 }
 
-st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools{
+st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings{
     display:block;
     width:auto;
     padding:5px;
@@ -196,6 +197,10 @@ webview{
 sch-ipt{
     display:inline-block;
     outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: none;
+    max-width: 80vw;
 }
 
 tb-title{
@@ -377,6 +382,6 @@ multi-view{
     display:grid;
     grid-column-gap: 50px;
     grid-row-gap: 50px;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    overflow-y: auto;
 }

@@ -53,11 +53,12 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
     vv.setAttribute('src',url);
     vv.setAttribute('allowpopups','');
 
-    window.document.querySelector('multi-view').appendChild(vv);
+    window.document.querySelector('multi-view').addChild(vv);
 }
 
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
+
 
 
 
@@ -242,3 +243,5 @@ def('hist-open');
 def('hist-remove');
 def('add-mark');
 def('full-query');
+def('multi-view');
+def('m-settings');

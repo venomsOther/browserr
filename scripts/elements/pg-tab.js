@@ -85,7 +85,9 @@ module.exports = class extends HTMLElement {
     }
 
     hide(){
-        this.view.hide();
+        if(!document.querySelector('multi-view').hasAttribute('enabled')){
+            this.view.hide();
+        }
         this.removeAttribute('show');
         this.style.background = 'darkgrey';
     }
@@ -111,6 +113,8 @@ module.exports = class extends HTMLElement {
                 handleTooSmall();
             }
         }
+
+        document.querySelector('multi-view').refresh();
     }
 
     tRemove(){
@@ -125,5 +129,7 @@ module.exports = class extends HTMLElement {
                 handleTooSmall();
             }
         }
+
+        document.querySelector('multi-view').refresh();
     }
 }
