@@ -12,8 +12,8 @@ let offline = false;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 300,
+    height: 400,
     webPreferences: {
       nodeIntegration: true
     },
@@ -49,7 +49,7 @@ app.on('window-all-closed', function () {
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit();
-    timer = null;
+    ucycle = null;
   }
 })
 
