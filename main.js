@@ -5,9 +5,9 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-let debugging = true;
 let branch = 'nightly';
-let offline = true;
+let debugging = true;
+let offline = false;
 
 function createWindow () {
   // Create the browser window.
@@ -28,10 +28,6 @@ function createWindow () {
   mainWindow.loadFile('password.html');
 
   // Open the DevTools.
-  if(debugging){
-    mainWindow.webContents.openDevTools();
-  }
-
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -53,6 +49,7 @@ app.on('window-all-closed', function () {
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit();
+    timer = null;
   }
 })
 

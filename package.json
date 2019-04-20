@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/electron/browserr#readme",
   "dependencies": {
+    "crypto.js": "^1.2.1",
     "get-website-favicon": "0.0.7",
     "url-exists": "^1.0.3"
   }
