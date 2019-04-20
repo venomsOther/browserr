@@ -65,11 +65,11 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 function update(){
   try{
-    require('./scripts/updater.js')(branch);  
+    require('./scripts/updater.js')(branch);
   }catch(e){
     console.log("\n\n"+e);
   }
-  
+
 }
 var timer;
 timer = (debugging) ? 2000 : 1.2e+6;
