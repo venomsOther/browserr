@@ -58,7 +58,7 @@ page-tabs{
     display:inline-flex;
     align-items: center;
     max-width:85%;
-    
+
 }
 
 pg-tab{
@@ -68,7 +68,7 @@ pg-tab{
     height:40px;
     background-color:darkgray;
     border-top-right-radius: 5px;
-    border-top-left-radius: 5px;  
+    border-top-left-radius: 5px;
     -webkit-app-region:no-drag;
     border-style: solid;
     border-color: darkgray;
@@ -164,7 +164,7 @@ st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-s
     width:auto;
     padding:5px;
     border: 1px solid darkgray;
-    border-radius:5px;  
+    border-radius:5px;
     -webkit-user-select: none;
 }
 
@@ -191,7 +191,7 @@ settingsbtn:hover other-settings, other-settings:hover{
 
 webview{
     height: calc(100vh - (100px) + 2px);
-    
+
 }
 
 sch-ipt{
@@ -273,7 +273,7 @@ b-mark{
     border-right-style: solid;
     border-left-style: solid;
     border-color: darkgray;
-    
+
     border-width:2px;
     border-radius: 10px;
     padding:3px;
@@ -301,7 +301,7 @@ b-ico{
 
 b-ico img{
     top:3px;
-    display:inline-block; 
+    display:inline-block;
 }
 
 full-query{
@@ -384,4 +384,8 @@ multi-view{
     grid-row-gap: 50px;
     grid-template-columns: auto;
     overflow-y: auto;
+}
+
+m-settings{
+  
 }

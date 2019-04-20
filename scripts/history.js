@@ -5,7 +5,7 @@ class History{
     HaddItem(item){this.addItem(item,this.filename)}
 
     static addItem(item,filename='scripts/history.json'){
-        var file = require('fs').readFileSync(filename).toString();
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -26,15 +26,20 @@ class History{
     }
 
     static getItem(item, filename='scripts/history.json'){
-        
+
     }
 
     static readFile(filename='scripts/history.json'){
-
+        try{
+            return require('fs').readFileSync(filename).toString();
+        }catch(e){
+            require('fs').writeFileSync(filename,'{}');
+            return '{}';
+        }
     }
 
     static removeItem(n,filename='scripts/history.json'){
-        var file = require('fs').readFileSync(filename).toString();
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -64,7 +69,7 @@ class History{
     }
 
     static asArray(filename='scripts/history.json'){
-        var file = require('fs').readFileSync(filename).toString();
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
