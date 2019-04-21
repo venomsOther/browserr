@@ -1,4 +1,4 @@
-const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+const settings = JSON.parse(require('fs').readFileSync(__dirname+'/../'+'settings.json').toString());
 const readIcons = require('../readIcons.js');
 const IconSet = new readIcons(settings.iconPack);
 //const thisWindow = require('electron').remote.getCurrentWindow();

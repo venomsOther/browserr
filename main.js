@@ -28,6 +28,7 @@ function createWindow () {
   mainWindow.loadFile('password.html');
 
   // Open the DevTools.
+  mainWindow.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
