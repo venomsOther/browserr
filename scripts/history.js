@@ -1,6 +1,11 @@
 class History{
-    static addItem(item){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    constructor(filename){
+        this.filename = filename;
+    }
+    HaddItem(item){this.addItem(item,this.filename)}
+
+    static addItem(item,filename='scripts/history.json'){
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -20,16 +25,21 @@ class History{
         require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
 
-    static getItem(item){
-        
-    }
-
-    static readFile(){
+    static getItem(item, filename='scripts/history.json'){
 
     }
 
-    static removeItem(n){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    static readFile(filename='scripts/history.json'){
+        try{
+            return require('fs').readFileSync(filename).toString();
+        }catch(e){
+            require('fs').writeFileSync(filename,'{}');
+            return '{}';
+        }
+    }
+
+    static removeItem(n,filename='scripts/history.json'){
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -45,24 +55,21 @@ class History{
 
         for(i = 0; i<arr.length; i++){
             if(arr[i] == null){
-                ii--;
+                // do nothing
             }
             else{
                 obj[ii] = arr[i];
+                ii++;
             }
-
-            ii++;
         }
 
-        for(i = 0; i<arr.length; i++){
-            obj[i] = arr[i];
-        }
+        console.log(obj)
 
         require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
     }
 
-    static asArray(){
-        var file = require('fs').readFileSync('scripts/history.json').toString();
+    static asArray(filename='scripts/history.json'){
+        var file = this.readFile(filename);
 
         var obj = JSON.parse(file);
         var arr = [];
@@ -74,6 +81,10 @@ class History{
         }
 
         return arr;
+    }
+
+    static clearAll(filename='scripts/history.json'){
+        require('fs').writeFileSync(filename,'{}');
     }
 }
 

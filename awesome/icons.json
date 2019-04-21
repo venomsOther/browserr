@@ -7,6 +7,7 @@
     "maximize":"solid/window-maximize.svg",
     "minimize":"solid/window-minimize.svg",
     "newTab":"solid/plus-square.svg",
+    "addFavorite":"solid/star.svg",
     "zoomIn":"solid/search-plus.svg",
     "zoomOut":"solid/search-minus.svg"
 }

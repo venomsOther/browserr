@@ -10,7 +10,6 @@ function handleWindowRequest(event){
 
     // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
     // downloads will be webview.downloadUrl()
-    //console.log(url);
     makeWebv(url);
 }
 
@@ -19,7 +18,6 @@ function addToHistory(url,title){
 }
 
 function handleTargetUrl(event){
-    //console.log(event);
 
     if(event.url == ""){
         window.document.querySelector('ind').style.display = 'none';
@@ -42,7 +40,7 @@ function handleStopLoad(e){
 }
 
 function handleURLUpdate(event){
-    
+
     document.querySelector('body > toolbar > search-bar > sch-ipt').innerHTML = new WebSearch(event.url).htmlify();
     console.log(this.src)
     addToHistory(event.url,event.srcElement.getTitle());
@@ -62,12 +60,14 @@ module.exports = class wv extends HTMLElement{
             var a = window.document.createAttribute("src");
             var ws = window.document.createAttribute("disablewebsecurity");
             var webp = window.document.createAttribute("webpreferences");
+            var full = window.document.createAttribute("allowfullscreen");
             a.value = this.getAttribute('src');
             webp.value = this.getAttribute('webpreferences');
 
             v.setAttributeNode(a);
             v.setAttributeNode(ws);
             v.setAttributeNode(webp);
+            v.setAttributeNode(full);
 
             this.appendChild(v);
             let web = this.view;
@@ -77,17 +77,15 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('new-window', handleWindowRequest);
             web.addEventListener('update-target-url', handleTargetUrl);
             web.addEventListener('did-navigate', handleURLUpdate);
-            //web.addEventListener('did-navigate', this.searchBarUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
             web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`);
-            //web.addEventListener('contextmenu', handleContextMenu);
 
             var toptab = window.document.createElement("pg-tab");
             toptab.num = tabs.children.length;
 
             tabs.appendChild(toptab);
-            
+
         }
     }
 
@@ -105,7 +103,7 @@ module.exports = class wv extends HTMLElement{
 
     set src(s){
         this.view.src = s;
-        this.setAttribute('src',s); 
+        this.setAttribute('src',s);
     }
 
     get tab(){
@@ -130,14 +128,12 @@ module.exports = class wv extends HTMLElement{
 
     updateTabTitle(title,explicitSet){
         var tab = this.parentElement.tab;
-        //console.log(tab);
 
         tab.querySelector('tb-title').innerHTML = title.title;
     }
-    
+
     otherFavicon(favs){
         var tab = this.parentElement.tab;
-        //console.log(tab);
 
         tab.querySelector('tb-icon').querySelector('img').src = favs.favicons[0];
     }

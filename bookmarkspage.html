@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <link href='style.css' rel='stylesheet' />
+        <style>
+            html{ overflow-y:scroll;}
+            ol{
+                line-height: 20px;
+            }
+
+            chrome{
+                position:fixed;
+            }
+            ch-min,ch-max,ch-exit{
+                position:fixed;
+            }
+
+           </style>
+    </head>
+    <body>
+        <chrome>
+            <ch-min></ch-min>
+            <ch-max></ch-max>
+            <ch-exit></ch-exit>
+        </chrome>
+
+                  
+        <ol>
+
+        </ol>
+
+       <script>
+           require('electron').remote.getCurrentWindow().openDevTools();
+           var BrowserWindow = require('electron').remote.BrowserWindow;
+           require('./scripts/renderer.js');
+           var io = require('./scripts/bookmarks.js');
+
+        
+           var marks = io.readAsObj();
+
+           for(let i in marks){
+                var e = document.createElement('li');
+                e.innerHTML = `${marks[i].title} <button id="remove" >Remove</button><button id="open">Open</button>`;
+
+                e.querySelector("#open").addEventListener('click',()=>{
+                    var openurl = marks[i].href;
+
+                    var win = new BrowserWindow({
+                        width: 800,
+                        height: 600,
+                        webPreferences: {
+                            nodeIntegration: true
+                        },
+                        icon: './images.png',
+                        frame: false,
+                        minWidth: '145',
+                        minHeight: '100'
+                    });
+
+                    win.loadFile('index.html');
+                    win.webContents.executeJavaScript('getCurrentView().src = "' + openurl + '";');
+                });
+
+                e.querySelector('#remove').addEventListener('click',()=>{
+                    io.remove(i);
+                    require('electron').remote.getCurrentWindow().reload();
+                });
+
+                document.querySelector('ol').appendChild(e);
+           }
+       </script>
+        
+    </body>
+</html>
