@@ -84,7 +84,7 @@ window.settingsWindow = function settingsWindow(){
         minHeight: '100'
     });
 
-    win.loadFile('settings.html');
+    win.loadURL(__dirname+'/settings.html');
     win.openDevTools();
 }
 
@@ -106,7 +106,7 @@ window.historyWindow = function historyWindow(){
         minHeight: '100'
     });
 
-    win.loadFile('historypage.html');
+    win.loadURL(__dirname+'/historypage.html');
     win.openDevTools();
 }
 

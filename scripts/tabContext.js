@@ -47,7 +47,7 @@ function newWindow(){
         minWidth: '145',
         minHeight: '100'});
 
-    win.loadFile('index.html');
+    win.loadURL(__dirname+'/index.html');
 }
 
 let mnu = Menu.buildFromTemplate([
