@@ -53,11 +53,12 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
     vv.setAttribute('src',url);
     vv.setAttribute('allowpopups','');
 
-    window.document.body.appendChild(vv);
+    window.document.querySelector('multi-view').addChild(vv);
 }
 
 window.searchProvider = "www.google.com";
 window.tabs = window.document.querySelector('page-tabs');
+
 
 
 
@@ -194,9 +195,11 @@ function focusSearchInput(){
 }
 
 const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+require('./docload.js');
 var svgs = require('./icons.js');
 const zoomFactorChange = settings.ZoomIncrement;
-const History = require('./history.js').History;
+const useHistory = settings.History;
+const History = (useHistory) ? require('./history.js').History : undefined;
 const thisWindow = require('electron').remote.getCurrentWindow();
 const readIcons = require('./readIcons.js');
 const IconSet = new readIcons(settings.iconPack);
@@ -233,9 +236,12 @@ def('book-marks');
 def('b-mark');
 def('b-ico');
 def('b-title');
-def('b-link');
 def('dev-tools');
 def('adv-settings');
 def('hist-menu');
 def('hist-open');
 def('hist-remove');
+def('add-mark');
+def('full-query');
+def('multi-view');
+def('m-settings');

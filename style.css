@@ -53,11 +53,12 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
+    top: -1px;
     /* odd flex but okay */
     display:inline-flex;
     align-items: center;
     max-width:85%;
-    
+
 }
 
 pg-tab{
@@ -67,7 +68,7 @@ pg-tab{
     height:40px;
     background-color:darkgray;
     border-top-right-radius: 5px;
-    border-top-left-radius: 5px;  
+    border-top-left-radius: 5px;
     -webkit-app-region:no-drag;
     border-style: solid;
     border-color: darkgray;
@@ -97,7 +98,8 @@ ch-min,ch-max,ch-exit{
     justify-content: center;
     background-color: inherit;
     padding:2px;
-    border:none;
+    border-width:0px;
+    border-radius: 50%;
 }
 
 pg-back,pg-forward,pg-refresh{
@@ -105,6 +107,11 @@ pg-back,pg-forward,pg-refresh{
     width:25px;
     display:inline-block;
     margin:0px;
+    border-radius: 50%;
+}
+
+pg-back{
+    margin-left:1px;
 }
 
 pg-back:hover,pg-forward:hover,pg-refresh:hover{
@@ -134,6 +141,12 @@ other-settings{
     top: 95px;
     right:0.25vw;
     background: lightgrey;
+    border-radius:15px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
 }
 
 settingsbtn{
@@ -146,12 +159,12 @@ settingsbtn:hover{
     background: lightgrey;
 }
 
-st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools{
+st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings{
     display:block;
     width:auto;
     padding:5px;
     border: 1px solid darkgray;
-    border-radius:5px;  
+    border-radius:5px;
     -webkit-user-select: none;
 }
 
@@ -178,12 +191,16 @@ settingsbtn:hover other-settings, other-settings:hover{
 
 webview{
     height: calc(100vh - (100px) + 2px);
-    
+
 }
 
 sch-ipt{
     display:inline-block;
     outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: none;
+    max-width: 80vw;
 }
 
 tb-title{
@@ -240,4 +257,139 @@ ind{
 
 [hint]{
     color:grey;
+}
+
+book-marks{
+    display:flex;
+    background:lightgray;
+    height:40px;
+    align-items: center;
+}
+
+b-mark{
+    max-width:20vw;
+    height: 35px;
+    background: inherit;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: darkgray;
+
+    border-width:2px;
+    border-radius: 10px;
+    padding:3px;
+    align-content: center;
+    margin-left:3px;
+}
+
+b-mark:hover{
+    background:darkgray;
+    border-color:lightgray;
+    color:white;
+}
+
+b-title{
+    vertical-align: middle;
+    margin-left: 5px;
+    display:inline-block;
+    cursor: default;
+}
+
+b-ico{
+    vertical-align:middle;
+    display:inline-block;
+}
+
+b-ico img{
+    top:3px;
+    display:inline-block;
+}
+
+full-query{
+    min-height: 100px;
+    width: 40vw;
+    display:block;
+    position: fixed;
+    top: calc(50vh - 100px);
+    left: calc(50vw - 20vw);
+    z-index:99;
+    border-width:3px;
+    border-style: solid;
+    border-color:black;
+    padding:10px;
+    box-shadow: 0 0 50px 700px #00000070;
+    background:whitesmoke;
+}
+
+full-query h2{
+    border-bottom: black dotted 1px;
+}
+
+full-query input[type='text']{
+    border-style:solid;
+    border-width:3px;
+    border-color:black;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    padding:5px;
+    font-size: 15px;
+}
+
+full-query button{
+    border-style:solid;
+    border-width:3px;
+    border-color:black;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left-style: none;
+    padding:6px;
+    font-size:15px;
+}
+
+full-query div{
+    margin-bottom: 5px;
+}
+
+add-mark{
+    display:block;
+    float:right;
+    width: 25px;
+    height:25px;
+    background: inherit;
+    border-radius: 50%;
+    position: relative;
+    top: -3px;
+}
+
+add-mark:hover{
+    background:darkgrey;
+}
+
+add-mark:hover img, z-in:hover img, z-out:hover img{
+    filter: invert(100);
+}
+
+z-in,z-out{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+}
+
+z-in:hover,z-out:hover{
+    background:darkgray;
+}
+
+multi-view{
+    display:grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    grid-template-columns: auto;
+    overflow-y: auto;
+}
+
+m-settings input{
+    border-radius: 15px;
+    border-width:2px;
+    border-color: black;
+    padding: 3px 6px;
+    width: 98%;
 }

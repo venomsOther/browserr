@@ -1,8 +1,6 @@
 const WebSearch = require('../websearch.js');
 
 function handleTooBig(){
-//    console.log('c');
-//    console.dir(tabs.style.top);
     tabs.setAttribute('style','top: -7px;');
 }
 
@@ -23,35 +21,32 @@ function newWinBig(openurl){
         minHeight: '100'});
 
     win.loadFile('index.html');
-    win.webContents.executeJavaScript('getCurrentView().src = "'+openurl+'";');    
+    win.webContents.executeJavaScript('getCurrentView().src = "'+openurl+'";');
 
 }
 
 
-module.exports = class extends HTMLElement {    
+module.exports = class extends HTMLElement {
     constructor(){
         super();
-        
-        
+
+
     }
 
     connectedCallback(){
         this.innerHTML = "<tb-icon src='images.png'></tb-icon><tb-title>New Tab</tb-title><tb-remove><tb-remove>";
         this.addEventListener("click",this.show);
-        //this.addEventListener("click",this.searchBarUpdate);
         this.addEventListener("click",this.searchBarUpdate2);
 
         this.view = document.querySelector('web--view[num="'+this.num+'"]');
 
         this.show();
 
-        //console.log(tabs.offsetTop);
 
 
 
         if(tabs.offsetTop > 27){
             handleTooBig();
-            //newWinBig(this.view.view.src);this.tRemove();
         }
     }
 
@@ -76,7 +71,6 @@ module.exports = class extends HTMLElement {
             tabs.children[i].hide();
         }
 
-        //console.dir(this)
         this.view.show();
         this.setAttribute('show','');
         currentTab = this;
@@ -85,7 +79,9 @@ module.exports = class extends HTMLElement {
     }
 
     hide(){
-        this.view.hide();
+        if(!document.querySelector('multi-view').hasAttribute('enabled')){
+            this.view.hide();
+        }
         this.removeAttribute('show');
         this.style.background = 'darkgrey';
     }
@@ -99,10 +95,9 @@ module.exports = class extends HTMLElement {
     }
 
     remove(){
-        //console.log(this.parentElement.view);
         this.parentElement.view.remove();
         tabs.removeChild(this.parentElement);
-        
+
         if(tabs.children.length == 0){
             require('electron').remote.getCurrentWindow().close();
         } else{
@@ -111,6 +106,8 @@ module.exports = class extends HTMLElement {
                 handleTooSmall();
             }
         }
+
+        document.querySelector('multi-view').refresh();
     }
 
     tRemove(){
@@ -125,5 +122,7 @@ module.exports = class extends HTMLElement {
                 handleTooSmall();
             }
         }
+
+        document.querySelector('multi-view').refresh();
     }
 }

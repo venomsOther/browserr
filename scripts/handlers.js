@@ -60,7 +60,7 @@ window.makeWebv = function makeWebv(url = "https://google.com"){
     vv.setAttribute('src',url);
     vv.setAttribute('allowpopups','');
 
-    window.document.body.appendChild(vv);
+    window.document.querySelector('multi-view').addChild(vv);
 }
 
 window.searchProvider = "www.google.com";

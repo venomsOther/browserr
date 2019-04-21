@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='style.css'>
     
     <script src="scripts/elements.js"></script>
     
@@ -27,6 +26,7 @@
       <search-bar>
         <sch-icon href='Default.png'></sch-icon>
         <sch-ipt contenteditable="true"></sch-ipt>
+        <add-mark></add-mark>
       </search-bar>
 
       <settingsBtn>
@@ -63,18 +63,18 @@
             <dev-tools></dev-tools>
     
             <adv-settings>Settings</adv-settings>
+
+            <m-settings></m-settings>
           </other-settings>
       </settingsBtn>
       
-
-      <!-- <book-marks>
-        <b-mark link="about:blank">
-          <b-ico href='Default.png'></b-ico>
-          <b-title>Default</b-title>
-        </b-mark>
-      </book-marks> -->
     </toolbar>
-    <web--view num="0" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.google.com'></web--view>
+    <book-marks >
+    </book-marks>
+  
+    <multi-view>
+      <web--view num="0" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.google.com'></web--view>
+    </multi-view>
     
     <script>
       // You can also require other files to run in this process

@@ -1,3 +1,5 @@
 node_modules
 electron-quick-start-linux-x64
 START.bat
+scripts/history.json
+.github/

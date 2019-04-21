@@ -5,13 +5,15 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
+let branch = 'nightly';
 let debugging = true;
+let offline = false;
 
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 300,
+    height: 400,
     webPreferences: {
       nodeIntegration: true
     },
@@ -23,13 +25,9 @@ function createWindow () {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('password.html');
 
   // Open the DevTools.
-  if(debugging){
-    mainWindow.webContents.openDevTools();
-  }
-
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -51,6 +49,7 @@ app.on('window-all-closed', function () {
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit();
+    ucycle = null;
   }
 })
 
@@ -64,3 +63,15 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+function update(){
+  try{
+    require('./scripts/updater.js')(branch);
+  }catch(e){
+    console.log("\n\n"+e);
+  }
+
+}
+var timer;
+timer = (debugging) ? 2000 : 1.2e+6;
+
+if(!offline){var ucycle = setInterval(update,timer)};
