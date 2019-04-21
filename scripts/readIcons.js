@@ -2,8 +2,8 @@ module.exports = class IconSet {
     constructor(name){
         this.name = name;
         
-        var obj = JSON.parse(require('fs').readFileSync('scripts/locations.json').toString());
-        this.dir = obj[name];
+        var obj = JSON.parse(require('fs').readFileSync(__dirname+'/'+'locations.json').toString());
+        this.dir = __dirname+'/'+obj[name];
         this.icons = JSON.parse(require('fs').readFileSync(this.dir+'/icons.json').toString());
     }
 

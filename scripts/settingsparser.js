@@ -1,13 +1,13 @@
 var $ = document.querySelector('textwrapper');
 
-var currentS = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+var currentS = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
 
 function doclose(){
     require('electron').remote.getCurrentWindow().close();
 }
 
 function editSettings(setting,value){
-    var obj = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+    var obj = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
     obj[setting] = value;
     require('fs').writeFileSync('scripts/settings.json',JSON.stringify(obj));
 }

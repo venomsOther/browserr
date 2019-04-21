@@ -20,7 +20,7 @@ function newWinBig(openurl){
         minWidth: '145',
         minHeight: '100'});
 
-    win.loadFile('index.html');
+    win.loadURL(__dirname+'/index.html');
     win.webContents.executeJavaScript('getCurrentView().src = "'+openurl+'";');
 
 }
