@@ -386,6 +386,10 @@ multi-view{
     overflow-y: auto;
 }
 
-m-settings{
-  
+m-settings input{
+    border-radius: 15px;
+    border-width:2px;
+    border-color: black;
+    padding: 3px 6px;
+    width: 98%;
 }
