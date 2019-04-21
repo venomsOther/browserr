@@ -4,11 +4,17 @@ module.exports = class extends HTMLElement{
     }
 
     connectedCallback(){
-        
+
     }
 
     changeGrid(cols){
         var str = '';
+
+        if(cols == 1){
+            this.disable();
+        }else{
+            this.enable();
+        }
 
         for(var i=0;i<cols;i++){
             str+=' auto'
@@ -22,6 +28,14 @@ module.exports = class extends HTMLElement{
         }else{
             this.setAttribute('enabled','');
         }
+    }
+
+    enable(){
+        this.setAttribute('enabled','');
+    }
+
+    disable(){
+        this.removeAttribute('enabled');
     }
 
     addChild(h){
