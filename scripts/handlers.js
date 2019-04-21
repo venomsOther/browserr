@@ -1,4 +1,4 @@
-const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+const settings = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
 var svgs = require('./icons.js');
 const zoomFactorChange = settings.ZoomIncrement;
 const History = require('./history.js').History;

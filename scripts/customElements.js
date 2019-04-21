@@ -84,7 +84,7 @@ window.settingsWindow = function settingsWindow(){
         minHeight: '100'
     });
 
-    win.loadFile('settings.html');
+    win.loadURL(__dirname+'/settings.html');
     win.openDevTools();
 }
 
@@ -106,7 +106,7 @@ window.historyWindow = function historyWindow(){
         minHeight: '100'
     });
 
-    win.loadFile('historypage.html');
+    win.loadURL(__dirname+'/historypage.html');
     win.openDevTools();
 }
 
@@ -194,7 +194,7 @@ function focusSearchInput(){
     window.document.body.querySelector('search-bar').querySelector('sch-ipt').focus();
 }
 
-const settings = JSON.parse(require('fs').readFileSync('scripts/settings.json').toString());
+const settings = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
 require('./docload.js');
 var svgs = require('./icons.js');
 const zoomFactorChange = settings.ZoomIncrement;

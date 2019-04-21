@@ -5,7 +5,7 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-let branch = 'beta';
+let branch = 'master';
 let debugging = false;
 let offline = false;
 
@@ -25,9 +25,10 @@ function createWindow () {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('password.html');
+  mainWindow.loadURL(__dirname+'/password.html');
 
   // Open the DevTools.
+  // mainWindow.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

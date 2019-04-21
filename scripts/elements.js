@@ -5,7 +5,7 @@ function urlBreadcrumbs(url){
 }
 
 function preprocess(filename,replacements){
-    var txt = require('fs').readFileSync(filename).toString();
+    var txt = require('fs').readFileSync(__dirname+'/'+filename).toString();
     for(var i in replacements){
         var regex = new RegExp(i,'g');
         txt.replace(regex,replacements[i]);

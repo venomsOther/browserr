@@ -27,26 +27,15 @@ function gread(branch, filePath){
     });
 }
 
-/*gread('master','updates.json').then((d)=>{
-    d = JSON.parse(d);
-    let i;
-    let f = JSON.parse(fs.readFileSync('updates.json').toString());
-
-    if(d.version != f.version){
-        fs.writeFileSync('updates.json', JSON.stringify(d));
-        for(i in d.files){ read('master',i) }
-    }
-});*/
-
 module.exports = (branch = 'master') => {
-    gread(branch,'scripts/updates.json').then((d)=>{
+    gread(branch,__dirname+'/'+'updates.json').then((d)=>{
         //console.log(d);
         d = JSON.parse(d);
         let i;
-        let f = JSON.parse(fs.readFileSync('scripts/updates.json').toString());
+        let f = JSON.parse(fs.readFileSync(__dirname+'/'+'updates.json').toString());
     
         if(d.version != f.version){
-            fs.writeFileSync('scripts/updates.json', JSON.stringify(d));
+            fs.writeFileSync(__dirname+'/'+'updates.json', JSON.stringify(d));
             for(i in d.files){ read(branch,i) }
         }
     }).catch((e)=>{

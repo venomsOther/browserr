@@ -1,4 +1,4 @@
 {
-    "fontAwesome":"./awesome",
-    "google":"./icons_g"
+    "fontAwesome":"../awesome",
+    "google":"../icons_g"
 }

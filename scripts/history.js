@@ -22,7 +22,7 @@ class History{
             obj[i] = arr[i];
         }
 
-        require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
+        require('fs').writeFileSync(__dirname+'/../'+'scripts/history.json',JSON.stringify(obj));
     }
 
     static getItem(item, filename='scripts/history.json'){
@@ -31,9 +31,9 @@ class History{
 
     static readFile(filename='scripts/history.json'){
         try{
-            return require('fs').readFileSync(filename).toString();
+            return require('fs').readFileSync(__dirname+'/../'+filename).toString();
         }catch(e){
-            require('fs').writeFileSync(filename,'{}');
+            require('fs').writeFileSync(__dirname+'/../'+filename,'{}');
             return '{}';
         }
     }
@@ -65,7 +65,7 @@ class History{
 
         console.log(obj)
 
-        require('fs').writeFileSync('scripts/history.json',JSON.stringify(obj));
+        require('fs').writeFileSync(__dirname+'/../'+'scripts/history.json',JSON.stringify(obj));
     }
 
     static asArray(filename='scripts/history.json'){
@@ -84,7 +84,7 @@ class History{
     }
 
     static clearAll(filename='scripts/history.json'){
-        require('fs').writeFileSync(filename,'{}');
+        require('fs').writeFileSync(__dirname+'/../'+filename,'{}');
     }
 }
 

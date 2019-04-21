@@ -7,7 +7,7 @@ module.exports = class reader{
     }
 
     static readFile(fileName='scripts/bookmarks.json'){
-        return fs.readFileSync(fileName).toString();
+        return fs.readFileSync(__dirname+'/../'+fileName).toString();
     }
 
     static readAsObj(fileName='scripts/bookmarks.json'){
@@ -39,6 +39,6 @@ module.exports = class reader{
     }
 
     static writeFile(fileName,obj){
-        fs.writeFileSync(fileName,obj);
+        fs.writeFileSync(__dirname+'/../'+fileName,obj);
     }
 }
