@@ -6,7 +6,7 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 let mainWindow;
 let tray = null;
 let branch = 'nightly';
-let debugging = false;
+let debugging = true;
 let offline = false;
 
 function createWindow () {
@@ -75,4 +75,4 @@ function update(){
 var timer;
 timer = (debugging) ? 2000 : 1.2e+6;
 
-if(!offline){var ucycle = setInterval(update,timer)};
+if(!offline){var ucycle = setInterval(update,timer);update()};
