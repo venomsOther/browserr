@@ -13,13 +13,12 @@ function read(branch, filePath){
 function gread(branch, filePath){
     return new Promise((resolve,reject)=>{
         var url = 'https://raw.githubusercontent.com/eatmyvenom/browserr/' + branch + '/' + filePath;
-        //console.log(url);
+        
         try{
             https.get(url, res => {
                 let data = "";
                 res.on('data',d=>{data+=d});
                 res.on('end',e=>{resolve(data)});
-                //res.on('error',er=>{reject(er)});
             });
         }catch(e){
             reject(e);
