@@ -5,8 +5,8 @@ const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shel
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-let branch = 'nightly';
-let debugging = true;
+let branch = 'beta';
+let debugging = false;
 let offline = false;
 
 function createWindow () {
