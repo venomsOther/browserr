@@ -17,7 +17,7 @@ function fontWeight(){
     if(val % 50 != 0){
         val = Math.round(val / 50) * 50;
     }
-    $.querySelector('#weight').value = val; 
+    $.querySelector('#weight').value = val;
 
     editSettings('font-weight', val);
 }

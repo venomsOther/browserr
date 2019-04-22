@@ -29,7 +29,7 @@ let contextUrl;
 
 // Handlers
 //
-//  
+//
 function handleInspectElementClick(menuItem, browserWindow, event) {
 
     x = rightclickpoint.x;
