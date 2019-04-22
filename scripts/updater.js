@@ -33,12 +33,12 @@ module.exports = (branch = 'master') => {
         d = JSON.parse(d);
         let i;
         let f = JSON.parse(fs.readFileSync(__dirname+'/'+'updates.json').toString());
-    
+
         if(d.version != f.version){
             fs.writeFileSync(__dirname+'/'+'updates.json', JSON.stringify(d));
             for(i in d.files){ read(branch,i) }
         }
     }).catch((e)=>{
         console.log(e);
-    });    
+    });
 }
