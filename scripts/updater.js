@@ -27,8 +27,7 @@ function gread(branch, filePath){
 }
 
 module.exports = (branch = 'master') => {
-    gread(branch,'scripts/updates.json').then((d)=>{
-        console.log(d);
+    gread(branch,'scripts/updates.json').then((d)=>{;
         if(d == '404: Not Found') return;
         d = JSON.parse(d);
         let i;

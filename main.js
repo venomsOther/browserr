@@ -64,6 +64,8 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
 function update(){
   try{
     require('./scripts/updater.js')(branch);
@@ -75,4 +77,17 @@ function update(){
 var timer;
 timer = (debugging) ? 2000 : 1.2e+6;
 
-if(!offline){var ucycle = setInterval(update,timer);update()};
+function startUpdater(){
+    if(!offline){var ucycle = setInterval(update,timer);update()};
+}
+
+
+require('dns').lookup('google.com',function(err) {
+    if (err && err.code == "ENOTFOUND") {
+        offline = true;
+    } else {
+        offline = false;
+    }
+
+    startUpdater();
+});
