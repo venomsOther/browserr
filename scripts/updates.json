@@ -1,10 +1,16 @@
 {
-    "version" : "1.1.1",
+    "version" : "1.1.2",
     "files" : {
         "main.js":"",
         "password.html":"",
         "scripts/customElements.js":"",
         "index.html":,
-        "scripts/webviewPreload.js":""
+        "scripts/webviewPreload.js":"",
+        "bookmarkspage.html":"",
+        "scripts/elements/hist-open.js":,
+        "scripts/elements/pg-tab.js":,
+        "scripts/elements/webview.js":,
+        "scripts/handlers.js":,
+        "scripts/tabContext.js":
     }
 }
