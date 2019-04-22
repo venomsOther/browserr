@@ -25,8 +25,6 @@ function createWindow () {
   });
 
   // and load the password.html of the app.
-  // console.log(__dirname+'/password.html');
-  // mainWindow.loadFile(__dirname+'/password.html');
   mainWindow.loadFile('password.html');
 
   // Open the DevTools.
