@@ -84,7 +84,7 @@ window.settingsWindow = function settingsWindow(){
         minHeight: '100'
     });
 
-    win.loadURL(__dirname+'/settings.html');
+    win.loadFile(__dirname+'/settings.html');
     win.openDevTools();
 }
 
@@ -106,7 +106,7 @@ window.historyWindow = function historyWindow(){
         minHeight: '100'
     });
 
-    win.loadURL(__dirname+'/historypage.html');
+    win.loadFile(__dirname+'/historypage.html');
     win.openDevTools();
 }
 
@@ -121,7 +121,7 @@ function handleWindowRequest(event){
     options = event.options; /* like if you were to make a new browserWindow, its the exact same options as that */
 
     // for now just make a new tab, but later add functionality for stuff like background tabs and stuff.
-    // downloads will be webview.downloadUrl()
+    // downloads will be webview.downloadFile()
     //console.log(url);
     makeWebv(url);
 }

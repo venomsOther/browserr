@@ -24,8 +24,10 @@ function createWindow () {
     minHeight: '100'
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(__dirname+'/password.html');
+  // and load the password.html of the app.
+  // console.log(__dirname+'/password.html');
+  // mainWindow.loadFile(__dirname+'/password.html');
+  mainWindow.loadFile('password.html');
 
   // Open the DevTools.
   // mainWindow.openDevTools();
