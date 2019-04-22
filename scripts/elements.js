@@ -16,7 +16,7 @@ function preprocess(filename,replacements){
 
 var normalStyle = document.createElement('style');
 normalStyle.innerHTML = preprocess('style.css',{
-    
+
 });
 
 document.querySelector('head').appendChild(normalStyle);
