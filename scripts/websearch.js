@@ -7,7 +7,7 @@ function urlBreadcrumbs(url){
 class WebSearch{
     constructor(url){
         this.crumbs = urlBreadcrumbs(url);
-        this.url = url; 
+        this.url = url;
     }
 
     htmlify(){

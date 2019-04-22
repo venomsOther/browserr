@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+
     <script src="scripts/elements.js"></script>
-    
+
   </head>
   <body>
     <chrome>
@@ -36,46 +36,46 @@
             <st-btn>New Tab</st-btn>
             <st-win>New Window</st-win>
             <st-br></st-br>
-    
+
             <st-history>
               History
             </st-history>
-    
+
             <st-bookmarks>
               Bookmarks
               </book-mark>
             </st-bookmarks>
 
             <st-br></st-br>
-    
+
             <page-zoom>
               <z-in></z-in>
               <z-out></z-out>
               <z-full></z-full>
               <br>
               <pgZoomLevel>
-                
+
               </pgZoomLevel>
             </page-zoom>
 
             <st-br></st-br>
 
             <dev-tools></dev-tools>
-    
+
             <adv-settings>Settings</adv-settings>
 
             <m-settings></m-settings>
           </other-settings>
       </settingsBtn>
-      
+
     </toolbar>
     <book-marks >
     </book-marks>
-  
+
     <multi-view>
       <web--view num="0" disablewebsecurity webpreferences="allowRunningInsecureContent, javascript=yes" src='https://www.google.com'></web--view>
     </multi-view>
-    
+
     <script>
       // You can also require other files to run in this process
       require('./scripts/renderer.js')

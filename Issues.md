@@ -18,14 +18,14 @@ Issues no matter what type should be essentally all the same.
 As this is markdown centered in github, lets make use of that.
 
   * Decent titles
-  * Start with a "## Current Behavior" 
+  * Start with a "## Current Behavior"
   * Describe what you encounter as you use the code from the repository
   * To describe what you would like to see, start that section with "## Wanted Behavior"
   * Descibe in as much detail as possible what you would like to see instead of the current behavior
   * If possible include code snippits
-  
+
   * End with the NodeJS version followed by the Electron version followed by this repositories version (that was used for the test)
-  
+
 ### Example
 
 > ## Current Behavior
@@ -33,7 +33,7 @@ As this is markdown centered in github, lets make use of that.
 > This is not only slightly bothersome but also contrubutes to a poor feeling UI/UX
 > ## Wanted Behavior
 > Consider going through all icons and changing them. If that is simply too much work, look into icon packs that are good for this application.
-> 
+>
 >
 >
 > ```NodeJS version : 11.1.0; ElectronJS version : 4.0.7; Browserr version : 1.0.0;```

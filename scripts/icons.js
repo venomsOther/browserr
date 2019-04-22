@@ -4,7 +4,7 @@ exports.smallPlus =
 <line x1='0' y1='5' x2='10' y2='5' stroke='black' stroke-width='2' />
 </svg>`
 
-exports.smallMinus = 
+exports.smallMinus =
 `<svg width='10' height='10'>
 <line x1='0' y1='5' x2='10' y2='5' stroke='black' stroke-width='2' />
 </svg>`

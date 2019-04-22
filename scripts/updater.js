@@ -6,20 +6,19 @@ function read(branch, filePath){
     https.get(url, res => {
         let data = "";
         res.on('data',d=>{data+=d});
-        res.on('end',e=>{fs.writeFileSync(filePath,data)});
+        res.on('end',e=>{fs.writeFileSync(__dirname+'/../'+filePath,data)});
     });
 }
 
 function gread(branch, filePath){
     return new Promise((resolve,reject)=>{
         var url = 'https://raw.githubusercontent.com/eatmyvenom/browserr/' + branch + '/' + filePath;
-        //console.log(url);
+
         try{
             https.get(url, res => {
                 let data = "";
                 res.on('data',d=>{data+=d});
                 res.on('end',e=>{resolve(data)});
-                //res.on('error',er=>{reject(er)});
             });
         }catch(e){
             reject(e);
@@ -28,17 +27,17 @@ function gread(branch, filePath){
 }
 
 module.exports = (branch = 'master') => {
-    gread(branch,__dirname+'/'+'updates.json').then((d)=>{
-        //console.log(d);
+    gread(branch,'scripts/updates.json').then((d)=>{;
+        if(d == '404: Not Found') return;
         d = JSON.parse(d);
         let i;
         let f = JSON.parse(fs.readFileSync(__dirname+'/'+'updates.json').toString());
-    
+
         if(d.version != f.version){
             fs.writeFileSync(__dirname+'/'+'updates.json', JSON.stringify(d));
             for(i in d.files){ read(branch,i) }
         }
     }).catch((e)=>{
         console.log(e);
-    });    
+    });
 }

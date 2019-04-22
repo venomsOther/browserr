@@ -2,7 +2,7 @@ customElements.define('web-view', class extends HTMLElement {
     constructor(){
         super();
 
-        
+
 
     }
 
@@ -22,7 +22,7 @@ customElements.define('web-view', class extends HTMLElement {
                 shadowRoot.innerHTML = data;
             });
 
-            
+
         });
     }
 });
