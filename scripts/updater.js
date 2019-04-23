@@ -26,18 +26,23 @@ function gread(branch, filePath){
     });
 }
 
-module.exports = (branch = 'master') => {
+function update (branch = 'master') => {
     gread(branch,'scripts/updates.json').then((d)=>{;
         if(d == '404: Not Found') return;
         d = JSON.parse(d);
         let i;
         let f = JSON.parse(fs.readFileSync(__dirname+'/'+'updates.json').toString());
+        let currentPatch = Object.keys(f.patches).length;
 
-        if(d.version != f.version){
-            fs.writeFileSync(__dirname+'/'+'updates.json', JSON.stringify(d));
-            for(i in d.files){ read(branch,i) }
+        if(d.patches[currentPatch + 1] != undefined){
+            f.patches[currentPatch + 1] = d.patches[currentPatch + 1];
+            fs.writeFileSync(__dirname+'/updates.json', JSON.stringify(f));
+            for(i in d.patches[currentPatch + 1].files){ read(branch,i) }
+            update(branch);
         }
     }).catch((e)=>{
         console.log(e);
     });
 }
+
+module.exports = update;
