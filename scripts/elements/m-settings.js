@@ -4,7 +4,7 @@ module.exports = class extends HTMLElement{
     }
 
     connectedCallback(){
-        this.innerHTML = " <input type='number' />";
+        this.innerHTML = "Multi View <br><input type='number' value='1' />";
         this.querySelector('input').addEventListener('input',this.clickEvent);
     }
 
