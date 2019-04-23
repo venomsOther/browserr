@@ -43,8 +43,7 @@ module.exports = class locker{
     encryptJSON(text,dir){
         locker.encryptJSON(crypto.decrypt(this.pass,key),text,dir);
     }
-    
-    /* *************************************************** */
+
     /* ********************* STATICS ********************* */
     /* *************************************************** */
 
