@@ -1,8 +1,5 @@
 {
     "version" : "1.1.0",
     "files" : {
-        "index.html":"",
-        "scripts/elements/m-settings.js":"",
-        "style.css":""
     }
 }
