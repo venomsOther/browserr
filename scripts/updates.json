@@ -10,6 +10,9 @@
         "1":{"files":{}},
         "2":{"files":{
             "scripts/lock.js":""
+        }},
+        "3":{"files":{
+            "style.css":""
         }}
     }
 }

@@ -135,7 +135,7 @@ search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-gro
 other-settings{
     padding:10px;
     position: absolute;
-    width: 150px;
+    width: 175px;
     height: auto;
     display: none;
     top: 95px;
@@ -161,7 +161,7 @@ settingsbtn:hover{
 
 st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings,st-label{
     display:block;
-    width:auto;
+    width:130px;
     padding:5px;
     border: 1px solid darkgray;
     border-radius:5px;
@@ -170,7 +170,7 @@ st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-s
 
 page-zoom{
     display: flex;
-    width:100%;
+    width:130px;
     justify-content: space-evenly;
 }
 
