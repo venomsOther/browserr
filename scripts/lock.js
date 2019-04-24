@@ -45,6 +45,7 @@ module.exports = class locker{
     }
 
     /* ********************* STATICS ********************* */
+    /* *************************************************** */
 
     static encryptText(password,text){
         return crypto.encrypt(text,password).toString();
