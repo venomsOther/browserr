@@ -118,11 +118,10 @@ module.exports = class extends HTMLElement {
             require('electron').remote.getCurrentWindow().close();
         } else{
             tabs.children[tabs.children.length - 1].show();
-            if(tabs.offsetTop < 20){
+            if(tabs.offsetTop < 23){
                 handleTooSmall();
             }
         }
 
-        document.querySelector('multi-view').refresh();
     }
 }

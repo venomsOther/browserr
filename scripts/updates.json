@@ -1,5 +1,5 @@
 {
-    "version" : "1.1.0",
+    "version" : "1.1.1",
     "files" :
     {
         "scripts/updater.js":""
@@ -12,6 +12,9 @@
             "scripts/lock.js":""
         }},
         "3":{"files":{
+            "style.css":""
+        }},
+        "4":{"files":{
             "style.css":""
         }}
     }
