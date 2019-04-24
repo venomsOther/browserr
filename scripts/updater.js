@@ -26,7 +26,7 @@ function gread(branch, filePath){
     });
 }
 
-function update (branch = 'master') => {
+function update (branch = 'master') { 
     gread(branch,'scripts/updates.json').then((d)=>{;
         if(d == '404: Not Found') return;
         d = JSON.parse(d);
