@@ -21,6 +21,15 @@
             "style.css":"",
             "scripts/elements/pg-tab.js":"",
             "scripts/elements.js":""
+        }},
+        "6":{"files":{
+            "style.css":"",
+            "index.html":"",
+            "password.html":"",
+            "scripts/elements/pg-tab.js":"",
+            "scripts/elements/b-ico.js":"",
+            "scripts/elements/book-marks.js":"",
+            "scripts/elements.js":""
         }}
     }
 }

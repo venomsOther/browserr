@@ -1,6 +1,6 @@
 const io = require('../bookmarks.js');
 
-module.exports = class extends HTMLElement {    
+module.exports = class extends HTMLElement {
     constructor(){
         super();
 
@@ -13,7 +13,7 @@ module.exports = class extends HTMLElement {
         for(let i in marks){
             var m = document.createElement('b-mark');
             m.setAttribute("item",i);
-            
+
             this.appendChild(m);
         }
     }

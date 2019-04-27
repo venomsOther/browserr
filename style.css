@@ -39,6 +39,7 @@ toolbar{
     padding-top: 5px;
     border-bottom: 2px black solid;
     height: auto;
+    background: #ffffff;
 }
 
 pg-nav{
@@ -53,7 +54,7 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
-    top: -3px;
+    top: -2.5px;
     /* odd flex but okay */
     display:inline-flex;
     align-items: center;
@@ -78,10 +79,11 @@ pg-tab{
 }
 
 tabBar{
-    height:40px;
+    height:45px;
     display:block;
     width:100%;
     overflow: visible;
+    padding-top:4px;
 }
 
 
@@ -138,8 +140,8 @@ other-settings{
     width: 175px;
     height: auto;
     display: none;
-    top: 95px;
-    right:0.25vw;
+    top: 75px;
+    right:0;
     background: lightgrey;
     border-radius:15px;
     border-top-right-radius: 0px;
@@ -150,13 +152,24 @@ other-settings{
 }
 
 settingsbtn{
-    margin-right:0.25vw;
-    display:inline-block;
+    height:25px;
+    width:25px;
+    display:block;
+
+    float:right;
+    display:relative;
+    top: -2px;
+
+    border-style:solid;
+    border-width:2px;
+    border-color:white;
+    border-bottom:none;
 }
 
 settingsbtn:hover{
     display:inline-block;
     background: lightgrey;
+    border-color:black;
 }
 
 st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings,st-label{
@@ -230,6 +243,7 @@ add-tab{
     width:40px;
     margin:0px;
     overflow: hidden;
+    top:1px;
 }
 
 tb-remove{display:inline-block;height:20px;border-radius:20px;}
@@ -262,23 +276,31 @@ ind{
 book-marks{
     display:flex;
     background:lightgray;
-    height:40px;
+    height:30px;
     align-items: center;
 }
 
+
 b-mark{
     max-width:20vw;
-    height: 35px;
+    height: 102%;
     background: inherit;
-    border-right-style: solid;
-    border-left-style: solid;
-    border-color: darkgray;
-
-    border-width:2px;
-    border-radius: 10px;
     padding:3px;
-    align-content: center;
     margin-left:3px;
+
+    border-style: solid;
+    border-color: darkgray;
+    border-top-color: white;
+    border-bottom-color: #bebebe;
+    border-width:2px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    align-content: center;
+
+    position: relative;
+    top:-2px;
 }
 
 b-mark:hover{
@@ -300,7 +322,7 @@ b-ico{
 }
 
 b-ico img{
-    top:3px;
+    top:1px;
     display:inline-block;
 }
 
@@ -392,4 +414,9 @@ m-settings input{
     border-color: black;
     padding: 3px 6px;
     width: 98%;
+}
+
+.tabSelect{
+    border-color:#ffffff;
+    background:#ffffff;
 }

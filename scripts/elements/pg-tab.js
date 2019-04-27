@@ -75,7 +75,7 @@ module.exports = class extends HTMLElement {
         this.setAttribute('show','');
         currentTab = this;
 
-        this.style.background = 'lightgrey';
+        this.setAttribute('class','tabSelect');
     }
 
     hide(){
@@ -83,7 +83,7 @@ module.exports = class extends HTMLElement {
             this.view.hide();
         }
         this.removeAttribute('show');
-        this.style.background = 'darkgrey';
+        this.setAttribute('class','');
     }
 
     get num(){
