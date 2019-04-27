@@ -33,7 +33,8 @@
         }},
         "7":{"files":{
             "scripts/updater.js":"",
-            "main.js":""
+            "main.js":"",
+            "password.html":""
         }}
     }
 }
