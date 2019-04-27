@@ -26,7 +26,14 @@ function gread(branch, filePath){
     });
 }
 
-function update (branch = 'master') { 
+function update (branch = 'master') {
+
+    if(!require('fs').existsSync(__dirname+'/scripts/ulock')){
+        require('fs').writeFileSync(__dirname+'/scripts/ulock',"");
+        require('fs').writeFileSync(__dirname+'/scripts/ulock',`{\n\t"version" : "1.1.2",\n\t"files" : \n\t{\n\t\t"scripts/updater.js":"",\n\t\t"scripts/ulock"\n\t},\n\n\t"patches":\n\t{\n\t}\n}`);
+        update(branch);
+    }
+
     gread(branch,'scripts/updates.json').then((d)=>{;
         if(d == '404: Not Found') return;
         d = JSON.parse(d);

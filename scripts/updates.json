@@ -2,7 +2,8 @@
     "version" : "1.1.2",
     "files" :
     {
-        "scripts/updater.js":""
+        "scripts/updater.js":"",
+        "scripts/ulock"
     },
 
     "patches":
@@ -30,6 +31,10 @@
             "scripts/elements/b-ico.js":"",
             "scripts/elements/book-marks.js":"",
             "scripts/elements.js":""
+        }},
+        "7":{"files":{
+            "scripts/updater.js":"",
+            "main.js":""
         }}
     }
 }
