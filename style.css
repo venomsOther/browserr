@@ -406,6 +406,9 @@ multi-view{
     grid-row-gap: 50px;
     grid-template-columns: auto;
     overflow-y: auto;
+    border-top-style:solid;
+    border-top-width:0px;
+    border-top-color:darkgrey;
 }
 
 m-settings input{
@@ -419,4 +422,10 @@ m-settings input{
 .tabSelect{
     border-color:#ffffff;
     background:#ffffff;
+}
+
+multi-view.enabled{
+    border-top-width:2px;
+    border-top-color:darkgrey;
+    background:lightgrey;
 }

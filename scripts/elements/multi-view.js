@@ -32,10 +32,12 @@ module.exports = class extends HTMLElement{
 
     enable(){
         this.setAttribute('enabled','');
+        this.setAttribute('class','enabled');
     }
 
     disable(){
         this.removeAttribute('enabled');
+        this.setAttribute('class',"")
     }
 
     addChild(h){

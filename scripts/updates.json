@@ -37,6 +37,11 @@
         }},
         "8":{"files":{
             "password.html":""
+        }},
+        "9":{"files":{
+            "password.html":"",
+            "scripts/elements/multi-view.js":"",
+            "style.css":""
         }}
     }
 }
