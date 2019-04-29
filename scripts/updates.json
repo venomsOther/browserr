@@ -42,6 +42,9 @@
             "password.html":"",
             "scripts/elements/multi-view.js":"",
             "style.css":""
+        }},
+        "10":{"files":{
+            "scripts/updater.js":""
         }}
     }
 }

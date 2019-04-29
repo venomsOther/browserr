@@ -28,9 +28,9 @@ function gread(branch, filePath){
 
 function update (branch = 'master') {
 
-    if(!require('fs').existsSync(__dirname+'/scripts/ulock')){
-        require('fs').writeFileSync(__dirname+'/scripts/ulock',"");
-        require('fs').writeFileSync(__dirname+'/scripts/ulock',`{\n\t"version" : "1.1.2",\n\t"files" : \n\t{\n\t\t"scripts/updater.js":"",\n\t\t"scripts/ulock"\n\t},\n\n\t"patches":\n\t{\n\t}\n}`);
+    if(!require('fs').existsSync(__dirname+'/ulock')){
+        require('fs').writeFileSync(__dirname+'/ulock',"");
+        require('fs').writeFileSync(__dirname+'/ulock',`{\n\t"version" : "1.1.2",\n\t"files" : \n\t{\n\t\t"scripts/updater.js":"",\n\t\t"scripts/ulock"\n\t},\n\n\t"patches":\n\t{\n\t}\n}`);
         update(branch);
     }
 
