@@ -33,7 +33,7 @@
 
        <script>
            window.settings = require('electron').ipcRenderer.sendSync('get-user','');
-           //require('electron').remote.getCurrentWindow().openDevTools();
+           // require('electron').remote.getCurrentWindow().openDevTools();
            var BrowserWindow = require('electron').remote.BrowserWindow;
            require('./scripts/renderer.js');
            var io = require('./scripts/bookmarks.js');
