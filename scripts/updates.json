@@ -33,7 +33,7 @@
         }},
         "7":{"files":{
             "scripts/updater.js":"",
-            "main.js":"",
+            "main.js":""
         }},
         "8":{"files":{
             "password.html":""
@@ -45,6 +45,32 @@
         }},
         "10":{"files":{
             "scripts/updater.js":""
+        }},
+        "11":{"files":{
+            "main.js":"",
+            "password.html":"",
+            "users/default.user":"",
+            "index.html":"",
+            "scripts/editUser.js":"",
+            "scripts/customElements.js":"",
+            "scripts/elements/add-mark.js":"",
+            "scripts/elements/add-tab.js":"",
+            "scripts/elements/ch-exit":"",
+            "scripts/elements/ch-max.js":"",
+            "scripts/elements/ch-min.js":"",
+            "scripts/elements/pg-back.js":"",
+            "scripts/elements/pg-forward.js":"",
+            "scripts/elements/pg-refresh.js":"",
+            "scripts/elements/settings-ico.js":"",
+            "scripts/elements/z-in.js":"",
+            "scripts/elements/z-out.js":"",
+            "scripts/handlers.js":"",
+            "scripts/bookmarks.js":"",
+            "scripts/history.js":"",
+            "historypage.html":"",
+            "bookmarkspage.html":"",
+            "scripts/settingsparser.js":"",
+            "settings.html":""
         }}
     }
 }

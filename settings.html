@@ -147,6 +147,7 @@
         </textWrapper>
 
         <script>
+            window.settings = require('electron').ipcRenderer.sendSync('get-user','');
             require('./scripts/renderer.js');
             require('./scripts/settingsparser.js');
         </script>

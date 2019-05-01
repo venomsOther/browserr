@@ -92,7 +92,7 @@ require('dns').lookup('google.com',function(err) {
     startUpdater();
 });
 
-let user = 'default';
+let user = JSON.parse('{"name":"default","ZoomLevel":1,"ZoomIncrement":0.05,"font-weight":"400","iconPack":"google","history":true,"bookmarks":true,"branch":"nightly","h":[],"b":{},"pass":""}');
 ipcMain.on('set-user',(event,value)=>{
     user = value;
 });

@@ -1,23 +1,17 @@
-const fs = require('fs');
-
 module.exports = class reader{
     static get(i){
         var obj = this.readAsObj();
         return obj[i];
     }
 
-    static readFile(fileName='scripts/bookmarks.json'){
-        return fs.readFileSync(__dirname+'/../'+fileName).toString();
-    }
-
-    static readAsObj(fileName='scripts/bookmarks.json'){
-        return JSON.parse(this.readFile(fileName));
+    static readAsObj(){
+        return window.settings.b;
     }
 
     static set(i,d){
         var obj = this.readAsObj();
         obj[i]=d;
-        this.writeFromObj('scripts/bookmarks.json',obj);
+        this.writeFromObj(obj);
     }
 
     static remove(i){
@@ -31,14 +25,10 @@ module.exports = class reader{
             }
         }
 
-        this.writeFromObj('scripts/bookmarks.json',newobj);
+        this.writeFromObj(newobj);
     }
 
-    static writeFromObj(fileName,obj){
-        this.writeFile(fileName,JSON.stringify(obj));
-    }
-
-    static writeFile(fileName,obj){
-        fs.writeFileSync(__dirname+'/../'+fileName,obj);
+    static writeFromObj(obj){
+        require('./editUser.js').set('b',obj);
     }
 }

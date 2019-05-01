@@ -1,15 +1,13 @@
 var $ = document.querySelector('textwrapper');
 
-var currentS = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
+var currentS = window.settings
 
 function doclose(){
     require('electron').remote.getCurrentWindow().close();
 }
 
 function editSettings(setting,value){
-    var obj = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
-    obj[setting] = value;
-    require('fs').writeFileSync('scripts/settings.json',JSON.stringify(obj));
+    require('./editUser').set(setting,value)
 }
 
 function fontWeight(){
