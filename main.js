@@ -1,3 +1,4 @@
+const companyURL = ''
 // Modules to control application life and create native browser window
 const {ipcMain, app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shell, nativeImage} = require('electron')
 
@@ -100,4 +101,8 @@ ipcMain.on('set-user',(event,value)=>{
 
 ipcMain.on('get-user',(event,value)=>{
     event.returnValue = user;
+});
+
+ipcMain.on('get-company',(event,value)=>{
+    event.returnValue = companyURL;
 });

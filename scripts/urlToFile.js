@@ -14,6 +14,6 @@ function f(mod,filename,url){
     var fs = require('fs');
     var newf = fs.createWriteStream(filename);
     require(mod).get(url,(res)=>{
-        newf.pipe(res);
+        res.pipe(newf)
     });
 }
