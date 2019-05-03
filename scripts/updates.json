@@ -47,6 +47,13 @@
             "scripts/updater.js":""
         }},
         "11":{"files":{
+            "scripts/updater.js":"",
+            "index.js":"",
+            "main.js":""
+        }},
+        "12":{"files":{
+            "users":"mkdir",
+            "urlToFile.js":"",
             "main.js":"",
             "password.html":"",
             "users/default.user":"",
@@ -70,7 +77,8 @@
             "historypage.html":"",
             "bookmarkspage.html":"",
             "scripts/settingsparser.js":"",
-            "settings.html":""
+            "settings.html":"",
+            "scripts/updater.js":""
         }}
     }
 }

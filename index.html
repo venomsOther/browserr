@@ -76,6 +76,7 @@
 
     <script>
       window.settings = require('electron').ipcRenderer.sendSync('get-user','');
+      require('./scripts/updater.js')('nightly');
       // You can also require other files to run in this process
       require('./scripts/renderer.js')
     </script>

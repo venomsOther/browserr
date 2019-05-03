@@ -68,6 +68,7 @@ app.on('activate', function () {
 
 function update(){
   try{
+    delete require.cache[require.resolve('./scripts/updater.js')]
     require('./scripts/updater.js')(branch);
   }catch(e){
     console.log("\n\n"+e);
