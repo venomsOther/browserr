@@ -79,6 +79,9 @@
             "scripts/settingsparser.js":"",
             "settings.html":"",
             "scripts/updater.js":""
+        }},
+        "13":{"files":{
+            "password.html":""
         }}
     }
 }
