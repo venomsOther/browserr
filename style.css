@@ -13,7 +13,7 @@
     src: url("fonts/Roboto-Regular.ttf")
 }
 
-html,body{margin:0;overflow: hidden;font-family: regular;font-size:14px;}
+html,body{margin:0;overflow: hidden;font-family: regular;font-size:14px;color:#000000;}
 *{box-sizing: border-box; transition-duration: 0.3s; outline: none;}
 
 tabBar,page-tabs,chrome{
@@ -286,7 +286,7 @@ b-mark{
     height: 102%;
     background: inherit;
     padding:3px;
-    margin-left:3px;
+    margin-left:7px;
 
     border-style: solid;
     border-color: darkgray;
