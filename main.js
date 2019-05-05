@@ -5,7 +5,7 @@ const {ipcMain, app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notificat
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-let branch = 'nightly';
+let branch = 'master';
 let debugging = false;
 let offline = false;
 
