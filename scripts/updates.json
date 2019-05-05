@@ -88,6 +88,9 @@
             "scripts/elements/m-settings.js":"",
             "scripts/elements/multi-view.js":"",
             "style.css":""
+        }},
+        "15":{"files":{
+            "password.html":""
         }}
     }
 }
