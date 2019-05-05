@@ -84,8 +84,8 @@ window.settingsWindow = function settingsWindow(){
         minHeight: '100'
     });
 
-    win.loadFile(__dirname+'/settings.html');
-    win.openDevTools();
+    win.loadFile(__dirname+'/../settings.html');
+    // win.openDevTools();
 }
 
 window.bookmarksWindow = function bookmarksWindow(){
@@ -106,8 +106,8 @@ window.historyWindow = function historyWindow(){
         minHeight: '100'
     });
 
-    win.loadFile(__dirname+'/historypage.html');
-    win.openDevTools();
+    win.loadFile(__dirname+'/../historypage.html');
+    // win.openDevTools();
 }
 
 function changeChrome(r,g,b){
@@ -194,7 +194,7 @@ function focusSearchInput(){
     window.document.body.querySelector('search-bar').querySelector('sch-ipt').focus();
 }
 
-const settings = JSON.parse(require('fs').readFileSync(__dirname+'/'+'settings.json').toString());
+const settings = window.settings;
 require('./docload.js');
 var svgs = require('./icons.js');
 const zoomFactorChange = settings.ZoomIncrement;

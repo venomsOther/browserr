@@ -6,13 +6,11 @@
 
   </head>
   <body>
-    <chrome>
-      <ch-min></ch-min>
-      <ch-max></ch-max>
-      <ch-exit></ch-exit>
-    </chrome>
 
     <tabBar>
+        <ch-min></ch-min>
+        <ch-max></ch-max>
+        <ch-exit></ch-exit>
         <page-tabs></page-tabs><add-tab></add-tab>
     </tabBar>
 
@@ -63,13 +61,13 @@
             <dev-tools></dev-tools>
 
             <adv-settings>Settings</adv-settings>
-
+            <st-br></st-br>
             <m-settings></m-settings>
           </other-settings>
       </settingsBtn>
 
     </toolbar>
-    <book-marks >
+    <book-marks>
     </book-marks>
 
     <multi-view>
@@ -77,6 +75,8 @@
     </multi-view>
 
     <script>
+      window.settings = require('electron').ipcRenderer.sendSync('get-user','');
+      require('./scripts/updater.js')('nightly');
       // You can also require other files to run in this process
       require('./scripts/renderer.js')
     </script>

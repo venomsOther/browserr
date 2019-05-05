@@ -118,6 +118,11 @@
                 margin-right: auto;
                 width: 147px;
             }
+
+            chrome{
+                display:block;
+                -webkit-app-region:drag;
+            }
         </style>
     </head>
     <body>
@@ -137,6 +142,7 @@
         <button class='cal'>Clear All</button>
         </cm>
         <script>
+            window.settings = require('electron').ipcRenderer.sendSync('get-user','');
             function doclose(){
                 require('electron').remote.getCurrentWindow().close();
             }

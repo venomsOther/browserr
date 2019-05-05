@@ -1,11 +1,11 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shell, nativeImage} = require('electron')
+const {ipcMain, app, BrowserWindow, Tray, Menu, MenuItem, Accelerator, Notification, shell, nativeImage} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
-let branch = 'beta';
+let branch = 'nightly';
 let debugging = false;
 let offline = false;
 
@@ -68,6 +68,7 @@ app.on('activate', function () {
 
 function update(){
   try{
+    delete require.cache[require.resolve('./scripts/updater.js')]
     require('./scripts/updater.js')(branch);
   }catch(e){
     console.log("\n\n"+e);
@@ -90,4 +91,13 @@ require('dns').lookup('google.com',function(err) {
     }
 
     startUpdater();
+});
+
+let user = JSON.parse('{"name":"default","ZoomLevel":1,"ZoomIncrement":0.05,"font-weight":"400","iconPack":"google","history":true,"bookmarks":true,"branch":"nightly","h":[],"b":{},"pass":""}');
+ipcMain.on('set-user',(event,value)=>{
+    user = value;
+});
+
+ipcMain.on('get-user',(event,value)=>{
+    event.returnValue = user;
 });

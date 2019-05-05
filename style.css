@@ -13,7 +13,7 @@
     src: url("fonts/Roboto-Regular.ttf")
 }
 
-html,body{margin:0;overflow: hidden;font-family: regular;}
+html,body{margin:0;overflow: hidden;font-family: regular;font-size:14px;color:#000000;}
 *{box-sizing: border-box; transition-duration: 0.3s; outline: none;}
 
 tabBar,page-tabs,chrome{
@@ -39,6 +39,7 @@ toolbar{
     padding-top: 5px;
     border-bottom: 2px black solid;
     height: auto;
+    background: #ffffff;
 }
 
 pg-nav{
@@ -53,7 +54,7 @@ tabBar,page-tabs{
 
 page-tabs{
     position: relative;
-    top: -1px;
+    top: -2.5px;
     /* odd flex but okay */
     display:inline-flex;
     align-items: center;
@@ -78,10 +79,11 @@ pg-tab{
 }
 
 tabBar{
-    height:40px;
+    height:45px;
     display:block;
     width:100%;
     overflow: visible;
+    padding-top:4px;
 }
 
 
@@ -135,11 +137,11 @@ search-bar{background:rgb(220,220,220);height:25px;display:inline-block;flex-gro
 other-settings{
     padding:10px;
     position: absolute;
-    width: 150px;
+    width: 175px;
     height: auto;
     display: none;
-    top: 95px;
-    right:0.25vw;
+    top: 75px;
+    right:0;
     background: lightgrey;
     border-radius:15px;
     border-top-right-radius: 0px;
@@ -150,18 +152,29 @@ other-settings{
 }
 
 settingsbtn{
-    margin-right:0.25vw;
-    display:inline-block;
+    height:25px;
+    width:25px;
+    display:block;
+
+    float:right;
+    display:relative;
+    top: -2px;
+
+    border-style:solid;
+    border-width:2px;
+    border-color:white;
+    border-bottom:none;
 }
 
 settingsbtn:hover{
     display:inline-block;
     background: lightgrey;
+    border-color:black;
 }
 
-st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings{
+st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-settings,st-label{
     display:block;
-    width:auto;
+    width:130px;
     padding:5px;
     border: 1px solid darkgray;
     border-radius:5px;
@@ -170,11 +183,11 @@ st-btn,st-win,st-br,st-history,st-bookmarks,page-zoom,adv-settings,dev-tools,m-s
 
 page-zoom{
     display: flex;
-    width:100%;
+    width:130px;
     justify-content: space-evenly;
 }
 
-st-btn:hover,st-win:hover,st-history:hover,st-bookmarks:hover,adv-settings:hover,dev-tools:hover{
+st-btn:hover,st-win:hover,st-history:hover,st-bookmarks:hover,adv-settings:hover,dev-tools:hover,m-settings:hover,page-zoom:hover,st-label:hover{
     border: 1px solid black;
     background: rgb(230,230,230);
     padding: 7.5px;
@@ -230,6 +243,7 @@ add-tab{
     width:40px;
     margin:0px;
     overflow: hidden;
+    top:1px;
 }
 
 tb-remove{display:inline-block;height:20px;border-radius:20px;}
@@ -262,23 +276,31 @@ ind{
 book-marks{
     display:flex;
     background:lightgray;
-    height:40px;
+    height:30px;
     align-items: center;
 }
 
+
 b-mark{
     max-width:20vw;
-    height: 35px;
+    height: 102%;
     background: inherit;
-    border-right-style: solid;
-    border-left-style: solid;
-    border-color: darkgray;
-
-    border-width:2px;
-    border-radius: 10px;
     padding:3px;
+    margin-left:7px;
+
+    border-style: solid;
+    border-color: darkgray;
+    border-top-color: white;
+    border-bottom-color: #bebebe;
+    border-width:2px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
     align-content: center;
-    margin-left:3px;
+
+    position: relative;
+    top:-2px;
 }
 
 b-mark:hover{
@@ -300,7 +322,7 @@ b-ico{
 }
 
 b-ico img{
-    top:3px;
+    top:1px;
     display:inline-block;
 }
 
@@ -380,10 +402,13 @@ z-in:hover,z-out:hover{
 
 multi-view{
     display:grid;
-    grid-column-gap: 50px;
-    grid-row-gap: 50px;
+    grid-gap: 50px;
     grid-template-columns: auto;
+    grid-template-rows: auto;
     overflow-y: auto;
+    border-top-style:solid;
+    border-top-width:0px;
+    border-top-color:darkgrey;
 }
 
 m-settings input{
@@ -392,4 +417,32 @@ m-settings input{
     border-color: black;
     padding: 3px 6px;
     width: 98%;
+}
+
+.tabSelect{
+    border-color:#ffffff;
+    background:#ffffff;
+}
+
+multi-view.enabled{
+    padding: 10px;
+    border-top-width:2px;
+    border-top-color:darkgrey;
+    background:lightgrey;
+}
+
+web--view,webview{
+    height:100%;
+}
+
+multi-view.enabled{
+    display:grid;
+    overflow: none;
+    height:calc(100vh - 111.5px);
+}
+
+multi-view{
+    display:block;
+    overflow:none;
+    height:calc(100vh - 111.5px);
 }
