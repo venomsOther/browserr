@@ -82,6 +82,12 @@
         }},
         "13":{"files":{
             "password.html":""
+        }},
+        "14":{"files":{
+            "password.html":"",
+            "scripts/elements/m-settings.js":"",
+            "scripts/elements/multi-view.js":"",
+            "style.css":""
         }}
     }
 }
