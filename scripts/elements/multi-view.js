@@ -4,13 +4,30 @@ module.exports = class extends HTMLElement{
     }
 
     connectedCallback(){
-
+        this.___cols = 1;
+        this.___rows = 1;
     }
 
-    changeGrid(cols){
+    set cols(num){
+        this.___cols = num;
+    }
+
+    get cols(){
+        return this.___cols;
+    }
+
+    set rows(num){
+        this.___rows = num;
+    }
+
+    get rows(){
+        return this.___rows;
+    }
+
+    changeCols(cols){
         var str = '';
 
-        if(cols == 1){
+        if(cols == 1 && this.rows == 1){
             this.disable();
         }else{
             this.enable();
@@ -19,7 +36,24 @@ module.exports = class extends HTMLElement{
         for(var i=0;i<cols;i++){
             str+=' auto'
         }
+        this.cols = cols;
         this.style.gridTemplateColumns = str;
+    }
+
+    changeRows(rows){
+        var str = '';
+
+        if(rows == 1 && this.cols == 1){
+            this.disable();
+        }else{
+            this.enable();
+        }
+
+        for(var i=0;i<rows;i++){
+            str+=' auto'
+        }
+        this.rows = rows;
+        this.style.gridTemplateRows = str;
     }
 
     toggleEnabled(){
@@ -32,10 +66,14 @@ module.exports = class extends HTMLElement{
 
     enable(){
         this.setAttribute('enabled','');
+        this.setAttribute('class','enabled');
     }
 
     disable(){
+        var v= getCurrentView().parentElement.tab;
         this.removeAttribute('enabled');
+        this.setAttribute('class',"");
+        v.show();
     }
 
     addChild(h){

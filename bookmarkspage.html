@@ -9,6 +9,9 @@
 
             chrome{
                 position:fixed;
+                -webkit-app-region:drag;
+                width:100vw;
+                right:0px;
             }
             ch-min,ch-max,ch-exit{
                 position:fixed;
@@ -21,7 +24,7 @@
             <ch-min></ch-min>
             <ch-max></ch-max>
             <ch-exit></ch-exit>
-        </chrome>
+        </chrome><br><br>
 
 
         <ol>
@@ -29,7 +32,8 @@
         </ol>
 
        <script>
-           require('electron').remote.getCurrentWindow().openDevTools();
+           window.settings = require('electron').ipcRenderer.sendSync('get-user','');
+           // require('electron').remote.getCurrentWindow().openDevTools();
            var BrowserWindow = require('electron').remote.BrowserWindow;
            require('./scripts/renderer.js');
            var io = require('./scripts/bookmarks.js');

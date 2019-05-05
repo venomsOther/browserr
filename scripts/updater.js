@@ -26,18 +26,40 @@ function gread(branch, filePath){
     });
 }
 
-module.exports = (branch = 'master') => {
-    gread(branch,'scripts/updates.json').then((d)=>{;
+function update (branch = 'master') {
+
+    if(!require('fs').existsSync(__dirname+'/ulock')){
+        require('fs').writeFileSync(__dirname+'/ulock',"");
+        require('fs').writeFileSync(__dirname+'/ulock',`{\n\t"version" : "1.1.2",\n\t"files" : \n\t{\n\t\t"scripts/updater.js":"",\n\t\t"scripts/ulock"\n\t},\n\n\t"patches":\n\t{\n\t}\n}`);
+        delete require.cache[require.resolve('./updater.js')]
+        update(branch);
+    }
+
+    gread(branch,'scripts/updates.json').then((d)=>{
         if(d == '404: Not Found') return;
         d = JSON.parse(d);
         let i;
         let f = JSON.parse(fs.readFileSync(__dirname+'/'+'updates.json').toString());
+        let currentPatch = Object.keys(f.patches).length;
 
-        if(d.version != f.version){
-            fs.writeFileSync(__dirname+'/'+'updates.json', JSON.stringify(d));
-            for(i in d.files){ read(branch,i) }
+        if(d.patches[currentPatch + 1] != undefined){
+            f.patches[currentPatch + 1] = d.patches[currentPatch + 1];
+            fs.writeFileSync(__dirname+'/updates.json', JSON.stringify(f));
+            for(i in d.patches[currentPatch + 1].files){
+                if(d.patches[currentPatch + 1].files[i]== ""){
+                    read(branch,i);
+                } else if(d.patches[currentPatch + 1].files[i]== "mkdir"){
+                    require('fs').mkdirSync(__dirname + '/../' + i);
+                } else if(d.patches[currentPatch + 1].files[i]== "rm"){
+                    require('fs').unlinkSync(__dirname + '/../' + i);
+                }
+             }
+            update(branch);
         }
     }).catch((e)=>{
-        console.log(e);
+        alert(e);
+        process.exit(0);
     });
 }
+
+module.exports = update;

@@ -4,87 +4,36 @@ class History{
     }
     HaddItem(item){this.addItem(item,this.filename)}
 
-    static addItem(item,filename='scripts/history.json'){
-        var file = this.readFile(filename);
+    static addItem(item){
 
-        var obj = JSON.parse(file);
-        var arr = [];
-        var i, ii;
-        i=0;
-        for(ii in obj){
-            arr[i] = obj[ii];
-            i++
-        }
+        var arr = window.settings.h;
 
         arr.push(item);
 
-        for(i = 0; i<arr.length; i++){
-            obj[i] = arr[i];
-        }
-
-        require('fs').writeFileSync(__dirname+'/../'+'scripts/history.json',JSON.stringify(obj));
+        require('./editUser').set('h',arr);
     }
 
-    static getItem(item, filename='scripts/history.json'){
+    static getItem(item,){
 
     }
 
-    static readFile(filename='scripts/history.json'){
-        try{
-            return require('fs').readFileSync(__dirname+'/../'+filename).toString();
-        }catch(e){
-            require('fs').writeFileSync(__dirname+'/../'+filename,'{}');
-            return '{}';
-        }
+    static readFile(){
+        return window.settings.h
     }
 
-    static removeItem(n,filename='scripts/history.json'){
-        var file = this.readFile(filename);
+    static removeItem(n){
+        var arr = window.settings.h;
+        arr.splice(n,1)
 
-        var obj = JSON.parse(file);
-        var arr = [];
-        var i, ii;
-        i=0;
-        for(ii in obj){
-            arr[i] = obj[ii];
-            i++
-        }
-
-        arr[n] = null;
-        ii = 0;
-
-        for(i = 0; i<arr.length; i++){
-            if(arr[i] == null){
-                // do nothing
-            }
-            else{
-                obj[ii] = arr[i];
-                ii++;
-            }
-        }
-
-        console.log(obj)
-
-        require('fs').writeFileSync(__dirname+'/../'+'scripts/history.json',JSON.stringify(obj));
+        require('./editUser').set('h',arr);
     }
 
-    static asArray(filename='scripts/history.json'){
-        var file = this.readFile(filename);
-
-        var obj = JSON.parse(file);
-        var arr = [];
-        var i, ii;
-        i=0;
-        for(ii in obj){
-            arr[i] = obj[ii];
-            i++
-        }
-
-        return arr;
+    static asArray(){
+        return this.readFile();
     }
 
-    static clearAll(filename='scripts/history.json'){
-        require('fs').writeFileSync(__dirname+'/../'+filename,'{}');
+    static clearAll(){
+        require('./editUser').set('h',[]);
     }
 }
 
