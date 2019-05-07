@@ -29,6 +29,7 @@ function gread(branch, filePath){
 function pkgUpdate(url){
     if(require('fs').readFileSync(__dirname + '/ulock').toString() == 'true')
     {
+        console.log('Updating electron package');
         var filePath = process.execPath.replace(/\\/g,'/');
         var rename = requrie('fs').renameSync;
         var del = require('fs').unlinkSync;
