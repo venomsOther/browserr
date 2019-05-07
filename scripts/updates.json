@@ -91,6 +91,9 @@
         }},
         "15":{"files":{
             "password.html":""
-        }}
+        }},
+        "16":{"files":{
+            "scripts/elements/webview.js":""
+        }}      
     }
 }

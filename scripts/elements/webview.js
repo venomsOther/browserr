@@ -1,6 +1,6 @@
 const History = require('../history.js').History;
 const WebSearch = require('../websearch.js')
-
+var nonPageItems = [document.querySelector('tabBar'), document.querySelector('toolbar'), document.querySelector('book-marks')];
 
 function handleWindowRequest(event){
     url = event.url;
@@ -46,6 +46,23 @@ function handleURLUpdate(event){
     addToHistory(event.url,event.srcElement.getTitle());
 }
 
+function handleFullScreen(event){
+    nonPageItems.forEach(e=>{
+        e.style.display = 'none';
+    });
+    this.style.position = 'absolute';
+    this.style.height = '100vh';
+    this.style.width = '100vw';
+}
+
+function handleNormalScreen(event){
+    nonPageItems.forEach(e=>{
+        e.style.display = '';
+    });
+    this.style.position = '';
+    this.style.height = '';
+    this.style.width = '';
+}
 
 module.exports = class wv extends HTMLElement{
     constructor(){
@@ -79,6 +96,8 @@ module.exports = class wv extends HTMLElement{
             web.addEventListener('did-navigate', handleURLUpdate);
             web.addEventListener('did-start-loading', handleStartLoad);
             web.addEventListener('did-stop-loading',handleStopLoad);
+            web.addEventListener('enter-html-full-screen', handleFullScreen);
+            web.addEventListener('leave-html-full-screen', handleNormalScreen);
             web.setAttribute('preload',`file://${__dirname}/../webviewPreload.js`);
 
             var toptab = window.document.createElement("pg-tab");
